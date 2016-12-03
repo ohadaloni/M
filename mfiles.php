@@ -31,15 +31,6 @@ require_once("Mtable.class.php");
 require_once("MlineGraphs.class.php");
 require_once("MpieCharts.class.php");
 require_once("MgeoBubbles.class.php");
-require_once("MfunnelCharts.class.php");
-require_once("MstackCharts.class.php");
-require_once("MuserType.class.php");
-require_once("MlocationType.class.php");
-require_once("MpoliticalAff.class.php");
-require_once("MnetWorth.class.php");
-require_once("MincomeRange.class.php");
-require_once("Methnicity.class.php");
-require_once("MusDistribution.class.php");
 require_once("msu.php");
 /*------------------------------------------------------------*/
 /*------------------------------------------------------------*/

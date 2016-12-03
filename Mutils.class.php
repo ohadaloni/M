@@ -1,0 +1,438 @@
+<?php
+/*------------------------------------------------------------*/
+/**
+  * @package M
+  * @author Ohad Aloni
+  */
+/*------------------------------------------------------------*/
+/**
+  * Mutils - M utilities
+  *
+  * @package M
+  */
+/*------------------------------------------------------------*/
+class Mutils {
+	/*------------------------------*/
+	/**
+	 * like file() but without the newlines at the end of each line
+	 *
+	 * @param path to file
+	 * @return array
+	 */
+	public static function Mfile($f) {
+		if ( ! ( $c = @file_get_contents($f) ) )
+			return(null);
+		$c = str_replace("\r\n", "\n", $c);
+		$ret = explode("\n", $c);
+		array_pop($ret);
+		return($ret);
+	}
+	/*------------------------------*/
+	/**
+	 * format a money value
+	 *
+	 * @param float
+	 * @param string
+	 * @return string
+	 */
+	public static function moneyFmt($v, $currencyPrefix = '$') {
+		if ( ! $v )
+			return("");
+		if ( $v < 0.1 )
+			$fmt = number_format($v, 4);
+		else
+			$fmt = number_format($v, 2);
+		return("$currencyPrefix$fmt");
+	}
+	/*------------------------------------------------------------*/
+	/**
+	 *
+	 * escape quotes for javascript
+	 *
+	 * @param string
+	 * @return string
+	 */
+	public static function jsStr($str)
+	{
+		// if they are already escaped
+		$ret = str_replace("\\'", "'", $str);
+		$ret = str_replace("'", "\\'", $ret);
+
+		$ret = str_replace("\r\n", "\n", $ret);
+		$ret = str_replace("\\n", "\n", $ret);
+		$ret = str_replace("\n", "\\n", $ret);
+
+		return($ret);
+	}
+	/*------------------------------*/
+	/**
+	 * execute javascript by echoing it wrapped in html and flushing output buffers for immeadiate execution
+	 *
+	 * @param string
+	 */
+	public static function js($s) {
+		echo "<script type=\"text/javascript\"> $s </script>\n" ;
+		flush();
+		ob_flush();
+	}
+	/*------------------------------*/
+	/**
+	 * set title of page using javascript
+	 *
+	 * @param string
+	 */
+	public static function jsTitle($s) {
+		$s = self::jsStr($s);
+		self::js("document.title = '$s' ; ");
+	}
+	/*------------------------------*/
+	/**
+	 * set status line using javascript
+	 *
+	 * @param string
+	 */
+	public static function jsStatus($s) {
+		$s = self::jsStr($s);
+		self::js("window.status = '$s' ; ");
+	}
+	/*------------------------------------------------------------*/
+	/**
+	 * cut an array to size
+	 *
+	 * @param array
+	 * @param int
+	 * @return array
+	 */
+	public static function array_truncate($a, $n) {
+		if ( ! is_array($a) || count($a) <= $n )
+			return($a);
+		$ret = array();
+		for($i=0;$i<$n;$i++)
+			$ret[] = array_shift($a);
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	/**
+	 * like in_array but return the key
+	 */
+	public static function arrayIndex($a, $v) {
+		foreach ( $a as $key => $value )
+			if ( $value == $v ) 
+				return($key);
+		return(null);
+	}
+	/*------------------------------------------------------------*/
+	/**
+	 * select one column from an array,
+	 * like From Mmodel->getRows() to Mmodel-> getStrings()
+	 */
+	public static function arrayColumn($rows, $fname) {
+		$ret = array();
+		foreach ( $rows as $row )
+			$ret[] = $row[$fname];
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	/*
+	 * total the array or one column of the array
+	 */
+	public static function arraySum($a, $fname = null) {
+		if ( $fname != null )
+			$a = self::arrayColumn($a, $fname);
+		$ret = 0;
+		foreach ( $a as $n )
+			$ret += (double)$n;
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	public static function selectList($rows, $valName, $keyName = "id") {
+		$ret = array();
+		foreach ( $rows as $row )
+			$ret[$row[$keyName]] = $row[$valName];
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	/*
+	 * name of uploaded file info
+	 * return an array with information about an uploaded file
+	 * if $varName is not present then the file uploade input variable nam is assumed to be "file"
+	 */
+	public static function uploadedFileInfo($varName = "file") {
+		if ( ! isset($_REQUEST[$varName]) && ! isset($_FILES[$varName]) ) {
+			Mview::error("$varName not set in _REQUEST nor _FILES");
+			Mview::print_r($_FILES, "_FILES", __FILE__, __LINE__);
+			Mview::print_r($_REQUEST, "_REQUEST", __FILE__, __LINE__);
+			return(null);
+		}
+
+		if ( isset($_REQUEST[$varName]) )
+			$fileInfo = $_REQUEST[$varName];
+		else
+			$fileInfo = $_FILES[$varName];
+
+		if ( $fileInfo['error'] || $fileInfo['name'] == "" ) {
+			Mview::error("Error loading file");
+			Mview::print_r($fileInfo, "fileInfo", __FILE__, __LINE__);
+			return(null);
+		}
+
+		$ret = array(
+			'name' => $fileInfo['name'],
+			'file' => $fileInfo['tmp_name'],
+			'size' => $fileInfo['size'],
+			'type' => $fileInfo['type'],
+		);
+
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	/*
+	 * content of uploaded file
+	 * if $varName is not present then the file uploade input variable nam is assumed to be "file"
+	 */
+	public static function uploadedFileContent($varName = "file") {
+		if ( ! isset($_REQUEST[$varName]) && ! isset($_FILES[$varName]) ) {
+			Mview::error("$varName not set in _REQUEST nor _FILES");
+			Mview::print_r($_FILES, "_FILES", __FILE__, __LINE__);
+			Mview::print_r($_REQUEST, "_REQUEST", __FILE__, __LINE__);
+			return(null);
+		}
+
+		if ( isset($_REQUEST[$varName]) )
+			$fileInfo = $_REQUEST[$varName];
+		else
+			$fileInfo = $_FILES[$varName];
+
+		if ( $fileInfo['error'] || $fileInfo['name'] == "" ) {
+			Mview::error("Error loading file");
+			Mview::print_r($fileInfo, "fileInfo", __FILE__, __LINE__);
+			return(null);
+		}
+
+		$name = $fileInfo['name'];
+		$file = $fileInfo['tmp_name'];
+		$size = $fileInfo['size'];
+		$type = $fileInfo['type'];
+
+		$ret = file_get_contents($file);
+
+		$strlen = strlen($ret);
+		if ( $strlen != $size )
+			Mview::error("size reported: $size, got: $strlen");
+
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	public static function extractGetValue($name, $url) {
+		$start = strstr($url, "&$name=");
+		if ( ! $start )
+			$start = strstr($url, "?$name=");
+		if ( ! $start )
+			return(null);
+		$parts = explode('&', $start);
+		$nv = explode('=', $parts[0]);
+		if ( count($nv) != 2 )
+			return(null);
+		return($nv[1]);
+	}
+	/*------------------------------------------------------------*/
+	public static function isupper($s) {
+		return(strtoupper($s) == $s);
+	}
+	/*------------------------------------------------------------*/
+	public static function islower($s) {
+		return(strtolower($s) == $s);
+	}
+	/*------------------------------------------------------------*/
+	public static function curl($url, $opts = null) {
+		try {
+			$crl = curl_init();
+			if (!$crl)
+				return(null);
+			curl_setopt($crl, CURLOPT_URL, $url);
+			curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($crl, CURLOPT_ENCODING, "utf-8");
+			curl_setopt($crl, CURLOPT_CONNECTTIMEOUT, 3);
+			curl_setopt($crl, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($crl, CURLOPT_MAXREDIRS, 7);
+			if ( $opts ) {
+				foreach($opts as $opt => $optVal)
+					curl_setopt($crl, $opt, $optVal);
+			}
+			$data = curl_exec($crl);
+			curl_close($crl);
+			return($data);
+		} catch (Exception $e) {
+				return(null);
+		}
+	}
+	/*------------------------------------------------------------*/
+	public static function arrayIsUntitled($a) {
+		$i=0;
+		foreach($a as $key => $value )
+			if ( $i == $key )
+				$i++;
+			else
+				return(false);
+		return(true);
+	}
+	/*------------------------------------------------------------*/
+	public static function xml2array($xml) {
+		$obj = simplexml_load_string($xml);
+		$json = json_encode($obj);
+		$array = json_decode($json, true);
+		return($array);
+	}
+	/*------------------------------------------------------------*/
+	public static function array2xml($name, $a, $nestLevel = 0, $header = true)  {
+		if ( $header ) {
+			$header = self::$xmlHeader;
+			$body = self::array2xml($name, $a, 0, false);
+			return("$header$body");
+		}
+		$tabs = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t";
+		if ( ! is_array($a) )
+			return(substr($tabs, 0, $nestLevel)."<$name>".htmlspecialchars($a)."</$name>\n");
+		$nameIsPlural = substr($name, -1) == 's' ;
+		$nameSingular = $nameIsPlural ? substr($name, 0, -1) : $name ;
+		if ( strlen($name) > 5 && substr($name, -3) == 'ies' )
+			$nameSingular = substr($name, 0, -3)."y" ;
+		if ( $nameIsPlural )
+			$namePlural = $name;
+		else {
+			if ( strlen($name) > 5 && substr($name, -1) == 'y' )
+				$namePlural  =  substr($name, 0, -1)."ies";
+			else
+				$namePlural  =  $name."s" ;
+		}
+		$untitled = self::arrayIsUntitled($a);
+		$title = $untitled ? $namePlural : $name;
+		$ret = substr($tabs, 0, $nestLevel)."<$title>\n";
+		foreach ( $a as $key => $value )
+			$ret .= self::array2xml(is_numeric($key) ? $nameSingular : $key, $value, $nestLevel + 1, false);
+		$ret .= substr($tabs, 0, $nestLevel)."</$title>\n";
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	public static function array_column($a, $column) {
+		$ret = array();
+		foreach ( $a as $row )
+			$ret[] = $row[$column];
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	public static function reIndexBy($a, $by) {
+		if ( ! $a )
+			return($a);
+		if ( ! is_array($a) ) {
+			Mview::print_r($a);
+			return($a);
+		}
+		$ret = array();
+		foreach ( $a as $row )
+			$ret[$row[$by]] = $row;
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	public static function trace($forceText = false) {
+		$isHttp = @$_SERVER['SERVER_ADDR'] != null;
+		$stack = debug_backtrace(false);
+		print_r($stack);
+		$rows = $lines = array();
+		foreach ( $stack as $item ) {
+			$path = $item['file'];
+			$fileName = basename($path);
+			$line = $item['line'];
+			$class = $item['class'];
+			$function = $item['function'];
+			if ( $isHttp )
+				$rows[] = array(
+					'fileName' => $fileName,
+					'line' => $line,
+					'class' => $class,
+					'function' => $function,
+					'path' => $path,
+				);
+			else
+				$lines[] = "$class:$function:$line";
+		}
+			echo implode("\n", $lines)."\n";
+		if ( $isHttp && ! $forceText )
+			Mview::showRows($rows);
+		else
+			echo "<pre>".implode("\n", $lines)."\n</pre>\n";
+	}
+	/*------------------------------------------------------------*/
+	public static function listDir($path, $ext = null) {
+		$dir = opendir($path);
+		if ( ! $dir ) {
+			Mview::error("$path: Can not open");
+			return(null);
+		}
+		while($file = readdir($dir)) {
+			if ( $file == '.' || $file == '..' )
+				continue;
+			if ( ! $ext  ) {
+				$files[] = $file;
+				continue;
+			}
+			$fileParts = explode(".", $file);
+			$fileExt = end($fileParts);
+			if ( $fileExt == $ext )
+				$files[] = $file;
+		}
+		closedir($dir);
+		return($files);
+	}
+	/*------------------------------------------------------------*/
+	public static function object2array($obj) {
+		if ( is_array($obj) )
+			return($obj);
+		if ( ! @get_class($obj) )
+			return(null);
+		$ret = array();
+		foreach ( $obj as $n => $v )
+			$ret[$n] = $v;
+		return($ret);
+	}
+	/*------------------------------------------------------------*/
+	private static $env = null;
+	/*------------------------------*/
+	public static function setenv($nn, $v = null) {
+		if ( is_array($nn) ) {
+			foreach ( $nn as $n => $v )
+				self::$env[$n] = $v;
+		} else
+			self::$env[$nn] = $v;
+	}
+	/*------------------------------*/
+	public static function getenv($n = null) {
+		if ( $n === null )
+			return(self::$env);
+		return(@self::$env[$n]);
+	}
+	/*------------------------------------------------------------*/
+	private static function ip() {
+		return(@$_SERVER['REMOTE_ADDR']);
+	}
+	/*------------------------------*/
+	/*	// true - DOS is detected	*/
+	/*	// false - the dos was not detected	*/
+	/*	public static function detectDOS() {	*/
+		/*	$maxHitsLastMinute = 6;	*/
+		/*	$key = "detectDOS($ip)";	*/
+		/*	$ip = self::ip();	*/
+		/*	if ( ! $ip )	*/
+			/*	return(false);	*/
+		/*	$Mmemcache = new Mmemcache;	*/
+		/*	$maxHitsPerMinute = 6;	*/
+		/*	$ttl = round(60 / $maxHitsPerMinute);	*/
+		/*	$hitsLastMinute = $Mmemcache->get($key);	*/
+/*		*/
+	/*	}	*/
+	/*------------------------------------------------------------*/
+	// keep this at bottom - vim misinterprets the rest of the file
+	private static $xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+	/*------------------------------------------------------------*/
+}
+/*------------------------------------------------------------*/

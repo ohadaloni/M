@@ -186,6 +186,10 @@ class Mutils {
 		return($ret);
 	}
 	/*------------------------------------------------------------*/
+	public static function isUploadedFile($varName = "file") {
+		return( isset($_REQUEST[$varName]) || isset($_FILES[$varName]) );
+	}
+	/*------------------------------------------------------------*/
 	/*
 	 * content of uploaded file
 	 * if $varName is not present then the file uploade input variable nam is assumed to be "file"

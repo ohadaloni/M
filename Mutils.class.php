@@ -152,6 +152,14 @@ class Mutils {
 		return($ret);
 	}
 	/*------------------------------------------------------------*/
+	public static function download($fileName, $content) {
+		$filesize = strlen($content);
+		header("Content-type: text/plain");
+		header("Content-Disposition: attachment; filename=$fileName");
+		header("Content-Length: $filesize");
+		echo $content;
+	}
+	/*------------------------------------------------------------*/
 	/*
 	 * name of uploaded file info
 	 * return an array with information about an uploaded file

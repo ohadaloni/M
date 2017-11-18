@@ -2,6 +2,8 @@
 /*------------------------------------------------------------*/
 class Mlogin {
 	/*------------------------------------------------------------*/
+	private static $vars = array();
+	/*------------------------------------------------------------*/
 	public static function login($loginId, $loginName, $loginType) {
 		$expires = 2*24*60*60;
 		$magic =  self::magic($loginId);
@@ -9,6 +11,10 @@ class Mlogin {
 		Mview::setCookie("MloginName", $loginName, $expires);
 		Mview::setCookie("MloginType", $loginType, $expires);
 		Mview::setCookie("MloginMagic", $magic, $expires);
+		self::$vars['MloginId'] = $loginId;
+		self::$vars['MloginName'] = $loginName;
+		self::$vars['MloginType'] = $loginType;
+		self::$vars['MloginMagic'] = $magic;
 	}
 	/*------------------------------------------------------------*/
 	public static function logout() {
@@ -16,10 +22,15 @@ class Mlogin {
 		Mview::setCookie("MloginName", null, -1);
 		Mview::setCookie("MloginType", null, -1);
 		Mview::setCookie("MloginMagic", null, -1);
-		
+		self::$vars['MloginId'] = null;
+		self::$vars['MloginName'] = null;
+		self::$vars['MloginType'] = null;
+		self::$vars['MloginMagic'] = null;
 	}
 	/*------------------------------------------------------------*/
 	public static function get($var) {
+		if ( @self::$vars[$var] )
+			return(self::$vars[$var]);
 		return(@$_COOKIE[$var]);
 	}
 	/*------------------------------------------------------------*/

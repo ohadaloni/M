@@ -502,7 +502,7 @@ class Mmodel {
 	 */
 	public function databases() {
 		static $cache = null;
-		static $excludes = array('information_schema', 'mysql', 'test',);
+		static $excludes = array('performance_schema', 'information_schema', 'mysql', 'test',);
 		$dbHost = $this->dbHost;
 		if ( isset($cache[$dbHost]) )
 			return($cache[$dbHost]);

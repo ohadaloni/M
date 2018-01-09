@@ -375,6 +375,7 @@ class Mview extends Smarty {
 	 * @param string
 	 */
 	public static function error($msg) {
+		error_log($msg);
 		self::msg($msg, true);
 	}
 	/*------------------------------*/

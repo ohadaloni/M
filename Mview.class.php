@@ -187,6 +187,12 @@ class Mview extends Smarty {
 		return(null);
 	}
 	/*------------------------------------------------------------*/
+	public function renderText($text, $args) {
+		$args['evalText'] = $text;
+		$rendered = $this->render("eval.tpl", $args);
+		return($rendered);
+	}
+	/*------------------------------------------------------------*/
 	/**
 	 * return a rendered template
 	 */
@@ -411,17 +417,26 @@ class Mview extends Smarty {
 	 * @param int
 	 * 
 	 */
-	public static function print_r($var, $varName = null, $file = null, $line = null, $return = false) {
+	public static function print_r($var, $varName = null, $file = null, $line = null, $return = false, $logError = false) {
+		$print_r = print_r($var, true);
+		if ( $file ) {
+			$fileParts = explode("/", trim($file, "/"));
+			$fileName = $fileParts[count($fileParts)-1];
+		}
+		if ( $logError ) {
+			$str = str_replace("\n", " --> ", $print_r);
+			$str = "$fileName:$line: $varName: [[[ $print_r ]]]";
+			error_log($str);
+			return;
+		}
 		$isHtml = isset($_SERVER['REMOTE_ADDR']);
 		$ret = "";
 		if ( $isHtml )
 			$ret .= "\n<table border=\"0\"><tr><td align=\"left\"><pre>\n";
 		if ( $file ) {
-			$fileParts = explode("/", trim($file, "/"));
-			$fileName = $fileParts[count($fileParts)-1];
 			$ret .= "$varName ($fileName: $line)\n--------------------------------------------------------------\n";
 		}
-		$ret .= print_r($var, true);
+		$ret .= $print_r;
 		$ret .= "\n";
 		if ( $isHtml )
 			$ret .= "\n</pre></td></tr></table>\n";

@@ -1054,13 +1054,12 @@ class Mmodel {
 		// dates
 		if (
 			( $alen == 10 || $alen == 8 )
-			&& ( $alen == 10 || $alen == 8 )
-			&& str_replace('-', '', $a) == str_replace('-', '', $b)
+			&& str_replace('-', '', $a) === str_replace('-', '', $b)
 			)
 			return(true);
 		// text
 		if (
-			str_replace("\r\n", "\n", $a) == str_replace("\r\n", "\n", $b)
+			str_replace("\r\n", "\n", $a) === str_replace("\r\n", "\n", $b)
 			)
 			return(true);
 		return(false);

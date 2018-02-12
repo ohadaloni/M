@@ -162,6 +162,11 @@ class Mview extends Smarty {
 		$this->templateDirPath[] = $dir;
 	}
 	/*------------------------------------------------------------*/
+	public function templateDirPath() {
+		$templateDirPath = implode(":", $this->templateDirPath);
+		return($templateDirPath);
+	}
+	/*------------------------------------------------------------*/
 	private function _render($tpl) {
 		if ( ! is_writable($this->compile_dir) ) {
 			$pwd = trim(`pwd`);
@@ -182,8 +187,8 @@ class Mview extends Smarty {
 			if ( is_readable("$td/$tpl") )
 				return($this->fetch($tpl));
 		}
-		$showPath = implode(":", $this->templateDirPath);
-		$this->error("Mview: $tpl not found in $showPath");
+		$templateDirPath = $this->templateDirPath();
+		$this->error("Mview: $tpl not found in $templateDirPath");
 		return(null);
 	}
 	/*------------------------------------------------------------*/

@@ -408,6 +408,22 @@ class Mutils {
 		return($ret);
 	}
 	/*------------------------------------------------------------*/
+	public static function numberFormat($number, $decimals = 2, $sign = null) {
+		if ( ! $number )
+			return("");
+		$str = number_format($number, $decimals);
+		if ( $str < 0.00001 && $str > -0.00001 )
+			return("");
+		if ( $sign == '$' )
+			$str = '$'.$str;
+		elseif ( $sign == '%' )
+			$str = "$str%";
+		elseif ( $sign == 'nis' )
+			$str = "$str ₪";
+		return($str);
+	}
+	/*------------------------------------------------------------*/
+	/*------------------------------------------------------------*/
 	private static $env = null;
 	/*------------------------------*/
 	public static function setenv($nn, $v = null) {

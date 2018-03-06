@@ -22,7 +22,7 @@ class Perf {
 		$started = @self::$labels[$label]['started'];
 		self::$labels[$label]['started'] = null;
 		if ( ! $started ) {
-			echo "No starting point for '$label'\n";
+			echo "No starting point for '$label'<br />\n";
 			return;
 		}
 		$elapsed = $t - $started;
@@ -76,6 +76,14 @@ class Perf {
 					return($stat);
 				return(null);
 		}
+		/*	Mview::print_r($ret, "ret", basename(__FILE__), __LINE__, null, false);	*/
+		usort($ret, array(self, 'cmpSeconds'));
+		return($ret);
+	}
+	/*------------------------------*/
+	private static function cmpSeconds($a, $b) {
+		$val = $b['seconds'] - $q['seconds'];
+		$ret = $val > 0 ? 1 : ( $val < 0 ? -1 : 0 ) ;
 		return($ret);
 	}
 	/*------------------------------------------------------------*/

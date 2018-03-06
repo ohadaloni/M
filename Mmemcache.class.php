@@ -356,8 +356,7 @@ class Mmemcache {
 		return(1000 * 1000); // not reached
 	}
 	/*------------------------------*/
-	// sample log some activity
-	private function log($msg, $sampleRate) {
+	private function log($msg, $sampleRate = 1) {
 		if ( rand(1, $sampleRate) != 1 )
 			return;
 		$now = date("Y-m-d H:i:s");

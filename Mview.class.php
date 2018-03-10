@@ -209,8 +209,8 @@ class Mview extends Smarty {
 		$rendered = $this->_render($tpl);
 		if ( is_array($args) ) {
 			$keys = array_keys($args);
-			$this->clear_assign($keys);
-			$this->clear_assign('tplArgs');
+			/*	$this->clear_assign($keys);	*/
+			/*	$this->clear_assign('tplArgs');	*/
 		}
 		return($rendered);
 	}

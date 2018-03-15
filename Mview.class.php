@@ -147,7 +147,8 @@ class Mview extends Smarty {
 	 *
 	 */
 	public function prependTemplateDir($dir) {
-		array_unshift($this->templateDirPath, $dir);
+		if ( ! in_array($dir, $this->templateDirPath) )
+			array_unshift($this->templateDirPath, $dir);
 	}
 	/*------------------------------*/
 	/**
@@ -159,7 +160,8 @@ class Mview extends Smarty {
 	 *
 	 */
 	public function appendTemplateDir($dir) {
-		$this->templateDirPath[] = $dir;
+		if ( ! in_array($dir, $this->templateDirPath) )
+			$this->templateDirPath[] = $dir;
 	}
 	/*------------------------------------------------------------*/
 	public function templateDirPath() {

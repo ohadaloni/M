@@ -46,7 +46,7 @@ class Ngrams extends Mcontroller {
 		if ( ! $this->Mmodel->isTable("ignoreWords") )
 			return($str);
 		$words = $this->Mmodel->getStrings("select word from ignoreWords order by 1", 12*60*60);
-		if ( ! $ignoreWords )
+		if ( ! $words )
 			return($str);
 		$str = trim($str);
 		$str = " $str ";

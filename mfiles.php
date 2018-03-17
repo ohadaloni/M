@@ -32,6 +32,7 @@ require_once("Mtable.class.php");
 require_once("MlineGraphs.class.php");
 require_once("MpieCharts.class.php");
 require_once("MgeoBubbles.class.php");
+require_once("Ngrams.class.php");
 require_once("msu.php");
 /*------------------------------------------------------------*/
 /*------------------------------------------------------------*/

@@ -112,7 +112,6 @@ class Mview extends Smarty {
 			$this->register_function($method, $callable);
 			return;
 		}
-		// todo
 		$class = $this->registerClass($method, $class);
 		if ( ! $class )
 			return;
@@ -169,10 +168,13 @@ class Mview extends Smarty {
 		return($templateDirPath);
 	}
 	/*------------------------------------------------------------*/
-	private function _render($tpl) {
+	private function _render($tpl, $errorLogger = null) {
 		if ( ! is_writable($this->compile_dir) ) {
 			$pwd = trim(`pwd`);
-			$this->error("Smarty Compile Dir $pwd/{$this->compile_dir} not writable");
+			$error = "Smarty Compile Dir $pwd/{$this->compile_dir} not writable";
+			$this->error($error);
+			if ( $errorLogger )
+				$errorLogger->log($error);
 			return(false);
 		}
 		if ( is_readable($tpl) )
@@ -190,25 +192,28 @@ class Mview extends Smarty {
 				return($this->fetch($tpl));
 		}
 		$templateDirPath = $this->templateDirPath();
-		$this->error("Mview: $tpl not found in $templateDirPath");
+		$error = "Mview: $tpl not found in $templateDirPath";
+		$this->error($error);
+		if ( $errorLogger )
+			$errorLogger->log($error);
 		return(null);
 	}
 	/*------------------------------------------------------------*/
-	public function renderText($text, $args) {
+	public function renderText($text, $args, $errorLogger = null) {
 		$args['evalText'] = $text;
-		$rendered = $this->render("eval.tpl", $args);
+		$rendered = $this->render("eval.tpl", $args, $errorLogger);
 		return($rendered);
 	}
 	/*------------------------------------------------------------*/
 	/**
 	 * return a rendered template
 	 */
-	public function render($tpl, $args = null) {
+	public function render($tpl, $args = null, $errorLogger = null) {
 		if ( is_array($args) ) {
 			$this->assign($args);
 			$this->assign(array('tplArgs' => $args));
 		}
-		$rendered = $this->_render($tpl);
+		$rendered = $this->_render($tpl, $errorLogger);
 		if ( is_array($args) ) {
 			$keys = array_keys($args);
 			/*	$this->clear_assign($keys);	*/

@@ -92,9 +92,9 @@ class Ngrams extends Mcontroller {
 	public function vectorMultiply($ngrams1, $ngrams2) {
 		$ret = 0;
 		foreach ( $ngrams1 as $s1 => $cnt1 ) {
-			foreach ( $ngrams2 as $s2 => $cnt ) {
+			foreach ( $ngrams2 as $s2 => $cnt2 ) {
 				if ( $s1 == $s2 )
-					$ret += $cnt1*$cnt;
+					$ret += $cnt1*$cnt2;
 			}
 		}
 		return($ret);

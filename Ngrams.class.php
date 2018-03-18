@@ -45,7 +45,8 @@ class Ngrams extends Mcontroller {
 	private function unCommon($str) {
 		if ( ! $this->Mmodel->isTable("ignoreWords") )
 			return($str);
-		$words = $this->Mmodel->getStrings("select word from ignoreWords order by 1", 12*60*60);
+		$sql = "select word from ignoreWords";
+		$words = $this->Mmodel->getStrings($sql);
 		if ( ! $words )
 			return($str);
 		$str = trim($str);
@@ -53,11 +54,13 @@ class Ngrams extends Mcontroller {
 		foreach ( $words as $word )
 			$str = str_replace(" $word ", " ", $str);
 		$str = trim($str);
+		error_log(basename(__FILE__).":".__LINE__.": $str");
 		return($ret);
 	}
 	/*------------------------------------------------------------*/
 	public function vector($s, $n = 4) {
 		$ngrams = array();
+		$s = $this->c14n($s);
 		$s = " ".trim($s)." ";
 		$slen = strlen($s);
 		for($i=0;$i<=$slen-$n;$i++) {
@@ -71,16 +74,10 @@ class Ngrams extends Mcontroller {
 	}
 	/*------------------------------------------------------------*/
 	public function strDistance($s1, $s2, $n = 4) {
-		/*	static $cnt = 0;	*/
-		/*	$cnt++;	*/
-		/*	error_log("strDistance:$cnt: $s1/$s2");	*/
-		/*	return(1);	*/
-		$c14nS1 = $this->c14n($s1);
-		$c14nS2 = $this->c14n($s2);
 		if ( $s1 == $s2 )
 			return(0);
-		$s1Ngrams = $this->vector($c14nS1, $n);
-		$s2Ngrams = $this->vector($c14nS1, $n);
+		$s1Ngrams = $this->vector($s1, $n);
+		$s2Ngrams = $this->vector($s2, $n);
 		$cartesianProduct = $this->vectorMultiply($s1Ngrams, $s2Ngrams);
 		if ( ! $cartesianProduct )
 			return(1);
@@ -91,12 +88,9 @@ class Ngrams extends Mcontroller {
 	/*------------------------------------------------------------*/
 	public function vectorMultiply($ngrams1, $ngrams2) {
 		$ret = 0;
-		foreach ( $ngrams1 as $s1 => $cnt1 ) {
-			foreach ( $ngrams2 as $s2 => $cnt2 ) {
-				if ( $s1 == $s2 )
-					$ret += $cnt1*$cnt2;
-			}
-		}
+		foreach ( $ngrams1 as $s1 => $cnt1 )
+			if ( isset($ngrams2[$s1]) )
+					$ret += $cnt1*$ngrams2[$s1];
 		return($ret);
 	}
 	/*------------------------------------------------------------*/

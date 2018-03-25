@@ -199,7 +199,7 @@ class Mview extends Smarty {
 		return(null);
 	}
 	/*------------------------------------------------------------*/
-	public function renderText($text, $args, $errorLogger = null) {
+	public function renderText($text, $args = array(), $errorLogger = null) {
 		$args['evalText'] = $text;
 		$rendered = $this->render("eval.tpl", $args, $errorLogger);
 		return($rendered);

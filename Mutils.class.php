@@ -349,7 +349,6 @@ class Mutils {
 	public static function trace($forceText = false) {
 		$isHttp = @$_SERVER['SERVER_ADDR'] != null;
 		$stack = debug_backtrace(false);
-		print_r($stack);
 		$rows = $lines = array();
 		foreach ( $stack as $item ) {
 			$path = $item['file'];
@@ -368,7 +367,6 @@ class Mutils {
 			else
 				$lines[] = "$class:$function:$line";
 		}
-			echo implode("\n", $lines)."\n";
 		if ( $isHttp && ! $forceText )
 			Mview::showRows($rows);
 		else

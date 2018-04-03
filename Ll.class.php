@@ -83,6 +83,54 @@ class Ll {
 		return(true);
 	}
 	/*------------------------------------------------------------*/
+	public function replaceNode($node, $newValue) {
+		$newNode = new LlNode($newValue, $node->prev, $node->next);
+		if ( $newNode->prev )
+			$newNode->prev->next = $newNode;
+		if ( $newNode->next )
+			$newNode->next->prev = $newNode;
+	}
+	/*------------------------------------------------------------*/
+	public function find($value, $cmpFunc = null) {
+		for($node=$this->start; $node; $node = $node->next) {
+			if ( $cmpFunc )
+				$found = call_user_func($cmpFunc, $value, $node->value);
+			else
+				$found = $node->value == $value;
+			if ( $found )
+				return($node);
+		}
+		return(null);
+	}
+	/*------------------------------------------------------------*/
+	public function remove($node) {
+		if (  ! $node->prev ) {
+			// its the first
+			// maybe also the last
+			$this->start = $node->next;
+			if ( $this->start )
+				$this->start->prev = null;
+			return;
+		}
+		if (  ! $node->next ) {
+			// its the last
+			// but not the first
+			$this->end = $node->prev;
+			$this->end->next = null;
+			return;
+		}
+		// somewhere in the middle
+		$prev = $node->prev;
+		$next = $node->next;
+		$prev->next = $next;
+		$next->prev = $prev;
+	}
+	/*------------------------------------------------------------*/
+	public function _traverse($visitFunc) {
+		for($node=$this->start; $node; $node = $node->next)
+			call_user_func($visitFunc, $node);
+	}
+	/*------------------------------------------------------------*/
 	public function traverse($visitFunc) {
 		for($node=$this->start; $node; $node = $node->next)
 			call_user_func($visitFunc, $node->value);
@@ -104,14 +152,6 @@ class Ll {
 		if ( ! $valueToStringFunc )
 			return("$value");
 		return(call_user_func($valueToStringFunc, $value));
-	}
-	/*------------------------------------------------------------*/
-	public function find($value) {
-		for($node=$this->start; $node; $node = $node->next) {
-			if ( $node->value == $value )
-				return($node);
-		}
-		return(null);
 	}
 	/*------------------------------------------------------------*/
 	public function length() {

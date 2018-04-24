@@ -32,6 +32,7 @@ class Mcontroller {
 	*/
 	protected $action;
 	private $isConstructed = false;
+	private $controllerError; // to be requested in case false is returned.
 	/**
 	* @var Mmodel access the Mmodel class from this instance
 	*/
@@ -82,7 +83,20 @@ class Mcontroller {
 	}
 	/*------------------------------------------------------------*/
 	public function _control($silent = false) {
-		$this->control(null, null, null, $silent);
+		return($this->control(null, null, null, $silent));
+	}
+	/*------------------------------------------------------------*/
+	public function lastControllerError() {
+		return($this->controllerError);
+	}
+	/*------------------------------------------------------------*/
+	private function controllerError($msg, $silent) {
+		$this->controllerError = $msg;
+		if ( $silent )
+			error_log($msg);
+		else
+			$this->Mview->error($msg);
+		
 	}
 	/*------------------------------------------------------------*/
 	public function control($className = null, $action = null, $args = null, $silent = false) {			
@@ -92,12 +106,8 @@ class Mcontroller {
 			foreach ( $vars as $var ) {
 				$nv = explode('=', $var);
 				if ( count($nv) != 2 ) {
-					$msg = "$var ???";
-					if ( $silent )
-						error_log($msg);
-					else
-						$this->Mview->error($msg);
-					continue;
+					$this->controllerError("$var ???", $silent);
+					return(false);
 				}
 				list($n, $v) = $nv;
 				$requestArgs[$n] = $v;
@@ -108,10 +118,10 @@ class Mcontroller {
 		}				
 		
 		$obj = $this->obj($className, $silent);
-		if ( ! $obj )
-			return(null);
-			
-		
+		if ( ! $obj ) {
+			$this->controllerError("cannot create object for $className", $silent);
+			return(false);
+		}
 		
 		$action = $this->action($action);
 		if ( $action == null )
@@ -120,12 +130,8 @@ class Mcontroller {
 		
 		if ( ! is_callable(array($obj, $action)) ) {			
 			$className = get_class($obj);			
-			$msg = "Mcontroller: Method '$action' not callable in class '$className'";
-			if ( $silent )
-				error_log($msg);
-			else
-				$this->Mview->error($msg);
-			return(null);
+			$this->controllerError("Method '$action' not callable in class '$className'");
+			return(false);
 		}
 		$className = get_class($obj);
 
@@ -135,13 +141,14 @@ class Mcontroller {
 		$obj->action = strtolower($action);
 		$savedRequestArgs = $this->setRequestArgs($requestArgs);
 		if ( ! $obj->permit($className, $action) )
-			return(null);
+			return(false);
 		if ( method_exists($obj, "before") ) // e.g. Mmodel auto-autocomplete does not extend Mcontroller
 			$obj->before();
 		$obj->$action();
 		if ( method_exists($obj, "after") ) // e.g. Mmodel auto-autocomplete does not extend Mcontroller
 			$obj->after();
 		$this->revertRequestArgs($requestArgs, $savedRequestArgs);
+		return(true);
 	}
 	/*------------------------------*/
 	private function setRequestArgs($requestArgs) {
@@ -184,13 +191,10 @@ class Mcontroller {
 				$obj = new $baseName;
 				return($obj);
 			}
-			$this->Mview->error("class $baseName not found in $file");
+			$this->controllerError("class $baseName not found in $file", $silent);
+			return(false);
 		}
-		$msg = "cannot find class for '$className'";
-		if ( $silent )
-			error_log($msg);
-		else
-			$this->Mview->error($msg);
+		$this->controllerError("cannot find class for '$className'", $silent);
 		return(null);
 	}
 	/*------------------------------------------------------------*/

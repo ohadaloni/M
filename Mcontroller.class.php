@@ -81,45 +81,22 @@ class Mcontroller {
 		return($this->isConstructed);
 	}
 	/*------------------------------------------------------------*/
-	/**
-	 * control() decides which method of which class is executed.
-	 * It is typically called from index.php
-	 * after a control class is extended from Mcontroller:<br />
-	 * $mcc = new MyControlClass;<br />
-	 * $mcc->control();<br />
-	 * 
-	 * className denotes the class name and can be presented:
-	 * 1. in the URL as className=...<br />
-	 * 2. as the first part of path info<br />
-	 * 3. as a hidden field in a form.<br />
-	 * the method is denoted by the word 'action' and can be presented:<br />
-	 * 1. in the URL as action=...<br />
-	 * 2. as the second part of path info<br />
-	 * 3. as a hidden field in a form.<br />
-	 *
-	 * The class Abc will be automatically loaded from Abc.class.php
-	 * if it is not already loaded and there is such a file.
-	 *
-	 * if called from within a controller, dispatiching is redirected and args are (re)placed in $_REQUEST<br />
-	 * e.g.<br />
-	 *   $this->control("Authors", "listBooks", array('authorId' => 2,))<br />
-	 * will execute as if from a url ?className=Authors&action=listBooks&authorId=2<br />
-	 * this re-dispatches the action directly (without a web redirect)<br /><br />
-	 * so<br />
-	 *   $this->control("Authors", "listBooks", array('authorId' => 2,))<br />
-	 *   $this->control("Authors", "listBooks", array('authorId' => 3,))<br />
-	 * might have the effect of rendering the results of both actions consecutively on the same page<br />
-	 *	
-	 */
-	public function control($className = null, $action = null, $args = null) {			
-		/*	$this->topUri = $topUri;	*/
+	public function _control($silent = false) {
+		$this->control(null, null, null, $silent);
+	}
+	/*------------------------------------------------------------*/
+	public function control($className = null, $action = null, $args = null, $silent = false) {			
 		$requestArgs = array();
 		if ( is_string($args) ) {
 			$vars = explode('&', $args);
 			foreach ( $vars as $var ) {
 				$nv = explode('=', $var);
 				if ( count($nv) != 2 ) {
-					$this->Mview->error("$var ???");
+					$msg = "$var ???";
+					if ( $silent )
+						error_log($msg);
+					else
+						$this->Mview->error($msg);
 					continue;
 				}
 				list($n, $v) = $nv;
@@ -130,7 +107,7 @@ class Mcontroller {
 				$requestArgs[$key] = $arg;
 		}				
 		
-		$obj = $this->obj($className);
+		$obj = $this->obj($className, $silent);
 		if ( ! $obj )
 			return(null);
 			
@@ -143,7 +120,11 @@ class Mcontroller {
 		
 		if ( ! is_callable(array($obj, $action)) ) {			
 			$className = get_class($obj);			
-			$this->Mview->error("Mcontroller: Method '$action' not callable in class '$className'");
+			$msg = "Mcontroller: Method '$action' not callable in class '$className'";
+			if ( $silent )
+				error_log($msg);
+			else
+				$this->Mview->error($msg);
 			return(null);
 		}
 		$className = get_class($obj);
@@ -174,9 +155,9 @@ class Mcontroller {
 	}
 	/*------------------------------*/
 	private function revertRequestArgs($requestArgs, $savedRequestArgs) {
-		foreach ( $requestArgs as $key =>  $arg )
+		foreach ( $requestArgs as $key => $arg )
 			unset($_REQUEST[$key]);
-		foreach ( $savedRequestArgs as $key =>  $arg )
+		foreach ( $savedRequestArgs as $key => $arg )
 			$_REQUEST[$key] = $arg;
 	}
 
@@ -184,7 +165,7 @@ class Mcontroller {
 	protected function before() {}
 	protected function after() {}
 	/*------------------------------------------------------------*/
-	private function obj($className) {
+	private function obj($className, $silent = false) {
 		if ( ($className = $this->className($className)) == null )
 			return($this);
 		if ( class_exists($className) ) {
@@ -205,12 +186,15 @@ class Mcontroller {
 			}
 			$this->Mview->error("class $baseName not found in $file");
 		}
-		/*	$this->Mview->error("cannot find class for '$className' in '".implode(",", $files));	*/
-		$this->Mview->error("cannot find class for '$className'");
+		$msg = "cannot find class for '$className'";
+		if ( $silent )
+			error_log($msg);
+		else
+			$this->Mview->error($msg);
 		return(null);
 	}
 	/*------------------------------------------------------------*/
-	public function redirect($url = null)  {
+	public function redirect($url = null) {
 		if ( $url && substr($url, 0, 4) == "http" ) {
 			header("Location: $url");
 			exit;

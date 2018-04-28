@@ -34,18 +34,14 @@ class Mmemcache {
 		if ( $this->isConnected )
 			return(true);
 
+		$before = microtime(true);
 		try {
-			$before = microtime(true);
-			if ( @$this->memcache->pconnect($this->host, $this->port) ) {
-				$this->memcache->setCompressThreshold(10000, 0.3);
-				$after = microtime(true);
-				$this->isConnected = true;
-				$this->timedLog("pconnectTime", "",  $after - $before);
-				return(true);
-			} else {
-				$this->error("__construct: cannot pconnect to {$this->host}");
-				return(false);
-			}
+			$this->memcache->pconnect($this->host, $this->port);
+			$this->memcache->setCompressThreshold(10000, 0.3);
+			$after = microtime(true);
+			$this->isConnected = true;
+			$this->timedLog("pconnectTime", "",  $after - $before);
+			return(true);
 		} catch (Exception $e) {
 			$printR = print_r($e, true);
 			error_log("Mmemcache::connect: $printR");

@@ -36,17 +36,21 @@ class Mmemcache {
 
 		$before = microtime(true);
 		try {
+			error_log(basename(__FILE__).":".__LINE__.": pf");
 			$this->memcache->pconnect($this->host, $this->port);
 			$this->memcache->setCompressThreshold(10000, 0.3);
 			$after = microtime(true);
 			$this->isConnected = true;
 			$this->timedLog("pconnectTime", "",  $after - $before);
+			error_log(basename(__FILE__).":".__LINE__.": connected");
 			return(true);
 		} catch (Exception $e) {
+			error_log(basename(__FILE__).":".__LINE__.": pf");
 			$printR = print_r($e, true);
 			error_log("Mmemcache::connect: $printR");
 			return(false);
 		}
+		error_log(basename(__FILE__).":".__LINE__.": pf");
 	}
 	/*------------------------------------------------------------*/
 	public function memcache() {

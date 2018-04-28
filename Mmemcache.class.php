@@ -47,6 +47,8 @@ class Mmemcache {
 				return(false);
 			}
 		} catch (Exception $e) {
+			$printR = print_r($e, true);
+			error_log("Mmemcache::connect: $printR");
 			return(false);
 		}
 	}

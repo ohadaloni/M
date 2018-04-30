@@ -77,12 +77,12 @@ class Perf {
 				return(null);
 		}
 		/*	Mview::print_r($ret, "ret", basename(__FILE__), __LINE__, null, false);	*/
-		usort($ret, array(self, 'cmpSeconds'));
+		usort($ret, array('Perf', 'cmpSeconds'));
 		return($ret);
 	}
 	/*------------------------------*/
 	private static function cmpSeconds($a, $b) {
-		$val = $b['seconds'] - $q['seconds'];
+		$val = $b['seconds'] - $a['seconds'];
 		$ret = $val > 0 ? 1 : ( $val < 0 ? -1 : 0 ) ;
 		return($ret);
 	}

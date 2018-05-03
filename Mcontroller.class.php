@@ -90,7 +90,7 @@ class Mcontroller {
 		return($this->controllerError);
 	}
 	/*------------------------------------------------------------*/
-	private function controllerError($msg, $silent) {
+	private function controllerError($msg, $silent = false) {
 		$this->controllerError = $msg;
 		if ( $silent )
 			error_log($msg);

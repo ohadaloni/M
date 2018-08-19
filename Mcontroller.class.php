@@ -138,6 +138,8 @@ class Mcontroller {
 		$this->action = strtolower($action);
 		$obj->controller = strtolower($className);
 		$obj->action = strtolower($action);
+		Mutils::setenv("controller", $this->controller);
+		Mutils::setenv("action", $this->action);
 		$savedRequestArgs = $this->setRequestArgs($requestArgs);
 		if ( ! $obj->permit($className, $action) )
 			return(false);

@@ -571,6 +571,32 @@ class Mmodel {
 		return($id);
 	}
 	/*------------------------------------------------------------*/
+	public function bulkInsert($tableName, $rows) {
+		$columns = $this->columns($tableName);
+		unset($columns[0]); // avoid the id field
+		$names = implode(", ", $columns);
+		$valuesLists = array();
+		foreach ( $rows as $row ) {
+			$values = array();
+			foreach ( $columns as $column ) {
+				if ( isset($row[$column]) ) {
+					$value = $row[$column];
+					$dbStr = $this->str($value);
+					$valueStr = "'$dbStr'";
+				} else {
+					$valueStr = "null";
+				}
+				$values[] = $valueStr;
+			}
+			$valuesString = implode(", ", $values);
+			$valuesLists[] = $valuesString;
+		}
+		$bulkValues = "( ".implode(" ), ( ", $valuesLists)." )";
+		$sql = "insert $tableName ( $names ) values $bulkValues";
+		$affected = $this->sql($sql);
+		return($affected);
+	}
+	/*------------------------------------------------------------*/
 	/**
 	  * update a row of data - raw interface - see also dbUpdate() & dbLog() 
 	  *

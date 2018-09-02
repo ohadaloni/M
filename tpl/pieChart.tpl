@@ -4,7 +4,7 @@
 <script type="text/javascript">
 {literal}
 	$(function() {
-		    $('{/literal}#{$renderTo}'{literal}).highcharts(
+			$('{/literal}#{$renderTo}'{literal}).highcharts(
 					{/literal}
 							{$chartJson}
 					{literal}

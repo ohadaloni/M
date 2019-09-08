@@ -493,7 +493,7 @@ class Mmodel {
 
 		if ( isset($cache[$db]) )
 			return($cache[$db]);
-		$cache[$db] = $this->getStrings("show tables from $db", 5*60);
+		$cache[$db] = $this->getStrings("show tables from $db");
 		return($cache[$db]);
 	}
 	/*----------------------------------------*/

@@ -71,7 +71,7 @@ class Mcontroller {
 		if ( ! $this->Mmodel ) {
 			$stack = debug_backtrace(false);
 			Mview::print_r($stack, "stack", __FILE__, __LINE__);
-			$Mview->flush();
+			$this->quit();
 			exit;
 		}
 		if ( $this->Mmodel->isConnected() )
@@ -418,6 +418,10 @@ class Mcontroller {
 			));
 	}
 	/*------------------------------------------------------------*/
+	public function quit() {
+		$this->Mview->flushOutput();
+		exit;
+	}
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	private function className($className = null) {

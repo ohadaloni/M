@@ -28,7 +28,7 @@ class Mmemcache {
 		}
 	}
 	/*------------------------------------------------------------*/
-	private function connect() {
+	public function connect() {
 		if ( ! $this->is() )
 			return(false);
 		if ( $this->isConnected )
@@ -359,8 +359,7 @@ class Mmemcache {
 		if ( rand(1, $sampleRate) != 1 )
 			return;
 		$now = date("Y-m-d H:i:s");
-		$host = $this->host;
-		$str = sprintf("%18s 1/%-8d %-14s %s\n", $now, $sampleRate, $host, $msg);
+		$str = sprintf("%18s 1/%-8d %-14s %s\n", $now, $sampleRate, $this->host, $msg);
 		@chmod($this->logFile, 0777); // may be owned by apache or me
 		@file_put_contents($this->logFile, $str, FILE_APPEND);
 	}

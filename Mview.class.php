@@ -311,7 +311,7 @@ class Mview extends Smarty {
 	/**
 	 * flush messages and errors previously held due to a call to holdMsgs() and stop buffering
 	 */
-	function flushMsgs() {
+	public function flushMsgs() {
 		self::$isHold = false ;
 
 		foreach ( self::$msgBuf as $msg )

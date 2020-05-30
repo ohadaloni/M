@@ -31,7 +31,6 @@ class Mcontroller {
 	* @var action name of the current action
 	*/
 	protected $action;
-	private $isConstructed = false;
 	private $controllerError; // to be requested in case false is returned.
 	/**
 	* @var Mmodel access the Mmodel class from this instance
@@ -74,12 +73,6 @@ class Mcontroller {
 			$this->quit();
 			exit;
 		}
-		if ( $this->Mmodel->isConnected() )
-			$this->isConstructed = true;
-	}
-	/*------------------------------*/
-	public function isConstructed() {
-		return($this->isConstructed);
 	}
 	/*------------------------------------------------------------*/
 	public function _control($silent = false) {

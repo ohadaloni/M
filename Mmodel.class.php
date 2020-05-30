@@ -80,7 +80,7 @@ class Mmodel {
 	public function selectHost($dbHost, $dbUser, $dbPasswd, $dbName) {
 		$this->dbHost = $dbHost;
 		$this->dbUser = $dbUser;
-		$this->dbPasswd = $dbName;
+		$this->dbPasswd = $dbPasswd;
 		$this->dbName = $dbName;
 		$this->dbHandle = @mysqli_connect($dbHost, $dbUser, $dbPasswd);
 		if ( ! $this->dbHandle ) {
@@ -223,14 +223,14 @@ class Mmodel {
 			$set = $this->Mmemcache->set($memcacheKey, $ret, $ttl);
 			$debugLevel = Mutils::getenv("debugLevel");
 			if ( ! $set && $debugLevel )
-				echo "Failed to Mmemcache->set($memcacheKey, ..., $ttl)<br />\n";
+				error_log("Failed to Mmemcache->set($memcacheKey, ..., $ttl)");
 			if ( $debugLevel ) {
 				static $visited = false;
 				if ( ! $visited ) {
 					$visited = true;
 					$get = $this->Mmemcache->get($memcacheKey);
 					if ( $get === false ) {
-						echo "Failed to get after Mmemcache->set($memcacheKey, ..., $ttl)<br />\n";
+						error_log("Failed to get after Mmemcache->set($memcacheKey, ..., $ttl)");
 						$this->memcacheTestData($ret, $memcacheKey, $ttl);
 					}
 				}
@@ -258,8 +258,8 @@ class Mmodel {
 			'set' => $set,
 			'get' => $get,
 		);
-		Mview::print_r($memcacheTestResults, "memcacheTestResults", basename(__FILE__), __LINE__);
-		return($set);
+		$json = json_encode($memcacheTestResults);
+		error_log($json);
 	}
 	/*------------------------------------------------------------*/
 	public function getRow($sql, $ttl = null) {
@@ -550,6 +550,7 @@ class Mmodel {
 		if ( ($sql = $this->dbInsertSql($tableName, $data, $withId)) == null )
 			return(null);
 
+		Mview::print_r($sql, "sql", basename(__FILE__), __LINE__, null, false);
 		$affected = $this->_sql($sql, $rememberLastSql);
 		if (  $affected != 1 )
 			return(null);

@@ -25,6 +25,7 @@ require_once("Msession.class.php");
 require_once("Mlogin.class.php");
 require_once("Mfile.class.php");
 require_once("Mdate.class.php");
+require_once("Mcal.class.php");
 require_once("Mtime.class.php");
 require_once("Mutils.class.php");
 require_once("Ll.class.php");

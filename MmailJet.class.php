@@ -6,7 +6,8 @@
   * @author Ohad Aloni
   */
 /*------------------------------------------------------------*/
-define('TAS_DIR', "/var/www/vhosts/tas.theora.com");
+if ( ! defined('TAS_DIR') )
+	define('TAS_DIR', "/var/www/vhosts/tas.theora.com");
 require_once(TAS_DIR."/conf/mailJetCredentials.php");
 /*------------------------------------------------------------*/
 class MmailJet {

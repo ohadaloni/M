@@ -42,17 +42,15 @@ class MmailJet {
 			),
 		);
 		$json = json_encode($body);
-		/*	error_log($json);	*/
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_USERPWD, MAILJET_USER);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		/*	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);	*/
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_ENCODING, "utf-8");
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
 		curl_setopt($curl, CURLOPT_POST, true);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
 		$curlResponse = curl_exec($curl);
-		/*	error_log($curlResponse);	*/
 		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 		return($httpCode);

@@ -134,7 +134,7 @@ class Mcontroller {
 		Mutils::setenv("controller", $this->controller);
 		Mutils::setenv("action", $this->action);
 		$savedRequestArgs = $this->setRequestArgs($requestArgs);
-		if ( ! $obj->permit($className, $action) )
+		if ( ! $obj->permit() )
 			return(false);
 		if ( method_exists($obj, "before") ) // e.g. Mmodel auto-autocomplete does not extend Mcontroller
 			$obj->before();

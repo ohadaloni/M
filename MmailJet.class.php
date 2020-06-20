@@ -36,9 +36,7 @@ class MmailJet {
 						),
 					),
 					'Subject' => $subject,
-					'TextPart' => $message,
-					/*	'HTMLPart' = null,	*/
-					/*	'CustomID' = null,	*/
+					'HTMLPart' => $message,
 				),
 			),
 		);

@@ -815,11 +815,6 @@ class Mmodel {
 		$ret = implode("\n", $strings)."\n";
 		echo $ret;
 	 }
-	/*------------------------------*/
-	public function permit() {
-		 // allows automatic Mautocomplete!!
-		return(true);
-	}
 	/*------------------------------------------------------------*/
 	/**
 	 * update a single item in the database from parameters in $_REQUEST

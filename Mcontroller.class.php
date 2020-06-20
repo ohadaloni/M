@@ -136,10 +136,10 @@ class Mcontroller {
 		$savedRequestArgs = $this->setRequestArgs($requestArgs);
 		if ( ! $obj->permit() )
 			return(false);
-		if ( method_exists($obj, "before") ) // e.g. Mmodel auto-autocomplete does not extend Mcontroller
+		if ( method_exists($obj, "before") )
 			$obj->before();
 		$obj->$action();
-		if ( method_exists($obj, "after") ) // e.g. Mmodel auto-autocomplete does not extend Mcontroller
+		if ( method_exists($obj, "after") )
 			$obj->after();
 		$this->revertRequestArgs($requestArgs, $savedRequestArgs);
 		return(true);

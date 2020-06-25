@@ -1034,7 +1034,7 @@ class Mmodel {
 		foreach ( $data as $fname => $value ) {
 			if ( ! in_array($fname, $cols) )
 				continue;
-			if ( $fname == $idName )
+			if ( $fname == $idName && ! $withId )
 				continue;
 			$dataType = $this->dataType($tableName, $fname);
 			if ( $dataType == 'timestamp' )

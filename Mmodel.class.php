@@ -550,7 +550,6 @@ class Mmodel {
 		if ( ($sql = $this->dbInsertSql($tableName, $data, $withId)) == null )
 			return(null);
 
-		Mview::print_r($sql, "sql", basename(__FILE__), __LINE__, null, false);
 		$affected = $this->_sql($sql, $rememberLastSql);
 		if (  $affected != 1 )
 			return(null);

@@ -170,7 +170,10 @@ class Mmemcache {
 		}
 		$after = microtime(true);
 		$this->timedLog("msgQadd", $qname, $after - $before);
-		return($ok);
+		// Sat Jun 27 13:45:49 IDT 2020
+		// returning the Q length, which is now at least 1, so never false
+		/*	return($ok);	*/
+		return($lastId - $firstId + 1);
 	}
 	/*------------------------------*/
 	public function msgQlength($qname) {

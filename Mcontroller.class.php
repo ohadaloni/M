@@ -134,8 +134,10 @@ class Mcontroller {
 		Mutils::setenv("controller", $this->controller);
 		Mutils::setenv("action", $this->action);
 		$savedRequestArgs = $this->setRequestArgs($requestArgs);
-		if ( ! $obj->permit() )
+		if ( ! $obj->permit() ) {
+			error_log("Mcontroller: {$obj->controller}:{$obj->action}: Not Permitted");
 			return(false);
+		}
 		$obj->before();
 		$obj->$action();
 		$obj->after();

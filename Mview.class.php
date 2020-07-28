@@ -319,7 +319,7 @@ class Mview extends Smarty {
 		self::$msgBuf = array();
 	}
 	/*------------------------------*/
-	private static function message($msg, $iserror, $url = null) {
+	private static function message($msg, $iserror, $url = null, $silent = false) {
 		$me = get_class()."::".__FUNCTION__."()";
 		$isHtml = isset($_SERVER['REMOTE_ADDR']);
 		if ( $isHtml ) {
@@ -372,7 +372,8 @@ class Mview extends Smarty {
 				$Msession->set('msgBuf', $sessionMsgBuf);
 			}
 		}
-		self::pushOutput($text);
+		if ( ! $silent )
+			self::pushOutput($text);
 	}
 	/*------------------------------*/
 	/**
@@ -380,11 +381,11 @@ class Mview extends Smarty {
 	 *
 	 * @param string
 	 */
-	public static function msg($msg, $iserror = false, $url = null) {
+	public static function msg($msg, $iserror = false, $url = null, $silent = false) {
 		if ( self::$isHold )
 			self::$msgBuf[] = array('msg' => $msg, 'iserror' => $iserror, 'url' => $url, );
 		else
-			self::message($msg, $iserror, $url);
+			self::message($msg, $iserror, $url, $silent);
 	}
 	/*------------------------------*/
 	/**

@@ -330,20 +330,20 @@ class Mview extends Smarty {
 			
 			$before = "";
 			for($i=0;$i<count($tokens);$i++){
-				if(trim($tokens[$i])!= "")
+				if(trim($tokens[$i]) != "")
 					break;
-				if(trim($tokens[$i])== "")
-					$before.="<br/>";
+				if(trim($tokens[$i]) == "")
+					$before .= "<br />";
 			}
 			$tokens = array_reverse($tokens);
 			$after = "";
 			for($i=0;$i<count($tokens);$i++){
-				if(trim($tokens[$i])!= "")
+				if(trim($tokens[$i]) != "")
 					break;
 				if(trim($tokens[$i]) == "")
-					$after.="<br/>";
+					$after .= "<br />";
 			}			
-			$msg = trim($msg,"\n");
+			$msg = trim($msg, "\n");
 			$msg = nl2br($msg);
 			if ($url){
 				$msg = "<a target=\"_blank\" href=\"$url\">$msg</a>";

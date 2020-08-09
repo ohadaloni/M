@@ -35,6 +35,8 @@ require_once("MpieCharts.class.php");
 require_once("MgeoBubbles.class.php");
 require_once("Ngrams.class.php");
 require_once("Mrecaptcha.class.php");
+require_once("MmailJet.class.php");
+require_once("Mcurl.class.php");
 require_once("msu.php");
 /*------------------------------------------------------------*/
 /*------------------------------------------------------------*/

@@ -256,29 +256,6 @@ class Mutils {
 		return(strtolower($s) == $s);
 	}
 	/*------------------------------------------------------------*/
-	public static function curl($url, $opts = null) {
-		try {
-			$crl = curl_init();
-			if (!$crl)
-				return(null);
-			curl_setopt($crl, CURLOPT_URL, $url);
-			curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($crl, CURLOPT_ENCODING, "utf-8");
-			curl_setopt($crl, CURLOPT_CONNECTTIMEOUT, 3);
-			curl_setopt($crl, CURLOPT_FOLLOWLOCATION, true);
-			curl_setopt($crl, CURLOPT_MAXREDIRS, 7);
-			if ( $opts ) {
-				foreach($opts as $opt => $optVal)
-					curl_setopt($crl, $opt, $optVal);
-			}
-			$data = curl_exec($crl);
-			curl_close($crl);
-			return($data);
-		} catch (Exception $e) {
-				return(null);
-		}
-	}
-	/*------------------------------------------------------------*/
 	public static function arrayIsUntitled($a) {
 		$i=0;
 		foreach($a as $key => $value )

@@ -64,6 +64,8 @@ class Mcurl {
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 3);
 		curl_setopt($this->curl, CURLOPT_ENCODING, "utf-8");
+		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($this->curl, CURLOPT_MAXREDIRS, 7);
 
 		if ( $input ) {
 			$json = json_encode($input);

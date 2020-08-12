@@ -76,7 +76,7 @@ class Mcurl {
 		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($this->curl, CURLOPT_MAXREDIRS, 7);
 		if ( $this->opts ) {
-			foreach ( $opts as $key => $value )
+			foreach ( $this->opts as $key => $value )
 				curl_setopt($this->curl, $key, $value);
 		}
 

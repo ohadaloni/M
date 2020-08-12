@@ -51,6 +51,10 @@ class Mcurl {
 		$this->headers = $headers;
 	}
 	/*------------------------------------------------------------*/
+	public function setOpts($opts) {
+		$this->opts = $opts;
+	}
+	/*------------------------------------------------------------*/
 	private function go($url, $input = null) {
 		if ( ! $this->curl ) { // reusing this instance
 			$this->responseDecoded =

@@ -13,12 +13,7 @@ require_once(TAS_DIR."/conf/mailJetCredentials.php"); // define('MAILJET_USER', 
 class MmailJet {
 	/*------------------------------*/
 	public static function mail($to, $subject, $message, &$httpCode) {
-		$curl = curl_init();
-		if ( ! $curl )
-			return(null);
-		$headers = array(
-			"Content-Type: application/json",
-		);
+		$mCurl = new Mcurl;
 		$toName = explode('@', $to);
 		$toName = $toName[0];
 		$toName = ucfirst($toName);
@@ -41,18 +36,10 @@ class MmailJet {
 				),
 			),
 		);
-		$json = json_encode($body);
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_USERPWD, MAILJET_USER);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_ENCODING, "utf-8");
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 3);
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
-		$curlResponse = curl_exec($curl);
-		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-		curl_close($curl);
+		$mCurl->setOpts(array(
+			CURLOPT_USERPWD => MAILJET_USER,
+		));
+		$httpCode = $mCurl->postHttpCode($url, $body);
 		return($httpCode);
 	}
 	/*------------------------------------------------------------*/

@@ -12,6 +12,7 @@ class Mcurl {
 	private $httpCode;
 	private $responseDecoded;
 	private $headers;
+	private $opts;
 	/*------------------------------------------------------------*/
 	public function __construct() {
 		$this->curl = curl_init();
@@ -27,7 +28,7 @@ class Mcurl {
 	}
 	/*------------------------------------------------------------*/
 	// get - but return the httpCode
-	public function getHttpCode() {
+	public function getHttpCode($url) {
 		$this->go($url);
 		return($this->httpCode);
 	}
@@ -52,7 +53,11 @@ class Mcurl {
 	/*------------------------------------------------------------*/
 	private function go($url, $input = null) {
 		if ( ! $this->curl ) { // reusing this instance
-			$this->responseDecoded = $this->httpCode = $this->headers = null;
+			$this->responseDecoded =
+				$this->httpCode =
+					$this->headers =
+						$this->opts =
+							null;
 			$this->curl = curl_init();
 			if ( ! $this->curl ) {
 				error_log("Mcurl::go: cannot curl_init()");
@@ -66,6 +71,10 @@ class Mcurl {
 		curl_setopt($this->curl, CURLOPT_ENCODING, "utf-8");
 		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($this->curl, CURLOPT_MAXREDIRS, 7);
+		if ( $this->opts ) {
+			foreach ( $opts as $key => $value )
+				curl_setopt($this->curl, $key, $value);
+		}
 
 		if ( $input ) {
 			$json = json_encode($input);

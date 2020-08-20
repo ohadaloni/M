@@ -325,9 +325,15 @@ class Mview extends Smarty {
 			'silent' => false,
 			'url' => null,
 			'urlNewWindow' => null,
+			'rememberForNextPage' => true,
 		);
-		if ( ! $options )
+		if ( $options ) {
+			foreach ( $defaultOptions as $key => $value )
+				if ( ! array_key_exists($key, $options) )
+					$options[$key] = $value;
+		} else {
 			$options = $defaultOptions;
+		}
 	}
 	/*------------------------------*/
 	private static function message($msg, $iserror, $url = null, $silent = false) {

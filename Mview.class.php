@@ -319,8 +319,18 @@ class Mview extends Smarty {
 		self::$msgBuf = array();
 	}
 	/*------------------------------*/
+	public function tell($msg, $options = null) {
+		$defaultOptions = array(
+			'isError' => false,
+			'silent' => false,
+			'url' => null,
+			'urlNewWindow' => null,
+		);
+		if ( ! $options )
+			$options = $defaultOptions;
+	}
+	/*------------------------------*/
 	private static function message($msg, $iserror, $url = null, $silent = false) {
-		$me = get_class()."::".__FUNCTION__."()";
 		$isHtml = isset($_SERVER['REMOTE_ADDR']);
 		if ( $isHtml ) {
 			$type = $iserror ? "alert-danger" : "alert-info" ;

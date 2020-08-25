@@ -637,12 +637,8 @@ class Mmodel {
 			else
 				$pairs[] = "$fname = '$str'";
 		}
-		if ( ! $pairs ) {
-			/*	$json = json_encode($data);	*/
-			/*	Mview::msg("$tableName: nothing changed: $json");	*/
-			// nothing changed - do nothing else
+		if ( ! $pairs )
 			return(0);
-		}
 		$pairList = implode(", ", $pairs);
 		$sql = "update $tableName set $pairList where $idName = $id";
 		$affected = $this->_sql($sql);

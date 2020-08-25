@@ -84,13 +84,6 @@ class Mquery extends Mcontroller {
 		}
 		$this->showRows($sql, true, $tableName);
 	}
-	/*------------------------------*/
-	/**
-	 * export the results to excel
-	 */
-	public function exportToExcel($rows ="McontrollerCompatibility", $exportFileName = "McontrollerCompatibility") {
-		$this->exportStreamToExcel($_REQUEST['sql']);
-	}
 	/*------------------------------------------------------------*/
 	/**
 	/**

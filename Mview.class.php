@@ -325,7 +325,7 @@ class Mview extends Smarty {
 			'silent' => false,
 			'url' => null,
 			'urlNewWindow' => null,
-			'rememberForNextPage' => true,
+			'rememberForNextPage' => false,
 		);
 		if ( $options ) {
 			foreach ( $defaultOptions as $key => $value )
@@ -450,6 +450,19 @@ class Mview extends Smarty {
 			self::message($msg, $iserror, $url, $silent);
 	}
 	/*------------------------------*/
+	public static function runningTime($startTime) {
+		$endTime = microtime(true);
+		$time = $endTime - $startTime ;
+		$millis = $time * 1000;
+		$millis = round($millis, 3);
+		self::br(2);
+		self::tell("Running Time: $millis milliseconds.");
+	}
+	/*------------------------------*/
+	public static function br($howMany = 1) {
+		for($i=0;$i<$howMany;$i++)
+			self::pushOutput("<br />\n");
+	}
 	/**
 	 * show an error (or hold it - see holdMsgs())
 	 *

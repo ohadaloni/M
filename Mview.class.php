@@ -348,6 +348,7 @@ class Mview extends Smarty {
 		if ( $isHtml ) {
 			$msg = nl2br($msg);
 			if ( $options['url'] ) {
+				$url = $options['url'];
 				if ( $options['urlNewWindow'] )
 					$msg = "<a target=\"message\" href=\"$url\">$msg</a>";
 				else
@@ -358,7 +359,7 @@ class Mview extends Smarty {
 			$text = $msg;
 		}
 		if ( $isHtml && $options['rememberForNextPage'] )
-			$self::rememberForNextPage($text);
+			self::rememberForNextPage($text);
 		if ( ! $options['silent'] )
 			self::pushOutput($text);
 	}
@@ -460,8 +461,11 @@ class Mview extends Smarty {
 		self::msg($msg, true);
 	}
 	/*------------------------------*/
-	public static function urlMsg($msg, $url) {
-		self::msg($msg, false, $url);
+	public static function urlMsg($msg, $url, $urlNewWindow = true) {
+		self::tell($msg, array(
+			'url' => $url,
+			'urlNewWindow' => $urlNewWindow,
+		));
 	}
 	/*------------------------------------------------------------*/
 	/**

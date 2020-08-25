@@ -334,7 +334,6 @@ class Mview extends Smarty {
 		} else {
 			$options = $defaultOptions;
 		}
-		$msg = trim($msg);
 		$isHtml = isset($_SERVER['REMOTE_ADDR']);
 		if ( $options['isError'] ) {
 			if ( $isHtml )

@@ -319,7 +319,7 @@ class Mview extends Smarty {
 		self::$msgBuf = array();
 	}
 	/*------------------------------*/
-	public function tell($msg, $options = null) {
+	public static function tell($msg, $options = null) {
 		$defaultOptions = array(
 			'isError' => false,
 			'silent' => false,
@@ -334,6 +334,52 @@ class Mview extends Smarty {
 		} else {
 			$options = $defaultOptions;
 		}
+		$msg = trim($msg);
+		$isHtml = isset($_SERVER['REMOTE_ADDR']);
+		if ( $options['isError'] ) {
+			if ( $isHtml )
+				$cssClass = "alert-danger";
+			else
+				$msg = "ERROR: $msg";
+		} else {
+			if ( $isHtml )
+				$cssClass = "alert-info";
+		}
+		if ( $isHtml ) {
+			$msg = nl2br($msg);
+			if ( $options['url'] ) {
+				if ( $options['urlNewWindow'] )
+					$msg = "<a target=\"message\" href=\"$url\">$msg</a>";
+				else
+					$msg = "<a href=\"$url\">$msg</a>";
+			}
+			$text = "<div class=\"alert $cssClass\"><strong>$msg</strong></div>" ;
+		} else {
+			$text = $msg;
+		}
+		if ( $isHtml && $options['rememberForNextPage'] )
+			$self::rememberForNextPage($text);
+		if ( ! $options['silent'] )
+			self::pushOutput($text);
+	}
+	/*------------------------------*/
+	private static function rememberForNextPage($text) {
+		$Msession = new Msession;
+		$sessionMsgBuf = $Msession->get('msgBuf');
+		if ( ! $sessionMsgBuf )
+			$sessionMsgBuf = array();
+		$numMessages = count($sessionMsgBuf);
+		if ( $numMessages >= 7 ) {
+			$lastText = $sessionMsgBuf[$numMessages-1];
+			if ( $lastText != '...' ) {
+				$sessionMsgBuf[] = '...';
+				$Msession->set('msgBuf', $sessionMsgBuf);
+			}
+		} else {
+			$sessionMsgBuf[] = $text;
+			$Msession->set('msgBuf', $sessionMsgBuf);
+		}
+		
 	}
 	/*------------------------------*/
 	private static function message($msg, $iserror, $url = null, $silent = false) {

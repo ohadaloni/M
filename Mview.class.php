@@ -324,7 +324,7 @@ class Mview extends Smarty {
 			'isError' => false,
 			'silent' => false,
 			'url' => null,
-			'urlNewWindow' => null,
+			'urlNewWindow' => false,
 			'rememberForNextPage' => false,
 		);
 		if ( $options ) {
@@ -477,13 +477,6 @@ class Mview extends Smarty {
 	public static function error($msg) {
 		error_log($msg);
 		self::msg($msg, true);
-	}
-	/*------------------------------*/
-	public static function urlMsg($msg, $url, $urlNewWindow = true) {
-		self::tell($msg, array(
-			'url' => $url,
-			'urlNewWindow' => $urlNewWindow,
-		));
 	}
 	/*------------------------------------------------------------*/
 	/**

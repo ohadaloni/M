@@ -476,7 +476,10 @@ class Mview extends Smarty {
 	 */
 	public static function error($msg) {
 		error_log($msg);
-		self::msg($msg, true);
+		self::tell($msg, array(
+			'isError' => true,
+			'rememberForNextPage' => true,
+		));
 	}
 	/*------------------------------------------------------------*/
 	/**

@@ -379,7 +379,6 @@ class Mview extends Smarty {
 			$sessionMsgBuf[] = $text;
 			$Msession->set('msgBuf', $sessionMsgBuf);
 		}
-		
 	}
 	/*------------------------------*/
 	private static function message($msg, $iserror, $url = null, $silent = false) {
@@ -457,6 +456,13 @@ class Mview extends Smarty {
 		$millis = round($millis, 3);
 		self::br(2);
 		self::tell("Running Time: $millis milliseconds.");
+	}
+	/*------------------------------*/
+	public function showMsgs() {
+		$msgs = Msession::get('msgBuf');
+		self::showTpl("msgs.tpl", array(
+			'msgs' => $msgs,
+		));
 	}
 	/*------------------------------*/
 	public static function br($howMany = 1) {

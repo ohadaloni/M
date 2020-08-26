@@ -69,7 +69,7 @@ class McsvLoader extends Mcontroller {
 			$this->Mmodel->sql("drop table if exists $dropTable");
 		}
 		if ( $this->Mmodel->isTable($tableName) && @$_REQUEST['dropTableIfExists'] !== $tableName ) {
-			Mview::msg("$tableName - Aready Exists. Drop first, or set input dropTableIfExists=$tableName to drop it automatically.");
+			Mview::msg("$tableName - Already Exists. Drop first, or set input dropTableIfExists=$tableName to drop it automatically.");
 			return(null);
 		}
 		if ( ! $this->createTable() ) {

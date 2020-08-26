@@ -234,7 +234,7 @@ class Mview extends Smarty {
 		$Msession = new Msession;
 		$msgBuf = $Msession->get('msgBuf');
 		if ( $msgBuf )
-			$Msession->set('msgBuf', array()); // sets cookie - must be bfore next...
+			$Msession->set('msgBuf', array()); // sets cookie - must be before next...
 		if ( self::$outputBuffer ) {
 			echo self::$outputBuffer;
 			self::$outputBuffer = "";
@@ -290,35 +290,6 @@ class Mview extends Smarty {
 			));
 	}
 	/*------------------------------------------------------------*/
-	private static $msgBuf = array();
-	private static $isHold = false;
-	/*------------------------------*/
-	/**
-	 * buffered messages
-	 */
-	public function messages() {
-		return(self::$msgBuf);
-	}
-	/*------------------------------*/
-	/**
-	 * buffer requested messages and errors
-	 * do not show anything at least until a further notice by flushMsgs()
-	 */
-	public function holdMsgs() {
-		self::$isHold = true;
-	}
-	/*------------------------------*/
-	/**
-	 * flush messages and errors previously held due to a call to holdMsgs() and stop buffering
-	 */
-	public function flushMsgs() {
-		self::$isHold = false ;
-
-		foreach ( self::$msgBuf as $msg )
-			self::message($msg['msg'], $msg['iserror']);
-		self::$msgBuf = array();
-	}
-	/*------------------------------*/
 	public static function tell($msg, $options = null) {
 		$defaultOptions = array(
 			'isError' => false,
@@ -442,11 +413,8 @@ class Mview extends Smarty {
 	 *
 	 * @param string
 	 */
-	public static function msg($msg, $iserror = false, $url = null, $silent = false) {
-		if ( self::$isHold )
-			self::$msgBuf[] = array('msg' => $msg, 'iserror' => $iserror, 'url' => $url, );
-		else
-			self::message($msg, $iserror, $url, $silent);
+	public static function msg($msg) {
+		self::tell($msg);
 	}
 	/*------------------------------*/
 	public static function runningTime($startTime) {

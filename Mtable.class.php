@@ -15,8 +15,6 @@ require_once("Mtime.class.php");
 /**
   * A production quality, feature rich, database table scaffold, browser, editor, and superclass.
   *
-  * Mtable is much more than your ordinary PHP MVC framework scaffold.
-  * 
   * Simple to use editting facilites<br />
   * production presentable GUI<br >
   * built-in jquery autocomplete<br />
@@ -62,7 +60,7 @@ class Mtable extends Mcontroller {
 			$this->Mmodel->useDB($this->databaseName);
 
 		if ( ! $this->tableName )
-			return; // Mtable::listTable is ok without a table context
+			return;
 		$this->createTableIfNotExists();
 
 		$this->ai = $this->Mmodel->autoIncrement($this->tableName);

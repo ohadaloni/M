@@ -18,7 +18,7 @@
 				{/foreach}
 				<td><a href="?className={$className}&tableName={$tableName}&action=edit&id={$row.id}"><img border="0" src="/images/edit.png" alt="Edit" title="Edit" /></a></td>
 				<td><a href="?className={$className}&tableName={$tableName}&action=duplicate&id={$row.id}"><img border="0" src="/images/duplicate.png" alt="Duplicate" title="Duplicate" /></a></td>
-				<td><a class="noHijax" href="javascript:mConfirmDelete('{$className}', '{$tableName}', {$row.id}, ' (id #{$row.id})')"><img border="0" src="/images/delete.png" alt="Delete" title="Delete" /></a></td>
+				<td><a href="javascript:mConfirmDelete('{$className}', '{$tableName}', {$row.id}, ' (id #{$row.id})')"><img border="0" src="/images/delete.png" alt="Delete" title="Delete" /></a></td>
 			</tr>
 		{/foreach}
 	</table>

@@ -352,67 +352,6 @@ class Mview extends Smarty {
 		}
 	}
 	/*------------------------------*/
-	private static function message($msg, $iserror, $url = null, $silent = false) {
-		$isHtml = isset($_SERVER['REMOTE_ADDR']);
-		if ( $isHtml ) {
-			$type = $iserror ? "alert-danger" : "alert-info" ;
-			$msg = htmlspecialchars($msg);
-			
-			$tokens = explode("\n", $msg);
-			
-			$before = "";
-			for($i=0;$i<count($tokens);$i++){
-				if(trim($tokens[$i]) != "")
-					break;
-				if(trim($tokens[$i]) == "")
-					$before .= "<br />";
-			}
-			$tokens = array_reverse($tokens);
-			$after = "";
-			for($i=0;$i<count($tokens);$i++){
-				if(trim($tokens[$i]) != "")
-					break;
-				if(trim($tokens[$i]) == "")
-					$after .= "<br />";
-			}			
-			$msg = trim($msg, "\n");
-			$msg = nl2br($msg);
-			if ($url){
-				$msg = "<a target=\"_blank\" href=\"$url\">$msg</a>";
-			}
-			$text = "<div class='alert $type'><strong>$msg</strong></div>" ;
-			$text = $before.$text.$after;
-		}
-		else {
-			$pfx = $iserror ? "ERROR: " : "" ;
-			$text =  "$pfx$msg\n" ;
-		}
-		if ( $isHtml ) {
-			$Msession = new Msession;
-			$sessionMsgBuf = $Msession->get('msgBuf');
-			if ( ! $sessionMsgBuf )
-				$sessionMsgBuf = array();
-			$numMessages = count($sessionMsgBuf);
-			if ( $numMessages >= 7 ) {
-				$lastText = $sessionMsgBuf[$numMessages-1];
-				if ( $lastText != '...' ) {
-					$sessionMsgBuf[] = '...';
-					$Msession->set('msgBuf', $sessionMsgBuf);
-				}
-			} else {
-				$sessionMsgBuf[] = $text;
-				$Msession->set('msgBuf', $sessionMsgBuf);
-			}
-		}
-		if ( ! $silent )
-			self::pushOutput($text);
-	}
-	/*------------------------------*/
-	/**
-	 * show a msg (or hold it - see holdMsgs())
-	 *
-	 * @param string
-	 */
 	public static function msg($msg) {
 		self::tell($msg);
 	}
@@ -437,11 +376,7 @@ class Mview extends Smarty {
 		for($i=0;$i<$howMany;$i++)
 			self::pushOutput("<br />\n");
 	}
-	/**
-	 * show an error (or hold it - see holdMsgs())
-	 *
-	 * @param string
-	 */
+	/*------------------------------*/
 	public static function error($msg) {
 		error_log($msg);
 		self::tell($msg, array(

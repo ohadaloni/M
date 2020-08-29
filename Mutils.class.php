@@ -415,24 +415,54 @@ class Mutils {
 		return(@self::$env[$n]);
 	}
 	/*------------------------------------------------------------*/
-	private static function ip() {
-		return(@$_SERVER['REMOTE_ADDR']);
+	// from:
+	// http://krasimirtsonev.com/blog/article/php--find-links-in-a-string-and-replace-them-with-actual-html-link-tags
+	//
+	// if
+	//        {$row.story|nl2br|makeLinks}
+	// makeLinks sticks a br in the middle if the link title
+	// so try
+	//        {$row.story|makeLinks|nl2br}
+	public static function makeLinks($str) {
+			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+			$urls = array();
+			$urlsToReplace = array();
+			if(preg_match_all($reg_exUrl, $str, $urls)) {
+					$numOfMatches = count($urls[0]);
+					$numOfUrlsToReplace = 0;
+					for($i=0; $i<$numOfMatches; $i++) {
+							$alreadyAdded = false;
+							$numOfUrlsToReplace = count($urlsToReplace);
+							for($j=0; $j<$numOfUrlsToReplace; $j++) {
+									if($urlsToReplace[$j] == $urls[0][$i]) {
+											$alreadyAdded = true;
+									}
+							}
+							if(!$alreadyAdded) {
+									array_push($urlsToReplace, $urls[0][$i]);
+							}
+					}
+					$numOfUrlsToReplace = count($urlsToReplace);
+					for($i=0; $i<$numOfUrlsToReplace; $i++) {
+							$str = str_replace($urlsToReplace[$i], "<a target=\"_blank\" href=\"".$urlsToReplace[$i]."\">".$urlsToReplace[$i]."</a> ", $str);
+					}
+					return $str;
+			} else {
+					return $str;
+			}
 	}
-	/*------------------------------*/
-	/*	// true - DOS is detected	*/
-	/*	// false - the dos was not detected	*/
-	/*	public static function detectDOS() {	*/
-		/*	$maxHitsLastMinute = 6;	*/
-		/*	$key = "detectDOS($ip)";	*/
-		/*	$ip = self::ip();	*/
-		/*	if ( ! $ip )	*/
-			/*	return(false);	*/
-		/*	$Mmemcache = new Mmemcache;	*/
-		/*	$maxHitsPerMinute = 6;	*/
-		/*	$ttl = round(60 / $maxHitsPerMinute);	*/
-		/*	$hitsLastMinute = $Mmemcache->get($key);	*/
-/*		*/
-	/*	}	*/
+	/*------------------------------------------------------------*/
+	public static function terse($str, $numWords = 7) {
+		$words = explode(" ", $str);
+		$cnt = count($words);
+		if ( $cnt <= $numWords )
+			return($str);
+		$words = array_slice($words, 0, $numWords);
+		$str = implode(" ", $words)." ...";
+		return($str);
+	}
+	/*------------------------------------------------------------*/
+	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	// keep this at bottom - vim misinterprets the rest of the file
 	private static $xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";

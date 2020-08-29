@@ -812,56 +812,6 @@ class Mmodel {
 	 }
 	/*------------------------------------------------------------*/
 	/**
-	 * update a single item in the database from parameters in $_REQUEST
-	 * 
-	 * saveFieldInfo() is used directly from the jQuery jeditable plugin
-	 * as a complete server-side ajax updater/responder
-	 */
-	public function saveFieldInfo() {
-		$elementId = $_REQUEST['id'];
-		$value = $_REQUEST['value'];
-
-			
-		$nameId = explode("-", $elementId);
-		$tname = $nameId[0];
-		$fname = $nameId[1];
-		$id = $nameId[2];
-		$OldValue = $this->getString("select $fname from $tname where id = $id");
-
-		// updating the database requires login credentials
-		if ( ! Mlogin::get('MloginName') ) {
-			echo "$OldValue";
-			exit;
-		}
-		$dataType = $this->dataType($tname, $fname);
-		if ( $dataType == 'date' ) {
-			if ( ($value = Mdate::scan($value)) == null ) {
-				echo "$OldValue";
-				exit;
-			}
-		}
-		if ( $dataType == 'time' ) {
-			if ( ($value = Mtime::fmt($value)) == null ) {
-				echo "$OldValue";
-				exit;
-			}
-		}
-		$sqlValue = $this->str($value);
-		$sql = "update $tname set $fname = '$sqlValue' where id = $id";
-		$affected = $this->sql($sql);
-		$newValue = $this->getString("select $fname from $tname where id = $id");
-
-		if ( $dataType == 'date' )
-			$newValue = Mdate::fmt($newValue);
-		elseif ( $dataType == 'time' )
-			$newValue = Mtime::fmt($newValue);
-		elseif ( $dataType == 'float' || $dataType == 'double' )
-			$newValue = msuFloatFmt((float)$newValue);
-
-		echo $newValue;
-	}
-	/*------------------------------------------------------------*/
-	/**
 	 * log database activity in a table called queryLog
 	 *
 	 * Normally only used as 'private',

@@ -208,7 +208,8 @@ class Mcontroller {
 		$isHttps = @$_SERVER['HTTPS'] == "on";
 		$s = $isHttps ? "s" : "";
 		$url = trim($url, "/");
-		header("Location: http$s://$serverName/$url");
+		$uri = "http$s://$serverName/$url";
+		header("Location: $uri");
 		exit;
 	}
 	/*------------------------------------------------------------*/

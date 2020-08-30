@@ -1,9 +1,3 @@
-{if $sql}
-	<a target="_blank"
-		href="?className=Mcontroller&action=exportToExcel&sql={$sql|urlencode}&fileName={$exportFileName}"><img
-			src="{$M}/images/excel.png" border="0" title="Export to Excel" alt="Export to Excel" /></a>
-
-{/if}
 {if $showCount}
 	{$rows|@count} Row{if $rows|@count != 1}s{/if}
 {/if}

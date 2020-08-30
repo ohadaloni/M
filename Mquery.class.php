@@ -82,21 +82,8 @@ class Mquery extends Mcontroller {
 			Mview::error($fileName.":". __LINE__.": Queries that are not read-only are not supported.");
 			return;
 		}
-		$this->showRows($sql, true, $tableName);
-	}
-	/*------------------------------------------------------------*/
-	private function showRows($rows, $showCount = false, $exportFileName = null) {
-		if ( ! $rows || ! is_array($rows) || count($rows) == 0 ) {
-			$this->Mview->msg("No Rows");
-			return;
-		}
-		$headings = array_keys($rows[0]);
-		$this->Mview->showTpl("mShowRows.tpl", array(
-				'showCount' => $showCount,
-				'columns' => $headings,
-				'rows' => $rows,
-				'exportFileName' => $exportFileName,
-			));
+		$rows = $this->Mmodel->getRows($sql);
+		$this->showRows($rows, true, $tableName);
 	}
 	/*------------------------------------------------------------*/
 }

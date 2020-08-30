@@ -338,67 +338,7 @@ class Mcontroller {
 		echo $content;
 	}
 	/*------------------------------------------------------------*/
-	/**
-	 *
-	 * show rows on screen
-	 *
-	 * @param string the query
-	 * @param boolean show number of rows on screen
-	 * @param string the filename that the browser will offer to 'save as'
-	 */
-	public function showRowsFromSql($sql, $showCount = true, $exportFileName = null) {
-		if ( ! $exportFileName )
-			$exportFileName = "M2excel-".date("Ymd");
-		$res = $this->Mmodel->query($sql);
-		if ( $res === null )
-			return;
-		$numRows = 0 ;
-		$isheaded = false;
-		$numRowsSpanId = "numRows".rand(1, 1000000);
-		$numRowsSSpanId = "numRowsS".rand(1, 1000000);
-		while ( $row = @mysqli_fetch_assoc($res) ) {
-			$numRows++;
-			if ( ! $isheaded ) {
-				$headings = array_keys($row);
-				$this->Mview->showTpl("mShowRowsHeader.tpl", array(
-					"sql" => $sql,
-					'showCount' => $showCount,
-					'columns' => $headings,
-					'exportFileName' => $exportFileName,
-					'numRowsSpanId' => $numRowsSpanId,
-					'numRowsSSpanId' => $numRowsSSpanId,
-				));
-				$isheaded = true;
-			}
-			$this->Mview->showTpl("mShowRowsRow.tpl", array("row" => $row,));
-		}
-		if ( $isheaded )
-			$this->Mview->showTpl("mShowRowsFooter.tpl", array(
-				'numRows' => $numRows,
-				'numRowsSpanId' => $numRowsSpanId,
-				'numRowsSSpanId' => $numRowsSSpanId,
-			));
-		else
-			$this->Mview->error("No Rows");
-	}
-	/*------------------------------------------------------------*/
-	/**
-	/**
-	 * show rows on screen
-	 *
-	 * @param array the rows to be shown
-	 *
-	 * each an associative array with indexes to be used for heading titles
-	 * if rows is a string, it is an sql to fetch the rows and a streaming interface is used
-	 * optional arguments tell wether to show the number of rows
-	 * and set the dfefault file name for exporting
-	 */
 	public function showRows($rows, $showCount = false, $exportFileName = null) {
-		if ( is_string($rows) ) {
-			$this->showRowsFromSql($rows, $showCount, $exportFileName);
-			return;
-		}
-
 		if ( ! $rows || ! is_array($rows) || count($rows) == 0 ) {
 			$this->Mview->msg("No Rows");
 			return;

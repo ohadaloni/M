@@ -85,23 +85,7 @@ class Mquery extends Mcontroller {
 		$this->showRows($sql, true, $tableName);
 	}
 	/*------------------------------------------------------------*/
-	/**
-	/**
-	 * show rows on screen
-	 *
-	 * @param array the rows to be shown
-	 *
-	 * each an associative array with indexes to be used for heading titles
-	 * if rows is a string, it is an sql to fetch the rows and a streaming interface is used
-	 * optional arguments tell wether to show the number of rows
-	 * and set the dfefault file name for exporting
-	 */
 	private function showRows($rows, $showCount = false, $exportFileName = null) {
-		if ( is_string($rows) ) {
-			$this->showRowsFromSql($rows, $showCount, $exportFileName);
-			return;
-		}
-
 		if ( ! $rows || ! is_array($rows) || count($rows) == 0 ) {
 			$this->Mview->msg("No Rows");
 			return;

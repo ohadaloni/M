@@ -7,7 +7,7 @@
 					<td>{$col}</td>
 				{/if}
 			{/foreach}
-			<td colspan="3"></td>
+			<td colspan="2"></td>
 		</tr>
 		{foreach from=$rows item=row}
 			<tr class="mRow {if $currentRow == $row.id} currentRow{/if}">
@@ -18,7 +18,6 @@
 				{/foreach}
 				<td><a href="?className={$className}&tableName={$tableName}&action=edit&id={$row.id}"><img border="0" src="/images/edit.png" alt="Edit" title="Edit" /></a></td>
 				<td><a href="?className={$className}&tableName={$tableName}&action=duplicate&id={$row.id}"><img border="0" src="/images/duplicate.png" alt="Duplicate" title="Duplicate" /></a></td>
-				<td><a href="javascript:mConfirmDelete('{$className}', '{$tableName}', {$row.id}, ' (id #{$row.id})')"><img border="0" src="/images/delete.png" alt="Delete" title="Delete" /></a></td>
 			</tr>
 		{/foreach}
 	</table>

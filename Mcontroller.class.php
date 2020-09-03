@@ -317,7 +317,7 @@ class Mcontroller {
 	}
 	/*------------------------------------------------------------*/
 	public function exportToExcel($rows, $fileName = null) {
-		if ( count($rows) == 0 ) {
+		if ( ! $rows || count($rows) == 0 ) {
 			$this->Mview->msg("No Rows");
 			return;
 		}

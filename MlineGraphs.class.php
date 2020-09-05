@@ -37,6 +37,8 @@ class MlineGraphs extends Mcontroller {
 			return;
 		}
 
+		$numLines = count($lines);
+		$step = round($numLines / 10) ; // ~ 10 labels
 		$chart = array(
 			'chart' => array(
 				'renderTo' => $renderTo,
@@ -55,7 +57,8 @@ class MlineGraphs extends Mcontroller {
 			'xAxis' => array(
 				'categories' => $categories,
 				'labels' => array(
-					'rotation' => -30,
+					'step' => $step,
+					/*	'rotation' => -30,	*/
 					'style' => array(
 						'color' => "blue",
 						'font-size' => "10px",

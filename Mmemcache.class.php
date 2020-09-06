@@ -232,7 +232,6 @@ class Mmemcache {
 		// at least this item is in the queue
 		$idKey = $this->msgQidKey($qname, $firstId);
 
-		// Wed May 20 10:10:26 IDT 2015
 		// rarely, but it happens, once in 100-5000 ids
 		// rest a bit, and try again
 		$tries = array(

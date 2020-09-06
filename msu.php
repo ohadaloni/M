@@ -186,8 +186,6 @@ function msuSetStatus($args) {
 	Mutils::jsStatus($status);
 }
 /*------------------------------------------------------------*/
-// Wed Feb 18 12:07:35 IST 2015
-// this did not work in a template, so filterd in php before
 function msuImplode($arr) {
 	if ( ! is_array($arr) )
 		return($arr);

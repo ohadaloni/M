@@ -174,7 +174,6 @@ class Mcontroller {
 				return($obj);
 		}
 		$files = Mutils::listDir(".", "php");
-		// git problems - Fri Dec 14 15:06:35 IST 2012
 		foreach ( $files as $file ) {
 			$fileParts = explode(".", $file);
 			$baseName = reset($fileParts);

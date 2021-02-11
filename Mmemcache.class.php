@@ -286,11 +286,9 @@ class Mmemcache {
 		return($versionKey);
 	}
 	/*------------------------------*/
-	// 2012-11-15/23:48:06
 	// memcache fails to store short strings ?
 	// but not small arrays
 	// pack all values into arrays
-	//	Sat Nov 24 14:27:33 IST 2012
 	//  this did not work for a null value
 	// its important to store the empty results
 	// of sql queries, or else the db will be consulted again.

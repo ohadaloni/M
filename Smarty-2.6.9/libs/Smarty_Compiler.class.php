@@ -548,7 +548,6 @@ class Smarty_Compiler extends Smarty {
 
             case 'php':
                 // Thu Feb 11 04:55:00 IST 2021
-                // Wed Feb 10 09:33:44 IST 2021
                 /*  list(, $block) = each($this->_folded_blocks);   */
                 $block = array_shift($this->_folded_blocks);
 

@@ -33,6 +33,12 @@ class Mcurl {
 		return($this->httpCode);
 	}
 	/*------------------------------------------------------------*/
+	public function head($url) {
+		$this->setOpts(CURLOPT_NOBODY, true);
+		$this->go($url);
+		return($this->httpCode);
+	}
+	/*------------------------------------------------------------*/
 	public function lastHttpCode() {
 		return($this->httpCode);
 	}

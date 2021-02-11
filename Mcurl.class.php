@@ -34,7 +34,9 @@ class Mcurl {
 	}
 	/*------------------------------------------------------------*/
 	public function head($url) {
-		$this->setOpts(CURLOPT_NOBODY, true);
+		$this->setOpts(array(
+			CURLOPT_NOBODY =>  true,
+		));
 		$this->go($url);
 		return($this->httpCode);
 	}

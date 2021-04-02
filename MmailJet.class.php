@@ -36,6 +36,7 @@ class MmailJet {
 				),
 			),
 		);
+		$mCurl->init();
 		$mCurl->setOpts(array(
 			CURLOPT_USERPWD => MAILJET_USER,
 		));

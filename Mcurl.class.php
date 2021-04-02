@@ -14,12 +14,6 @@ class Mcurl {
 	private $headers;
 	private $opts;
 	/*------------------------------------------------------------*/
-	public function __construct() {
-		$this->curl = curl_init();
-		if ( ! $this->curl )
-			error_log("Mcurl::__construct: cannot curl_init()");
-	}
-	/*------------------------------------------------------------*/
 	// get - return the response - json decoded
 	// the httpCode can be gotten later, like in curl
 	public function get($url) {
@@ -45,8 +39,8 @@ class Mcurl {
 		return($this->httpCode);
 	}
 	/*------------------------------------------------------------*/
-	public function post($url, $input) {
-		$this->go($url, $input);
+	public function post($url, $input, $dontEncode = false) {
+		$this->go($url, $input, $dontEncode);
 		return($this->responseDecoded);
 	}
 	/*------------------------------------------------------------*/
@@ -63,23 +57,33 @@ class Mcurl {
 		$this->opts = $opts;
 	}
 	/*------------------------------------------------------------*/
-	private function go($url, $input = null) {
-		if ( ! $this->curl ) { // reusing this instance
-			$this->responseDecoded =
-				$this->httpCode =
-					$this->headers =
-						$this->opts =
+	// call this before setting up next call
+	public function init() {
+		$this->responseDecoded =
+			$this->httpCode =
+				$this->headers =
+					$this->opts =
+						$this->curl =
 							null;
-			$this->curl = curl_init();
-			if ( ! $this->curl ) {
-				error_log("Mcurl::go: cannot curl_init()");
-				return(null);
-			}
+		$this->curl = curl_init();
+		if ( ! $this->curl ) {
+			error_log("Mcurl::init: cannot curl_init()");
+			return(false);
+		}
+		return(true);
+	}
+	/*------------------------------------------------------------*/
+	// Fri Apr  2 11:34:26 IDT 2021
+	// use init() separately if setting opts or headers
+	private function go($url, $input = null, $dontEncode = false) {
+		if ( ! $this->curl && ! $this->init()) {
+			error_log("Mcurl::go: init failed");
+			return(null);
 		}
 
 		curl_setopt($this->curl, CURLOPT_URL, $url);
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 3);
+		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($this->curl, CURLOPT_ENCODING, "utf-8");
 		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($this->curl, CURLOPT_MAXREDIRS, 7);
@@ -89,9 +93,10 @@ class Mcurl {
 		}
 
 		if ( $input ) {
-			$json = json_encode($input);
+			if ( ! $dontEncode )
+				$input = json_encode($input);
 			curl_setopt($this->curl, CURLOPT_POST, true);
-			curl_setopt($this->curl, CURLOPT_POSTFIELDS, $json);
+			curl_setopt($this->curl, CURLOPT_POSTFIELDS, $input);
 		}
 		$headers = array(
 			"Content-Type: application/json",

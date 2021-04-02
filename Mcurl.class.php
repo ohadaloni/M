@@ -28,6 +28,7 @@ class Mcurl {
 	}
 	/*------------------------------------------------------------*/
 	public function head($url) {
+		$this->init();
 		$this->setOpts(array(
 			CURLOPT_NOBODY =>  true,
 		));

@@ -627,7 +627,7 @@ class Mmodel {
 					continue;
 			if ( $dataType == 'datetime' && $value != null && ($value = Mdate::datetimeScan($value)) == null )
 					continue;
-			if ( strncmp($dataType, "int(", 4) == 0 )
+			if ( strncmp($dataType, "int(", 4) == 0 || $dataType == "double" )
 				$value = str_replace(",", "", $value);
 			$str = $this->str($value);
 			if ( $str === 'now()' )
@@ -988,7 +988,7 @@ class Mmodel {
 					continue;
 			if ( $dataType == 'datetime' && ($value = Mdate::datetimeScan($value)) == null )
 					continue;
-			if ( strncmp($dataType, "int(", 4) == 0 )
+			if ( strncmp($dataType, "int(", 4) == 0 || $dataType == "double" )
 				$value = str_replace(",", "", $value);
 			$str = $value;
 			if ( $str === null )

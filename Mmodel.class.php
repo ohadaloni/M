@@ -396,7 +396,7 @@ class Mmodel {
 		$columnRows = $this->getRows("show  columns from $tableName", 30);
 		if ( ! $columnRows ) {
 			Mview::error("No columns for $tableName");
-			$cache[$tableName] = null ;
+			$cache[$tableName] = null;
 			return($cache[$tableName]);
 		}
 		$fields = array();
@@ -443,7 +443,7 @@ class Mmodel {
 		$columnRows = $this->getRows("show  columns from $tableName", 30);
 		if ( ! $columnRows ) {
 			Mview::error("No columns for $tableName");
-			$cache[$tableName] = null ;
+			$cache[$tableName] = null;
 			return($cache[$tableName]);
 		}
 		$cols = array();
@@ -623,8 +623,12 @@ class Mmodel {
 			$dataType = $this->dataType($tableName, $fname);
 			if ( $dataType == 'timestamp' )
 				continue;
-			if ( $dataType == 'date' && $value != null && ($value = Mdate::scan($value)) == null )
-					continue;
+			if ( $dataType == 'date' ) {
+				if ( $value == '0000-00-00' || $value == null )
+					$value = null;
+				elseif ( ($value = Mdate::scan($value)) == null )
+						continue;
+			}
 			if ( $dataType == 'datetime' && $value != null && ($value = Mdate::datetimeScan($value)) == null )
 					continue;
 			if ( strncmp($dataType, "int(", 4) == 0 || $dataType == "double" )

@@ -420,8 +420,8 @@ class Mutils {
 	//
 	// if
 	//        {$row.story|nl2br|makeLinks}
-	// makeLinks sticks a br in the middle if the link title
-	// so try
+	// if makeLinks sticks a br in the middle of the link title
+	// try
 	//        {$row.story|makeLinks|nl2br}
 	public static function makeLinks($str) {
 			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
@@ -451,6 +451,87 @@ class Mutils {
 					return $str;
 			}
 	}
+	/*------------------------------------------------------------*/
+	// Tue Dec  7 09:30:15 IST 2021
+	// from https://github.com/kwi-dk/UrlLinker
+	// same purpose as makeLinks above
+	public static function linkUrls($text)
+	{
+		$rexScheme    = 'https?://';
+		$rexDomain    = '(?:[-a-zA-Z0-9\x7f-\xff]{1,63}\.)+[a-zA-Z\x7f-\xff][-a-zA-Z0-9\x7f-\xff]{1,62}';
+		$rexIp        = '(?:[1-9][0-9]{0,2}\.|0\.){3}(?:[1-9][0-9]{0,2}|0)';
+		$rexPort      = '(:[0-9]{1,5})?';
+		$rexPath      = '(/[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]*?)?';
+		$rexQuery     = '(\?[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]+?)?';
+		$rexFragment  = '(#[!$-/0-9?:;=@_\':;!a-zA-Z\x7f-\xff]+?)?';
+		$rexUsername  = '[^]\\\\\x00-\x20\"(),:-<>[\x7f-\xff]{1,64}';
+		$rexPassword  = $rexUsername; // allow the same characters as in the username
+		$rexUrl       = "($rexScheme)?(?:($rexUsername)(:$rexPassword)?@)?($rexDomain|$rexIp)($rexPort$rexPath$rexQuery$rexFragment)";
+		$rexTrailPunct= "[)'?.!,;:]"; // valid URL characters which are not part of the URL if they appear at the very end
+		$rexNonUrl    = "[^-_#$+.!*%'(),;/?:@=&a-zA-Z0-9\x7f-\xff]"; // characters that should never appear in a URL
+		$rexUrlLinker = "{\\b$rexUrl(?=$rexTrailPunct*($rexNonUrl|$))}";
+
+		$html = '';
+
+		$position = 0;
+		while (preg_match($rexUrlLinker, $text, $match, PREG_OFFSET_CAPTURE, $position))
+		{
+			list($url, $urlPosition) = $match[0];
+
+			// Add the text leading up to the URL.
+			$html .= htmlspecialchars(substr($text, $position, $urlPosition - $position));
+
+			$scheme      = $match[1][0];
+			$username    = $match[2][0];
+			$password    = $match[3][0];
+			$domain      = $match[4][0];
+			$afterDomain = $match[5][0]; // everything following the domain
+			$port        = $match[6][0];
+			$path        = $match[7][0];
+
+			// Do not permit implicit scheme if a password is specified, as
+			// this causes too many errors (e.g. "my email:foo@example.org").
+			if (!$scheme && $password)
+			{
+				$html .= htmlspecialchars($username);
+
+				// Continue text parsing at the ':' following the "username".
+				$position = $urlPosition + strlen($username);
+				continue;
+			}
+
+			if (!$scheme && $username && !$password && !$afterDomain)
+			{
+				// Looks like an email address.
+				$completeUrl = "mailto:$url";
+				$linkText = $url;
+			}
+			else
+			{
+				// Prepend http:// if no scheme is specified
+				$completeUrl = $scheme ? $url : "http://$url";
+				$linkText = "$domain$port$path";
+			}
+
+			$linkHtml = '<a href="' . htmlspecialchars($completeUrl) . '">'
+				. htmlspecialchars($linkText)
+				. '</a>';
+
+			// Cheap e-mail obfuscation to trick the dumbest mail harvesters.
+			$linkHtml = str_replace('@', '&#64;', $linkHtml);
+
+			// Add the hyperlink.
+			$html .= $linkHtml;
+
+			// Continue text parsing from after the URL.
+			$position = $urlPosition + strlen($url);
+		}
+
+		// Add the remainder of the text.
+		$html .= htmlspecialchars(substr($text, $position));
+		return $html;
+	}
+	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	public static function terse($str, $numWords = 7) {
 		$words = explode(" ", $str);

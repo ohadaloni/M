@@ -513,7 +513,7 @@ class Mutils {
 				$linkText = "$domain$port$path";
 			}
 
-			$linkHtml = '<a href="' . htmlspecialchars($completeUrl) . '">'
+			$linkHtml = '<a target="_blank" href="' . htmlspecialchars($completeUrl) . '">'
 				. htmlspecialchars($linkText)
 				. '</a>';
 

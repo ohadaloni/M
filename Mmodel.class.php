@@ -263,9 +263,6 @@ class Mmodel {
 	}
 	/*------------------------------------------------------------*/
 	public function getRow($sql, $ttl = null) {
-		if ( ! $this->isConnected ) {
-			return(null);
-		}
 		$rows = $this->getRows($sql, $ttl);
 		if ( count($rows) == 0 )
 			return(null);

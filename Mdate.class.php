@@ -567,10 +567,14 @@ class Mdate {
 			list($y, $m, $d) = explode('-', $dt[0]);
 		else
 			list($m, $d, $y) = explode('/', $dt[0]);
-		list($h, $mm) = explode(':', $dt[1]);
 		$day = sprintf("%s-%s-%s", $y, $m, $d);
-		$time = sprintf("%s:%s", $h, $mm);
-		$value = "$day $time";
+		if ( @$dt[1] ) {
+			list($h, $mm) = explode(':', $dt[1]);
+			$time = sprintf("%s:%s", $h, $mm);
+			$value = "$day $time";
+		} else {
+			$value = $day;
+		}
 		return($value);
 	}
 	/*------------------------------------------------------------*/

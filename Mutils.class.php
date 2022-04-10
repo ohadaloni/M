@@ -310,6 +310,14 @@ class Mutils {
 		return($ret);
 	}
 	/*------------------------------------------------------------*/
+	public static function isAjax() {
+		$http_x_requested_with = @$_SERVER['HTTP_X_REQUESTED_WITH'];
+		$isAjax =
+			$http_x_requested_with &&
+			strtolower($http_x_requested_with) == "xmlhttprequest" ;
+		return($isAjax);
+	}
+	/*------------------------------------------------------------*/
 	public static function reIndexBy($a, $by) {
 		if ( ! $a )
 			return($a);

@@ -16,7 +16,7 @@ require_once("Mview.class.php");
   * 
   * Mcontroller has several control functions:
   * 1. Allow control to flow only if appropriate permission conditions are met.<br />
-  * 2. Branch URLs of the form className=...&action=... to the corresponding class method.<br />
+  * 2. Branch URLs of the form .../className/action to the corresponding class method.<br />
   * 3. Serve as a superclass to be extended with seamless inheritance from Mmoel and Mview.<br />
   *
   * @package M

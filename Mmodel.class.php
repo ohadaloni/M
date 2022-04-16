@@ -774,45 +774,6 @@ class Mmodel {
 	}
 	/*------------------------------------------------------------*/
 	/**
-	 * provide data for jquery autocomplete
-	 *
-	 * the request url is of the form id=$tname-$fname&q=...
-	 * e.g. 
-	 *	$(".autocomplete", context).autocomplete("?className=Mmodel&action=autocomplete&id=" + $this.id);
-	 */
-	 public function autoComplete() {
-		$id = explode('-', @$_REQUEST['id']);
-		if ( ! $id ) {
-			@syslog(LOG_ERR, __FILE__.":". __LINE__.": ".get_class().":".__FUNCTION__.": bad id args: ".$_SERVER['QUERY_STRING']);
-			echo "autoComplete error\n";
-			return;
-		}
-		$cnt = count($id);
-		if ( $cnt == 2 )
-			list($tname, $fname) = $id;
-		elseif ( $cnt == 3 ) {
-			list($dbname, $tname, $fname) = $id;
-			if ( ! $this->selectDB($dbname) ) {
-				@syslog(LOG_ERR, __FILE__.":". __LINE__.": ".get_class().":".__FUNCTION__.": bad id args: ".$_SERVER['QUERY_STRING']);
-				echo "autoComplete: cannont use $dbname\n";
-				return;
-			}
-		} else {
-			@syslog(LOG_ERR, __FILE__.":". __LINE__.": ".get_class().":".__FUNCTION__.": bad id args: ".$_SERVER['QUERY_STRING']);
-			echo "autoComplete error\n";
-			return;
-		}
-
-	 	$q  = $_REQUEST['q'];
-		$sql = "select distinct $fname from $tname where $fname like '$q%' order by $fname";
-		$strings = $this->getStrings($sql);
-		if ( ! $strings )
-			return;
-		$ret = implode("\n", $strings)."\n";
-		echo $ret;
-	 }
-	/*------------------------------------------------------------*/
-	/**
 	 * log database activity in a table called queryLog
 	 *
 	 * Normally only used as 'private',

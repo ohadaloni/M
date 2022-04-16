@@ -347,7 +347,6 @@ class Mcontroller {
 		if ( isset($_GET['className']) && $_GET['className'] != '' )
 			return($_GET['className']);
 		$pathParts = $this->pathParts();
-		$pr = print_r($pathParts, true);
 		return(isset($pathParts[0]) ? $pathParts[0] : null);
 	}
 	/*------------------------------------------------------------*/

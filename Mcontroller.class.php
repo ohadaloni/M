@@ -31,7 +31,6 @@ class Mcontroller {
 	* @var action name of the current action
 	*/
 	protected $action;
-	private $controllerError; // to be requested in case false is returned.
 	/**
 	* @var Mmodel access the Mmodel class from this instance
 	*/
@@ -75,31 +74,14 @@ class Mcontroller {
 		}
 	}
 	/*------------------------------------------------------------*/
-	public function _control($silent = false) {
-		return($this->control(null, null, null, $silent));
-	}
-	/*------------------------------------------------------------*/
-	public function lastControllerError() {
-		return($this->controllerError);
-	}
-	/*------------------------------------------------------------*/
-	private function controllerError($msg, $silent = false) {
-		$this->controllerError = $msg;
-		if ( $silent )
-			error_log($msg);
-		else
-			$this->Mview->error($msg);
-		
-	}
-	/*------------------------------------------------------------*/
-	public function control($className = null, $action = null, $args = null, $silent = false) {			
+	public function control($className = null, $action = null, $args = null) {			
 		$requestArgs = array();
 		if ( is_string($args) ) {
 			$vars = explode('&', $args);
 			foreach ( $vars as $var ) {
 				$nv = explode('=', $var);
 				if ( count($nv) != 2 ) {
-					$this->controllerError("$var ???", $silent);
+					$this->Mview->error("$var ???");
 					return(false);
 				}
 				list($n, $v) = $nv;
@@ -110,7 +92,7 @@ class Mcontroller {
 				$requestArgs[$key] = $arg;
 		}				
 		
-		$obj = $this->obj($className, $silent);
+		$obj = $this->obj($className);
 		if ( ! $obj ) {
 			return(false);
 		}
@@ -122,7 +104,7 @@ class Mcontroller {
 		
 		if ( ! is_callable(array($obj, $action)) ) {			
 			$className = get_class($obj);			
-			$this->controllerError("Method '$action' not callable in class '$className'");
+			$this->Mview->error("Method '$action' not callable in class '$className'");
 			return(false);
 		}
 		$className = get_class($obj);
@@ -166,7 +148,7 @@ class Mcontroller {
 	protected function before() {}
 	protected function after() {}
 	/*------------------------------------------------------------*/
-	private function obj($className, $silent = false) {
+	private function obj($className) {
 		if ( ($className = $this->className($className)) == null )
 			return($this);
 		if ( class_exists($className) ) {
@@ -184,10 +166,10 @@ class Mcontroller {
 				$obj = new $baseName;
 				return($obj);
 			}
-			$this->controllerError("class $baseName not found in $file", $silent);
+			$this->Mview->error("class $baseName not found in $file");
 			return(false);
 		}
-		$this->controllerError("cannot find class for '$className'", $silent);
+		$this->Mview->error("cannot find class for '$className'");
 		return(null);
 	}
 	/*------------------------------------------------------------*/

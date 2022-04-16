@@ -5,7 +5,7 @@ class Mlogin {
 	private static $vars = array();
 	/*------------------------------------------------------------*/
 	public static function login($loginId, $loginName, $loginType) {
-		$expires = 2*24*60*60;
+		$expires = 7*24*60*60;
 		$magic =  self::magic($loginId);
 		Mview::setCookie("MloginId", $loginId, $expires);
 		Mview::setCookie("MloginName", $loginName, $expires);

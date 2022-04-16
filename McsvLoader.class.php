@@ -12,7 +12,6 @@
   * A new table name is always sensibly created from the file name.<br />
   * Label names are analysed to create column names.<br />
   * Data is analysed to determine column datatypes, most date formats are well understood.<br />
-  * In tandem with Mquery, this can be a useful ad-hoc analysis tool for Excel data.
   *
   * @package M
   */

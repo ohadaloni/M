@@ -80,84 +80,90 @@ class Mcontroller {
 			return(false);
 		}
 		
-		$action = $this->action();
-		if ( $action == null )
-			$action = "index";
-		
-		
-		if ( ! is_callable(array($obj, $action)) ) {			
-			$className = get_class($obj);			
-			$this->Mview->error("Method '$action' not callable in class '$className'");
-			return(false);
-		}
-		$className = get_class($obj);
-
-		$this->controller = strtolower($className);
-		$this->action = strtolower($action);
-		$obj->controller = strtolower($className);
-		$obj->action = strtolower($action);
-		Mutils::setenv("controller", $this->controller);
-		Mutils::setenv("action", $this->action);
+		$obj->controller = $this->controller;
+		$obj->action = $this->action;
 		if ( ! $obj->permit() ) {
-			error_log("Mcontroller: {$obj->controller}:{$obj->action}: Not Permitted");
+			error_log("Mcontroller::control: {$obj->controller}:{$obj->action}: Not Permitted");
 			return(false);
 		}
 		$obj->before();
+		$action = $this->action;
 		$obj->$action();
 		$obj->after();
 		return(true);
 	}
-	/*------------------------------*/
-	private function className() {
-		// Tue Apr 26 16:47:29 IDT 2022
-		// this is where it happens:
-		// once done refactoring
-		// just remove the first 4 rows with _POST & _GET
-		// and pathparts should be better analysed
-		// with file_exists() etc
-		// likewise in action() right below
-		// make these one function that returns an array like in callbacks
-		if ( isset($_POST['className']) && $_POST['className'] != '' )
-			return($_POST['className']);
-		if ( isset($_GET['className']) && $_GET['className'] != '' )
-			return($_GET['className']);
-		$pathParts = $this->pathParts();
-		return(isset($pathParts[0]) ? $pathParts[0] : null);
-	}
-	/*------------------------------*/
-	private function action() {
-		if ( isset($_POST['action']) && $_POST['action'] != '' )
-			return($_POST['action']);
-		if ( isset($_GET['action']) && $_GET['action'] != '' )
-			return($_GET['action']);
-		$pathParts = $this->pathParts();
-		if ( isset($pathParts[1]) )
-			return($pathParts[1]);
-		return(null);
-	}
 	/*------------------------------------------------------------*/
 	private function obj() {
-		if ( ($className = $this->className()) == null )
+		$pathParts = $this->pathParts();
+		$cnt = count($pathParts);
+		if ( $cnt == 0 ) {
+			$className = $this->controller = get_class($this);
+			$action = $this->action = "index";
+			/*	error_log("obj: /$className/$action, found (\$this)");	*/
 			return($this);
-		if ( class_exists($className) ) {
-				$obj = new $className;
+		}
+		$className1 = $pathParts[0];
+		$action1 = @$pathParts[1];
+		if ( ! $action1 )
+			$action1 = "index";
+		$lastTwo = @array_slice($pathParts, -2);
+		$className2 = $lastTwo[0];
+		$action2 = @$lastTwo[1];
+		if ( ! $action2 )
+			$action2 = "index";
+		if ( class_exists($className1) ) {
+			$obj = new $className1;
+			if ( is_callable(array($obj, $action1)) ) {			
+				$this->controller = strtolower($className1);
+				$this->action = strtolower($action1);
+				/*	error_log("obj: /$className1/$action1, found");	*/
 				return($obj);
+			}
+		}
+		$same = $className1 == $className2;
+		if ( ! $same && class_exists($className2) ) {
+			$obj = new $className2;
+			if ( is_callable(array($obj, $action2)) ) {			
+				$this->controller = strtolower($className2);
+				$this->action = strtolower($action2);
+				/*	error_log("obj: /$className2/$action2, found");	*/
+				return($obj);
+			}
 		}
 		$files = Mutils::listDir(".", "php");
 		foreach ( $files as $file ) {
 			$fileParts = explode(".", $file);
 			$baseName = reset($fileParts);
-			if(strtolower($className) != strtolower($baseName) )
-				continue;
-			require_once($file);
-			if ( class_exists($baseName) ) {
-				$obj = new $baseName;
-				return($obj);
+			if(strtolower($className1) == strtolower($baseName) ) {
+				require_once($file);
+				if ( class_exists($baseName) ) {
+					$obj = new $baseName;
+					if ( is_callable(array($obj, $action1)) ) {			
+						$this->controller = strtolower($className1);
+						$this->action = strtolower($action1);
+						/*	error_log("obj: /$className1/$action1, loaded");	*/
+						return($obj);
+					}
+				}
 			}
-			$this->Mview->error("class $baseName not found in $file");
-			return(false);
+			if( ! $same && strtolower($className2) == strtolower($baseName) ) {
+				require_once($file);
+				if ( class_exists($baseName) ) {
+					$obj = new $baseName;
+					if ( is_callable(array($obj, $action2)) ) {			
+						$this->controller = strtolower($className2);
+						$this->action = strtolower($action2);
+						/*	error_log("obj: /$className2/$action2, loaded");	*/
+						return($obj);
+					}
+				}
+			}
 		}
-		$this->Mview->error("cannot find class for '$className'");
+		$error = $same ?
+			"Cannot find class/action: $className1/$action1"
+			:
+			"Cannot find class/action: $className1/$action1, $className2/$action2";
+		$this->Mview->error($error);
 		return(null);
 	}
 	/*------------------------------------------------------------*/
@@ -214,21 +220,6 @@ class Mcontroller {
 		$this->Mview->error("$className: method index() not defined");
 		return(null);
 	}
-	/*------------------------------*/
-	public function defaultAction() { $this->index(); }
-	public function main() { $this->index(); }
-	/*------------------------------------------------------------*/
-	/**
-	 * show an array on screen - for developing and debugging
-	 *
-	 * @param array
-	 */
-	public function showArray($a) {
-		$this->Mview->showTpl("mShowArray.tpl", array(
-				'a' => $a,
-			));
-		
-	}
 	/*------------------------------------------------------------*/
 	public function pathParts() {
 		if ( isset($_REQUEST['PATH_INFO']) )
@@ -267,22 +258,6 @@ class Mcontroller {
 			Mutils::setenv("debugLevel", $newLevel);
 		self::$debugLevel = $newLevel;
 		return($newLevel);
-	}
-	/*------------------------------*/
-	public function debug($file, $lineNo, $tag, $msg = null, $debugLevelAtLeast = 1) {
-		$debugLevel = $this->debugLevel();
-		if ( self::$debugLevel < $debugLevelAtLeast )
-			return;
-		$datetime = date("Y-m-d G:i:s");
-		$fileName = basename($file);
-
-		$text = "$datetime: $fileName:$lineNo:$tag";
-		if ( $msg )
-			$text .= ": $msg";
-		$isHttp = @$_SERVER['SERVER_ADDR'] != null;
-		if ( $isHttp )
-			$text = htmlspecialchars($text)."<br />";
-		echo "$text\n";
 	}
 	/*------------------------------------------------------------*/
 	public function space($tag) {

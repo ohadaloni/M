@@ -291,7 +291,6 @@ class Mcontroller {
 	}
 	/*------------------------------------------------------------*/
 	public function space($tag) {
-		$me = get_class()."::".__FUNCTION__."()";
 		$space = Perf::space();
 		Mview::msg("$tag: $space space");
 		return($space);

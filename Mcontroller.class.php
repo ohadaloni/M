@@ -74,30 +74,13 @@ class Mcontroller {
 		}
 	}
 	/*------------------------------------------------------------*/
-	public function control($className = null, $action = null, $args = null) {			
-		$requestArgs = array();
-		if ( is_string($args) ) {
-			$vars = explode('&', $args);
-			foreach ( $vars as $var ) {
-				$nv = explode('=', $var);
-				if ( count($nv) != 2 ) {
-					$this->Mview->error("$var ???");
-					return(false);
-				}
-				list($n, $v) = $nv;
-				$requestArgs[$n] = $v;
-			}
-		} else if ( $args ) {
-			foreach ( $args as $key => $arg )
-				$requestArgs[$key] = $arg;
-		}				
-		
-		$obj = $this->obj($className);
+	public function control() {			
+		$obj = $this->obj();
 		if ( ! $obj ) {
 			return(false);
 		}
 		
-		$action = $this->action($action);
+		$action = $this->action();
 		if ( $action == null )
 			$action = "index";
 		
@@ -115,7 +98,6 @@ class Mcontroller {
 		$obj->action = strtolower($action);
 		Mutils::setenv("controller", $this->controller);
 		Mutils::setenv("action", $this->action);
-		$savedRequestArgs = $this->setRequestArgs($requestArgs);
 		if ( ! $obj->permit() ) {
 			error_log("Mcontroller: {$obj->controller}:{$obj->action}: Not Permitted");
 			return(false);
@@ -123,33 +105,39 @@ class Mcontroller {
 		$obj->before();
 		$obj->$action();
 		$obj->after();
-		$this->revertRequestArgs($requestArgs, $savedRequestArgs);
 		return(true);
 	}
 	/*------------------------------*/
-	private function setRequestArgs($requestArgs) {
-		$savedRequestArgs = array();
-		foreach ( $requestArgs as $key => $arg ) {
-			if ( array_key_exists($key, $_REQUEST) )
-				$savedRequestArgs[$key] = $_REQUEST[$key];
-			$_REQUEST[$key] = $arg;
-		}
-		return($savedRequestArgs);
+	private function className() {
+		// Tue Apr 26 16:47:29 IDT 2022
+		// this is where it happens:
+		// once done refactoring
+		// just remove the first 4 rows with _POST & _GET
+		// and pathparts should be better analysed
+		// with file_exists() etc
+		// likewise in action() right below
+		// make these one function that returns an array like in callbacks
+		if ( isset($_POST['className']) && $_POST['className'] != '' )
+			return($_POST['className']);
+		if ( isset($_GET['className']) && $_GET['className'] != '' )
+			return($_GET['className']);
+		$pathParts = $this->pathParts();
+		return(isset($pathParts[0]) ? $pathParts[0] : null);
 	}
 	/*------------------------------*/
-	private function revertRequestArgs($requestArgs, $savedRequestArgs) {
-		foreach ( $requestArgs as $key => $arg )
-			unset($_REQUEST[$key]);
-		foreach ( $savedRequestArgs as $key => $arg )
-			$_REQUEST[$key] = $arg;
+	private function action() {
+		if ( isset($_POST['action']) && $_POST['action'] != '' )
+			return($_POST['action']);
+		if ( isset($_GET['action']) && $_GET['action'] != '' )
+			return($_GET['action']);
+		$pathParts = $this->pathParts();
+		if ( isset($pathParts[1]) )
+			return($pathParts[1]);
+		return(null);
 	}
-
-	/*------------------------------*/
-	protected function before() {}
-	protected function after() {}
 	/*------------------------------------------------------------*/
-	private function obj($className) {
-		if ( ($className = $this->className($className)) == null )
+	private function obj() {
+		if ( ($className = $this->className()) == null )
 			return($this);
 		if ( class_exists($className) ) {
 				$obj = new $className;
@@ -172,6 +160,13 @@ class Mcontroller {
 		$this->Mview->error("cannot find class for '$className'");
 		return(null);
 	}
+	/*------------------------------------------------------------*/
+	/*
+	 * before() & after() always get called by control()
+	 * if not overloaded by $obj, they are a no-op
+	 */
+	protected function before() {}
+	protected function after() {}
 	/*------------------------------------------------------------*/
 	public function redirect($url = null) {
 		if ( $url && substr($url, 0, 4) == "http" ) {
@@ -337,30 +332,6 @@ class Mcontroller {
 		exit;
 	}
 	/*------------------------------------------------------------*/
-	/*------------------------------------------------------------*/
-	private function className($className = null) {
-		if ( $className )
-			return($className);
-		if ( isset($_POST['className']) && $_POST['className'] != '' )
-			return($_POST['className']);
-		if ( isset($_GET['className']) && $_GET['className'] != '' )
-			return($_GET['className']);
-		$pathParts = $this->pathParts();
-		return(isset($pathParts[0]) ? $pathParts[0] : null);
-	}
-	/*------------------------------------------------------------*/
-	private function action($action = null) {
-		if ( $action )
-			return($action);
-		if ( isset($_POST['action']) && $_POST['action'] != '' )
-			return($_POST['action']);
-		if ( isset($_GET['action']) && $_GET['action'] != '' )
-			return($_GET['action']);
-		$pathParts = $this->pathParts();
-		if ( isset($pathParts[1]) )
-			return($pathParts[1]);
-		return(null);
-	}
 	/*------------------------------------------------------------*/
 }
 /*------------------------------------------------------------*/

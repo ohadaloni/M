@@ -12,7 +12,6 @@
   *  Using M mostly means:
   *     setting database access as described in Mconfig.php<br />
   *     'requiring' this file, extending Mcontroller and calling control() from the extended class.<br />
-  *     see Mdemo/index.php for an example<br />
   */
 /*------------------------------------------------------------*/
 require_once("Logger.class.php");

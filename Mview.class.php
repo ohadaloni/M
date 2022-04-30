@@ -272,7 +272,7 @@ class Mview extends Smarty {
 		return(true);
 	}
 	/*------------------------------------------------------------*/
-	public static function showRows($rows, $exportFileName = null) {
+	public static function showRows($rows) {
 		global $Mview; // need an instance anyway
 
 		if ( ! $rows || ! is_array($rows) || count($rows) == 0 ) {
@@ -286,7 +286,6 @@ class Mview extends Smarty {
 		$Mview->showTpl("mShowRows.tpl", array(
 				'columns' => $columns,
 				'rows' => $rows,
-				'exportFileName' => $exportFileName,
 			));
 	}
 	/*------------------------------------------------------------*/

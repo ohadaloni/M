@@ -1,6 +1,3 @@
-{if $showCount}
-	{$rows|@count} Row{if $rows|@count != 1}s{/if}
-{/if}
 <table border="0">
 	<tr class="mHeaderRow">
 		<td>#</td>

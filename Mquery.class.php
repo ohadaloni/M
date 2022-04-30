@@ -83,7 +83,7 @@ class Mquery extends Mcontroller {
 			return;
 		}
 		$rows = $this->Mmodel->getRows($sql);
-		$this->showRows($rows, true, $tableName);
+		$this->Mview->showRows($rows);
 	}
 	/*------------------------------------------------------------*/
 }

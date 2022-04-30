@@ -5,6 +5,6 @@
   * @author Ohad Aloni
   */
 /*------------------------------------------------------------*/
-header("Location: http://theora.com/Mdemo");
+header("Location: http://mdemo.theora.com");
 exit;
 /*------------------------------------------------------------*/

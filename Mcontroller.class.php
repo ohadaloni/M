@@ -34,11 +34,15 @@ class Mcontroller {
 	/**
 	* @var Mmodel access the Mmodel class from this instance
 	*/
-	public $Mmodel;
+	protected $Mmodel;
 	/**
 	* @var Mview access the Mview class from this instance
 	*/
-	public $Mview;
+	protected $Mview;
+	/**
+	* @var Mmemcache access the Mmemcache class from this instance
+	*/
+	protected $Mmemcache;
 	/*------------------------------------------------------------*/
 	/**
 	 * Mcontroller is typically extended with no arguments
@@ -65,6 +69,8 @@ class Mcontroller {
 			$this->Mview = $Mview;
 		else
 			$this->Mview = new Mview();
+
+		$this->Mmemcache = new Mmemcache;
 
 		if ( ! $this->Mmodel ) {
 			$stack = debug_backtrace(false);
@@ -286,20 +292,6 @@ class Mcontroller {
 		header("Content-Disposition: attachment; filename=$fileName.xls");
 		header("Content-Length: $filesize");
 		echo $content;
-	}
-	/*------------------------------------------------------------*/
-	public function showRows($rows, $showCount = false, $exportFileName = null) {
-		if ( ! $rows || ! is_array($rows) || count($rows) == 0 ) {
-			$this->Mview->msg("No Rows");
-			return;
-		}
-		$headings = array_keys($rows[0]);
-		$this->Mview->showTpl("mShowRows.tpl", array(
-				'showCount' => $showCount,
-				'columns' => $headings,
-				'rows' => $rows,
-				'exportFileName' => $exportFileName,
-			));
 	}
 	/*------------------------------------------------------------*/
 	public function quit() {

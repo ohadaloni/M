@@ -269,12 +269,6 @@ class Mcontroller {
 		return($newLevel);
 	}
 	/*------------------------------------------------------------*/
-	public function space($tag) {
-		$space = Perf::space();
-		Mview::msg("$tag: $space space");
-		return($space);
-	}
-	/*------------------------------------------------------------*/
 	public function exportToExcel($rows, $fileName = null) {
 		if ( ! $rows || count($rows) == 0 ) {
 			$this->Mview->msg("No Rows");

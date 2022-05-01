@@ -44,28 +44,16 @@ class Mcontroller {
 	*/
 	protected $Mmemcache;
 	/*------------------------------------------------------------*/
-	/**
-	 * Mcontroller is typically extended with no arguments
-	 * or created with no arguments.
-	 *
-	 * @param Mmodel force use of this instance 
-	 * @param Mview force use of this instance 
-	 *
-	 */
-	function __construct($Mm = null, $Mv = null) {
+	public function __construct() {
 		global $Mmodel;
 		global $Mview;
 		
-		if ( $Mm !== null )
-			$this->Mmodel = $Mm;
-		elseif ( isset($Mmodel) && $Mmodel != null )
+		if ( isset($Mmodel) && $Mmodel != null )
 			$this->Mmodel = $Mmodel;
 		else
 			$this->Mmodel = new Mmodel();
 
-		if ( $Mv !== null )
-			$this->Mview = $Mv;
-		elseif ( isset($Mview) && $Mview != null )
+		if ( isset($Mview) && $Mview != null )
 			$this->Mview = $Mview;
 		else
 			$this->Mview = new Mview();

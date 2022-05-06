@@ -541,6 +541,23 @@ class Mutils {
 	}
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
+	public static function mime($ext) {
+		$mimes = array(
+			'png' => "image/png",
+			'jpg' => "image/jpeg",
+			'jpeg' => "image/jpeg",
+			'pdf' => "application/pdf",
+		);
+		$ext = strtolower($ext);
+		$mime = @$mimes[$ext];
+		return($mime);
+	}
+	/*------------------------------------------------------------*/
+	public static function ext($fileName) {
+		$ext = substr(strrchr($fileName, '.'), 1);
+		return($ext);
+	}
+	/*------------------------------------------------------------*/
 	public static function terse($str, $numWords = 7) {
 		$words = explode(" ", $str);
 		$cnt = count($words);

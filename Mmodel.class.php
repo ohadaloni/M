@@ -221,18 +221,14 @@ class Mmodel {
 		@mysqli_free_result($res);
 		if ( $ttl !== null ) {
 			$set = $this->Mmemcache->set($memcacheKey, $ret, $ttl);
-			$debugLevel = Mutils::getenv("debugLevel");
-			if ( ! $set && $debugLevel )
+			if ( ! $set )
 				error_log("Failed to Mmemcache->set($memcacheKey, ..., $ttl)");
-			if ( $debugLevel ) {
-				static $visited = false;
-				if ( ! $visited ) {
-					$visited = true;
-					$get = $this->Mmemcache->get($memcacheKey);
-					if ( $get === false ) {
-						error_log("Failed to get after Mmemcache->set($memcacheKey, ..., $ttl)");
-						$this->memcacheTestData($ret, $memcacheKey, $ttl);
-					}
+			static $visited = false;
+			if ( ! $visited ) {
+				$visited = true;
+				$get = $this->Mmemcache->get($memcacheKey);
+				if ( $get === false ) {
+					error_log("Failed to get after Mmemcache->set($memcacheKey, ..., $ttl)");
 				}
 			}
 		}
@@ -245,21 +241,6 @@ class Mmodel {
 		$dbName = $this->dbName;
 		$memcacheKey = "$codeVersion-$dbHost-$dbName-$sql";
 		return($memcacheKey);
-	}
-	/*--------------------*/
-	private function memcacheTestData($data, $key, $ttl) {
-		$set = $this->Mmemcache->set($key, $data, $ttl);
-		$get = $this->Mmemcache->get($key);
-
-		$memcacheTestResults = array(
-			'key' => $key,
-			'data' => $data,
-			'ttl' => $ttl,
-			'set' => $set,
-			'get' => $get,
-		);
-		$json = json_encode($memcacheTestResults);
-		error_log($json);
 	}
 	/*------------------------------------------------------------*/
 	public function getRow($sql, $ttl = null) {

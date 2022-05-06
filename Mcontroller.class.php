@@ -248,27 +248,6 @@ class Mcontroller {
 		return($pathParts);
 	}
 	/*------------------------------------------------------------*/
-	protected static $debugLevel = 0;
-	/*------------------------------*/
-	public static function debugLevel($level = null) {
-		$currentLevel = self::$debugLevel;
-		$requestLevel = @$_REQUEST['debugLevel'];
-		$envLevel = Mutils::getenv("debugLevel");
-		$newLevel = 0;
-		if ( $level != null )
-			$newLevel = $level;
-		if ( $currentLevel > $newLevel )
-			$newLevel = $currentLevel;
-		if ( $requestLevel > $newLevel )
-			$newLevel = $requestLevel;
-		if ( $envLevel > $newLevel )
-			$newLevel = $envLevel;
-		if ( self::$debugLevel != $newLevel )
-			Mutils::setenv("debugLevel", $newLevel);
-		self::$debugLevel = $newLevel;
-		return($newLevel);
-	}
-	/*------------------------------------------------------------*/
 	public function exportToExcel($rows, $fileName = null) {
 		if ( ! $rows || count($rows) == 0 ) {
 			$this->Mview->msg("No Rows");

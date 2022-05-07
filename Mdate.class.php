@@ -578,42 +578,5 @@ class Mdate {
 		return($value);
 	}
 	/*------------------------------------------------------------*/
-	public static function dateRange($start = null, $end = null) {
-		$Msession = new Msession;
-		if ( isset($_REQUEST["starting"]) && $_REQUEST["starting"] )
-			$starting = self::scan($_REQUEST["starting"]);
-		elseif ( ($d = $Msession->get("starting")) != null )
-			$starting = $d;
-		elseif ( $start )
-			$starting = $start;
-		else
-			$starting = date("Ym01");
-		$Msession->set("starting", $starting);
-
-		if ( isset($_REQUEST["ending"]) && $_REQUEST["ending"] )
-			$ending = self::scan($_REQUEST["ending"]);
-		elseif ( ($d=$Msession->get("ending")) != null )
-			$ending = $d;
-		elseif ( $end )
-			$ending = $end;
-		else
-			$ending = date("Ymd");
-		$Msession->set("ending", $ending);
-
-		$ret = array(
-			"starting" => $starting,
-			"ending" => $ending,
-		);
-		return($ret);
-	}
-	/*------------------------------*/
-	public static function between() {
-		$dateRange = self::dateRange();
-		$starting = self::dash($dateRange['starting']);
-		$ending = self::dash($dateRange['ending']);
-		$ret = "between '$starting' and '$ending'";
-		return($ret);
-	}
-	/*------------------------------------------------------------*/
 }
 /*------------------------------------------------------------*/

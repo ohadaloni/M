@@ -676,64 +676,6 @@ class Mmodel {
 	}
 	/*------------------------------------------------------------*/
 	/**
-	  * return sql representing the data in the table ( use dumpTable() to stream large tables )
-	  *
-	  * @param string the table name
-	  * @param string single field to sort by or null to avoid sorting
-	  * @return string sql statement(s) to (re-)insert data to the table
-	  */
-	public function tableDump($tableName, $orderBy = "id") {
-		if ( $orderBy && $this->isColumn($tableName, $orderBy) )
-			$ob = "order by $orderBy";
-		else
-			$ob = "";
-		$ret = "drop table if exists $tableName;\n";
-		$cr = $this->getRow("show create table $tableName");
-		$crvalues = array_values($cr);
-		$ret .= $crvalues[1].";\n";
-		$rows = $this->getRows("select * from $tableName $ob");
-		foreach ( $rows as $row )
-			$ret .= $this->dbInsertSql($tableName, $row, true).";\n";
-		return($ret);
-	}
-	/*------------------------------------------------------------*/
-	/**
-	  * stream an SQL dump of the table to the standard output
-	  *
-	  * @param string the table name
-	  */
-	public function dumpTable($tableName, $select = null) {
-		$ai = $this->autoIncrement($tableName);
-		if ( $ai )
-			$ob = "order by $ai";
-		else
-			$ob = "";
-		$datetime = date("Y-m-d G:i:s.u");
-		if ( $select ) {
-			$query = $select;
-			echo "-- M::dumpTable - $tableName - $select\n";
-		} else {
-			$query = "select * from $tableName $ob";
-			echo "-- M::dumpTable starting - $tableName - $datetime\n";
-			echo "drop table if exists $tableName;\n";
-			$cr = $this->getRow("show create table $tableName");
-			$crvalues = array_values($cr);
-			echo $crvalues[1].";\n";
-		}
-		$res = $this->query($query);
-		if ( ! $res )
-			return;
-		while($row = @mysqli_fetch_assoc($res))
-			echo $this->dbInsertSql($tableName, $row, true).";\n";
-
-		if ( ! $select ) {
-			$datetime = date("Y-m-d G:i:s.u");
-			echo "-- M::dumpTable done - $tableName - $datetime\n";
-			echo "\n";
-		}
-	}
-	/*------------------------------------------------------------*/
-	/**
 	  * the data type of a column in a table
 	  *
 	  * @param string the table name

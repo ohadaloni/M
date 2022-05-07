@@ -568,6 +568,46 @@ class Mutils {
 		return($str);
 	}
 	/*------------------------------------------------------------*/
+	public static function memcacheTest() {
+		$mc = new Mcontroller;
+		$randKey = "randKey-".rand(1,100000);
+		$randValue = rand(1,100000);
+		$ttl = rand(1, 4);
+		$setRet = $mc->Mmemcache->set($randKey, $randValue, $ttl);
+		if ( ! $setRet  ) {
+			$mc->Mview->error("memcacheTest: failed to set");
+			return;
+		}
+		$get = $mc->Mmemcache->get($randKey);
+		if ( $get == $randValue )
+			$mc->Mview->msg("memcacheTest: works");
+		else
+			$mc->Mview->error("memcacheTest: failed to get after set");
+	}
+	/*------------------------------*/
+	public static function memcacheStats() {
+		$mc = new Mcontroller;
+		$mc->Mmemcache->connect();
+		$memcache = $mc->Mmemcache->memcache();
+		$serverStatus = $memcache->getServerStatus("localhost");
+		$stats = $memcache->getStats();
+		$stats['time'] = date("Y-m-d G:i:s", $stats['time']);
+		$upTotalSeconds = $stats['uptime'];
+		$upSeconds = $upTotalSeconds % 60;
+		$upTotalMinutes = ($upTotalSeconds - $upSeconds)/60;
+		$upMinutes = $upTotalMinutes % 60;
+		$upTotalHours = ($upTotalMinutes - $upMinutes)/60;
+		$upHours = $upTotalHours % 60;
+		$upDays = ( $upTotalHours - $upHours ) / 24 ;
+		$upDaysS = $upDays == 1 ? "" : "s";
+		$stats['serverStatus'] = $serverStatus;
+		$stats['uptimeStr'] = sprintf(" %d day$upDaysS & %d:%02d:%02d h/m/s", $upDays, $upHours, $upMinutes, $upSeconds);
+		$mc->Mview->showTpl("Mmemcache/memcacheStats.tpl", array(
+			'stats' => $stats,
+			'serverStatus' => $serverStatus,
+		));
+	}
+	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	// keep this at bottom - vim misinterprets the rest of the file

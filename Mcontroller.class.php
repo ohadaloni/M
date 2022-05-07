@@ -34,15 +34,15 @@ class Mcontroller {
 	/**
 	* @var Mmodel access the Mmodel class from this instance
 	*/
-	protected $Mmodel;
+	public $Mmodel;
 	/**
 	* @var Mview access the Mview class from this instance
 	*/
-	protected $Mview;
+	public $Mview;
 	/**
 	* @var Mmemcache access the Mmemcache class from this instance
 	*/
-	protected $Mmemcache;
+	public $Mmemcache;
 	/*------------------------------------------------------------*/
 	public function __construct() {
 		global $Mmodel;

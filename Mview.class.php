@@ -356,6 +356,8 @@ class Mview extends Smarty {
 	}
 	/*------------------------------*/
 	public static function runningTime($startTime) {
+		if ( defined("NO_RUNNING_TIME") )
+			return;
 		$endTime = microtime(true);
 		$time = $endTime - $startTime ;
 		$millis = $time * 1000;

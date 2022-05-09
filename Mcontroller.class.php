@@ -43,6 +43,10 @@ class Mcontroller {
 	* @var Mmemcache access the Mmemcache class from this instance
 	*/
 	public $Mmemcache;
+	/**
+	* @var startTime starting time of the program
+	*/
+	private $startTime;
 	/*------------------------------------------------------------*/
 	public function __construct() {
 		global $Mmodel;
@@ -59,6 +63,8 @@ class Mcontroller {
 			$this->Mview = new Mview();
 
 		$this->Mmemcache = new Mmemcache;
+		// default startTime, but set it more accuratly if necessary
+		$this->startTime = microtime(true);
 
 		if ( ! $this->Mmodel ) {
 			$stack = debug_backtrace(false);
@@ -66,6 +72,10 @@ class Mcontroller {
 			$this->quit();
 			exit;
 		}
+	}
+	/*------------------------------------------------------------*/
+	public function setStartTime($startTime) {
+		$this->startTime = $startTime;
 	}
 	/*------------------------------------------------------------*/
 	public function control() {			
@@ -83,6 +93,7 @@ class Mcontroller {
 		$obj->before();
 		$action = $this->action;
 		$obj->$action();
+		$obj->Mview->runningTime($this->startTime);
 		$obj->after();
 		return(true);
 	}

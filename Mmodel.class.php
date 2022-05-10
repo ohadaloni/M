@@ -35,37 +35,23 @@ class Mmodel {
 	/*------------------------------*/
 	private $Mmemcache = null;
 	/*------------------------------------------------------------*/
-	public function __construct($user = null, $passwd = null, $dbName = null,  $host = null) {
-		if ( $host )
-			$this->dbHost = $host;
-		elseif ( defined('M_HOST') )
+	public function __construct() {
+		if ( defined('M_HOST') )
 			$this->dbHost = M_HOST;
 		else
 			$this->dbHost = 'localhost';
 
-		if ( $dbName )
-			$this->dbName = $dbName;
-		elseif ( defined('M_DBNAME') && M_DBNAME != 'none' )
+		if ( defined('M_DBNAME') )
 			$this->dbName = M_DBNAME;
-		else
-			$this->dbName = null;
 
-		if ( $user )
-			$this->dbUser = $user;
-		elseif ( defined('M_USER') )
+		if ( defined('M_USER') )
 			$this->dbUser = M_USER;
-		else
-			$this->dbUser = null;
 
-		if ( $passwd )
-			$this->dbPasswd = $passwd;
-		elseif ( defined('M_PASSWORD') )
+		if ( defined('M_PASSWORD') )
 			$this->dbPasswd = M_PASSWORD;
-		else
-			$this->dbPasswd = null;
 
 		if ( ! $this->dbUser || $this->dbPasswd === null ) {
-			Mview::error("Must define M_USER M_PASSWORD or construct Mmodel with arguments");
+			Mview::error("Must define M_USER M_PASSWORD");
 			return;
 		}
 		if ( ! $this->selectHost($this->dbHost, $this->dbUser, $this->dbPasswd, $this->dbName) )

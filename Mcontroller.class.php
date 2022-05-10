@@ -55,7 +55,7 @@ class Mcontroller {
 		if ( isset($Mmodel) && $Mmodel != null )
 			$this->Mmodel = $Mmodel;
 		else
-			$this->Mmodel = new Mmodel();
+			$this->Mmodel = new Mmodel;
 
 		if ( isset($Mview) && $Mview != null )
 			$this->Mview = $Mview;

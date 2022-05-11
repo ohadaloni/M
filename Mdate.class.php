@@ -36,8 +36,8 @@ class Mdate {
 	  */
 	public static function separate($date) {
 		$dt = self::undash($date);
-		$d = $dt % 100 ;
-		$m = ( (int)($dt/100) ) % 100 ;
+		$d = $dt % 100;
+		$m = ( (int)($dt/100) ) % 100;
 		$y = (int)($dt / 10000);
 		return(array($y, $m, $d));
 	}
@@ -133,7 +133,7 @@ class Mdate {
 			$m++;
 		else {
 			$y++;
-			$m = 1 ;
+			$m = 1;
 		}
 		return(self::compose($y, $m, $d));
 	}
@@ -144,7 +144,7 @@ class Mdate {
 			$m--;
 		else {
 			$y--;
-			$m = 12 ;
+			$m = 12;
 		}
 		return(self::compose($y, $m, $d));
 	}
@@ -319,9 +319,9 @@ class Mdate {
 			if ( $m < 1 || $m > 12 )
 				return(null);
 			if ( $y < 25 )
-				$y += 2000 ;
+				$y += 2000;
 			elseif ( $y < 100 )
-				$y += 1900 ;
+				$y += 1900;
 			return($y * 10000 + $m * 100 + $d);
 		}
 		// if this is a formatted date, ignore the weekday prefix
@@ -353,7 +353,7 @@ class Mdate {
 	  * @return int
 	  */
 	public static function monthLength($m, $y = null) {
-		static $monthlen = array( 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31) ;
+		static $monthlen = array( 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 		$m = (int)$m;
 		if ( $y == null )
 			return($monthlen[$m]);
@@ -561,9 +561,9 @@ class Mdate {
 		if ( preg_match("/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] *[0-9]*:[0-9]*.*/", $str) )
 			return($str);
 		$dt = explode(' ', $str);
-		if ( is_numeric($dt[0]) && $dt[0] > 19000101 && $dt[0] < 1410400000  )
+		if ( is_numeric($dt[0]) && $dt[0] > 19000101 && $dt[0] < 1410400000 )
 			$dt[0] = self::dash($dt[0]);
-		if (  preg_match("/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/", $dt[0]) )
+		if ( preg_match("/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/", $dt[0]) )
 			list($y, $m, $d) = explode('-', $dt[0]);
 		else
 			list($m, $d, $y) = explode('/', $dt[0]);

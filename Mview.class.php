@@ -15,7 +15,7 @@ require_once("msu.php");
 require_once("Mdate.class.php");
 /*------------------------------------------------------------*/
 /**
-  *  Mview - View class
+  *	Mview - View class
   *
   * Mview is an extension of the class Smarty (smarty.php.net)
   *
@@ -39,8 +39,8 @@ class Mview extends Smarty {
 			define('SMARTY_RUN_DIR', 'smarty');
 
 		$this->use_sub_dirs = false;
-		$smartyTplDir = SMARTY_TPL_DIR ;
-		$smartyRunDir = SMARTY_RUN_DIR ;
+		$smartyTplDir = SMARTY_TPL_DIR;
+		$smartyRunDir = SMARTY_RUN_DIR;
 		$this->template_dir = $smartyTplDir;
 		$this->prependTemplateDir($smartyTplDir);
 		if ( defined('M_DIR') )
@@ -323,7 +323,7 @@ class Mview extends Smarty {
 				else
 					$msg = "<a href=\"$url\">$msg</a>";
 			}
-			$text = "<div class=\"alert $cssClass\"><strong>$msg</strong></div>" ;
+			$text = "<div class=\"alert $cssClass\"><strong>$msg</strong></div>";
 		} else {
 			$text = $msg;
 		}
@@ -359,7 +359,7 @@ class Mview extends Smarty {
 		if ( defined("NO_RUNNING_TIME") )
 			return;
 		$endTime = microtime(true);
-		$time = $endTime - $startTime ;
+		$time = $endTime - $startTime;
 		$millis = $time * 1000;
 		$millis = round($millis, 3);
 		self::br(2);
@@ -466,7 +466,7 @@ class Mview extends Smarty {
 	 * @param string
 	 */
 	public function js($s) {
-		echo "<script type=\"text/javascript\"> $s </script>\n" ;
+		echo "<script type=\"text/javascript\"> $s </script>\n";
 		flush();
 		ob_flush();
 	}
@@ -478,7 +478,7 @@ class Mview extends Smarty {
 	 */
 	public function jsTitle($s) {
 		$title = $this->jsStr($s);
-		$this->js("document.title = '$title' ; ");
+		$this->js("document.title = '$title'; ");
 		
 	}
 	/*------------------------------------------------------------*/
@@ -489,9 +489,9 @@ class Mview extends Smarty {
 			return;
 		}
 		$defaultExpires = 10*365*24*60*60;
-		if ( $expires  == null )
+		if ( $expires == null )
 			$expires = $defaultExpires;
-		if ( $expires  <= $defaultExpires )
+		if ( $expires <= $defaultExpires )
 			$expires += time();
 		if ( @setcookie($name, $value, $expires, "/") ) {
 			$_COOKIE[$name] = $value;
@@ -509,7 +509,7 @@ class Mview extends Smarty {
 	 */
 	public function msuShowTpl($a) {
 		$tpl = $a['file'];
-		$b = $a ;
+		$b = $a;
 		$b['tplArgs'] = $a;
 		$rendered = $this->showTpl($tpl, $b, true);
 		// call from a smarty template -

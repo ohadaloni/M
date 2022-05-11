@@ -5,7 +5,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 
 <html>
 <head>
-    <meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+	<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
 <div>

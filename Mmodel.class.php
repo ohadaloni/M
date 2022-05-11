@@ -80,9 +80,9 @@ class Mmodel {
 			Mview::error("cannot set names to utf8");
 			return(false);
 		}
-		if ( $dbName )  {
+		if ( $dbName ) {
 			if ( ! $this->selectDb($dbName) ) {
-				$error = @mysqli_error($this->dbHandle) ;
+				$error = @mysqli_error($this->dbHandle);
 				$this->lastError = $error;
 				Mview::error("Unable to select db $dbName: $error");
 			}
@@ -97,7 +97,7 @@ class Mmodel {
 		$this->dbName = $db;
 		$ret = @mysqli_select_db($this->dbHandle, $this->dbName);
 		if ( $ret == false ) {
-			$error = @mysqli_error($this->dbHandle) ;
+			$error = @mysqli_error($this->dbHandle);
 			$this->lastError = $error;
 			return(false);
 		}
@@ -203,7 +203,7 @@ class Mmodel {
 		}
 		$ret = array();
 		while($r = @mysqli_fetch_assoc($res))
-			$ret[] = $r ;
+			$ret[] = $r;
 		@mysqli_free_result($res);
 		if ( $ttl !== null ) {
 			$set = $this->Mmemcache->set($memcacheKey, $ret, $ttl);
@@ -357,7 +357,7 @@ class Mmodel {
 		if ( isset($cache[$tableName]) )
 			return($cache[$tableName]);
 
-		$columnRows = $this->getRows("show  columns from $tableName", 30);
+		$columnRows = $this->getRows("show columns from $tableName", 30);
 		if ( ! $columnRows ) {
 			Mview::error("No columns for $tableName");
 			$cache[$tableName] = null;
@@ -375,7 +375,7 @@ class Mmodel {
 				'isAutoInc' => $col['Extra'] == 'auto_increment',
 				'isKey' => $col['Key'] != null,
 			);
-		$cache[$tableName] = $fields ;
+		$cache[$tableName] = $fields;
 		return($cache[$tableName]);
 	}
 	/*----------------------------------------*/
@@ -404,7 +404,7 @@ class Mmodel {
 		if ( isset($cache[$tableName]) )
 			return($cache[$tableName]);
 
-		$columnRows = $this->getRows("show  columns from $tableName", 30);
+		$columnRows = $this->getRows("show columns from $tableName", 30);
 		if ( ! $columnRows ) {
 			Mview::error("No columns for $tableName");
 			$cache[$tableName] = null;
@@ -412,8 +412,8 @@ class Mmodel {
 		}
 		$cols = array();
 		foreach ( $columnRows as $col )
-			$cols[] = $col['Field'] ;
-		$cache[$tableName] = $cols ;
+			$cols[] = $col['Field'];
+		$cache[$tableName] = $cols;
 		return($cache[$tableName]);
 	}
 	/*----------------------------------------*/
@@ -515,7 +515,7 @@ class Mmodel {
 			return(null);
 
 		$affected = $this->_sql($sql, $rememberLastSql);
-		if (  $affected != 1 )
+		if ( $affected != 1 )
 			return(null);
 		$this->lastInsertId = mysqli_insert_id($this->dbHandle);
 		return($this->lastInsertId);
@@ -569,7 +569,7 @@ class Mmodel {
 	  * @param array associative array with data. Fields not matching columns of the table are silently ignored. 
 	  * @param string the name of the id field if it is not 'id'
 	  * @return int -1 on error, 0 if the query had no effect,
-	  *   1 if an actual change occured
+	  * 1 if an actual change occured
 	  */
 	public function _dbUpdate($tableName, $id, $data, $idName = "id") {
 		if ( ! $this->isConnected ) {
@@ -741,7 +741,7 @@ class Mmodel {
 	/**
 	 * a database ready representation of now() in a given timezone
 	 *
-	 * @param string timezone  (see date_default_timezone_set())
+	 * @param string timezone (see date_default_timezone_set())
 	 * @return string
 	 */
 	public function datetimeNowInTZ($tz = null) {
@@ -763,7 +763,7 @@ class Mmodel {
 		$fieldList = implode(',', $this->columns($table));
 
 		$rowNum = $this->rowNum($table);
-		if ( ! $id  ) {
+		if ( ! $id ) {
 			if ( $rowNum > 500 )
 				$limit = "limit 500";
 			else

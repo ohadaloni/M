@@ -6,7 +6,7 @@ class Logger {
 	/*------------------------------------------------------------*/
 	public function __construct($logFile = null) {
 		if ( $logFile )
-			$this->logFile = $logFile ;
+			$this->logFile = $logFile;
 	}
 	/*------------------------------------------------------------*/
 	public function setLogFile($logFile) {

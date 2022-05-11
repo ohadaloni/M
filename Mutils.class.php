@@ -71,7 +71,7 @@ class Mutils {
 	 * @param string
 	 */
 	public static function js($s) {
-		echo "<script type=\"text/javascript\"> $s </script>\n" ;
+		echo "<script type=\"text/javascript\"> $s </script>\n";
 		flush();
 		ob_flush();
 	}
@@ -83,7 +83,7 @@ class Mutils {
 	 */
 	public static function jsTitle($s) {
 		$s = self::jsStr($s);
-		self::js("document.title = '$s' ; ");
+		self::js("document.title = '$s'; ");
 	}
 	/*------------------------------*/
 	/**
@@ -93,7 +93,7 @@ class Mutils {
 	 */
 	public static function jsStatus($s) {
 		$s = self::jsStr($s);
-		self::js("window.status = '$s' ; ");
+		self::js("window.status = '$s'; ");
 	}
 	/*------------------------------------------------------------*/
 	/**
@@ -273,7 +273,7 @@ class Mutils {
 		return($array);
 	}
 	/*------------------------------------------------------------*/
-	public static function array2xml($name, $a, $nestLevel = 0, $header = true)  {
+	public static function array2xml($name, $a, $nestLevel = 0, $header = true) {
 		if ( $header ) {
 			$header = self::$xmlHeader;
 			$body = self::array2xml($name, $a, 0, false);
@@ -282,17 +282,17 @@ class Mutils {
 		$tabs = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t";
 		if ( ! is_array($a) )
 			return(substr($tabs, 0, $nestLevel)."<$name>".htmlspecialchars($a)."</$name>\n");
-		$nameIsPlural = substr($name, -1) == 's' ;
-		$nameSingular = $nameIsPlural ? substr($name, 0, -1) : $name ;
+		$nameIsPlural = substr($name, -1) == 's';
+		$nameSingular = $nameIsPlural ? substr($name, 0, -1) : $name;
 		if ( strlen($name) > 5 && substr($name, -3) == 'ies' )
-			$nameSingular = substr($name, 0, -3)."y" ;
+			$nameSingular = substr($name, 0, -3)."y";
 		if ( $nameIsPlural )
 			$namePlural = $name;
 		else {
 			if ( strlen($name) > 5 && substr($name, -1) == 'y' )
-				$namePlural  =  substr($name, 0, -1)."ies";
+				$namePlural = substr($name, 0, -1)."ies";
 			else
-				$namePlural  =  $name."s" ;
+				$namePlural = $name."s";
 		}
 		$untitled = self::arrayIsUntitled($a);
 		$title = $untitled ? $namePlural : $name;
@@ -314,7 +314,7 @@ class Mutils {
 		$http_x_requested_with = @$_SERVER['HTTP_X_REQUESTED_WITH'];
 		$isAjax =
 			$http_x_requested_with &&
-			strtolower($http_x_requested_with) == "xmlhttprequest" ;
+			strtolower($http_x_requested_with) == "xmlhttprequest";
 		return($isAjax);
 	}
 	/*------------------------------------------------------------*/
@@ -367,7 +367,7 @@ class Mutils {
 		while($file = readdir($dir)) {
 			if ( $file == '.' || $file == '..' )
 				continue;
-			if ( ! $ext  ) {
+			if ( ! $ext ) {
 				$files[] = $file;
 				continue;
 			}
@@ -427,10 +427,10 @@ class Mutils {
 	// http://krasimirtsonev.com/blog/article/php--find-links-in-a-string-and-replace-them-with-actual-html-link-tags
 	//
 	// if
-	//        {$row.story|nl2br|makeLinks}
+	//		{$row.story|nl2br|makeLinks}
 	// if makeLinks sticks a br in the middle of the link title
 	// try
-	//        {$row.story|makeLinks|nl2br}
+	//		{$row.story|makeLinks|nl2br}
 	public static function makeLinks($str) {
 			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 			$urls = array();
@@ -460,7 +460,6 @@ class Mutils {
 			}
 	}
 	/*------------------------------------------------------------*/
-	// Tue Dec  7 09:30:15 IST 2021
 	// from https://github.com/kwi-dk/UrlLinker
 	// same purpose as makeLinks above
 	public static function linkUrls($text)
@@ -574,7 +573,7 @@ class Mutils {
 		$randValue = rand(1,100000);
 		$ttl = rand(1, 4);
 		$setRet = $mc->Mmemcache->set($randKey, $randValue, $ttl);
-		if ( ! $setRet  ) {
+		if ( ! $setRet ) {
 			$mc->Mview->error("memcacheTest: failed to set");
 			return;
 		}
@@ -598,7 +597,7 @@ class Mutils {
 		$upMinutes = $upTotalMinutes % 60;
 		$upTotalHours = ($upTotalMinutes - $upMinutes)/60;
 		$upHours = $upTotalHours % 60;
-		$upDays = ( $upTotalHours - $upHours ) / 24 ;
+		$upDays = ( $upTotalHours - $upHours ) / 24;
 		$upDaysS = $upDays == 1 ? "" : "s";
 		$stats['serverStatus'] = $serverStatus;
 		$stats['uptimeStr'] = sprintf(" %d day$upDaysS & %d:%02d:%02d h/m/s", $upDays, $upHours, $upMinutes, $upSeconds);

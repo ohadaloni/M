@@ -7,7 +7,7 @@ class Mfile {
 	/*------------------------------------------------------------*/
 	public function __construct() {
 		$this->Mmemcache = new Mmemcache;
-		$this->ttl = 5*60 ;
+		$this->ttl = 5*60;
 	}
 	/*------------------------------------------------------------*/
 	public function getContents($path) {

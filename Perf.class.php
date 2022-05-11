@@ -70,7 +70,7 @@ class Perf {
 				'times' => $data['times'],
 			);
 		}
-		if (  $only ) {
+		if ( $only ) {
 			foreach ( $ret as $stat )
 				if ( $stat['label'] == $only )
 					return($stat);
@@ -83,24 +83,24 @@ class Perf {
 	/*------------------------------*/
 	private static function cmpSeconds($a, $b) {
 		$val = $b['seconds'] - $a['seconds'];
-		$ret = $val > 0 ? 1 : ( $val < 0 ? -1 : 0 ) ;
+		$ret = $val > 0 ? 1 : ( $val < 0 ? -1 : 0 );
 		return($ret);
 	}
 	/*------------------------------------------------------------*/
 	public static function time() {
-		list($usec, $sec) = explode(" ", microtime());  
-		return((double)$usec + (double)$sec);  
-	}  
+		list($usec, $sec) = explode(" ", microtime());
+		return((double)$usec + (double)$sec);
+	}
 	/*------------------------------------------------------------*/
 	public static function space() {
 		$bytes = memory_get_usage();
 		$sbytes = memory_get_usage(true);
 		$use = $bytes;
 		$M = 1024*1024;
-		$MB = $use / $M ;
+		$MB = $use / $M;
 		$round = round($MB, 3);
 		return($round);
-	}  
+	}
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/

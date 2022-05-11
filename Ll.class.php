@@ -104,7 +104,7 @@ class Ll {
 	}
 	/*------------------------------------------------------------*/
 	public function remove($node) {
-		if (  ! $node->prev ) {
+		if ( ! $node->prev ) {
 			// its the first
 			// maybe also the last
 			$this->start = $node->next;
@@ -112,7 +112,7 @@ class Ll {
 				$this->start->prev = null;
 			return;
 		}
-		if (  ! $node->next ) {
+		if ( ! $node->next ) {
 			// its the last
 			// but not the first
 			$this->end = $node->prev;

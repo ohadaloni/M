@@ -21,7 +21,7 @@ class Mcal {
 	  * @param int $month
 	  * @return array
 	  */
-	  public static function cal($year, $month) {
+	public static function cal($year, $month) {
 		$month = (int)$month; // remove leading zeros
 		$cal = array();
 		$mdays = Mdate::monthLength($month, $year);
@@ -32,9 +32,9 @@ class Mcal {
 			if ( $day != 1 && $wd == 0 )
 				$w++;
 
-			$cal[$w][$wd] = $day ;
+			$cal[$w][$wd] = $day;
 
-			$wd = ($wd+1) % 7 ;
+			$wd = ($wd+1) % 7;
 		}
 
 		foreach ( $cal as $wkey => $week )
@@ -46,7 +46,7 @@ class Mcal {
 			ksort($cal[$wkey]);
 
 		return($cal);
-	  }
+	}
 	/*----------------------------------------*/
 }
 /*------------------------------------------------------------*/

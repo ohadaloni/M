@@ -37,7 +37,7 @@ class McsvLoader extends Mcontroller {
 			$this->tableName = $_REQUEST['tableName'];
 		$fileInfo = Mutils::uploadedFileInfo();
 		if ( ! $fileInfo )
-		  return(null);
+			return(null);
 		$file = $fileInfo['file'];
 		$fileName = $fileInfo['name'];
 		$ext = substr($fileName, -3, 3);
@@ -79,7 +79,7 @@ class McsvLoader extends Mcontroller {
 			return(null);
 		}
 		$headerLine = fgetcsv($fp);
-		$loaded = 0 ;
+		$loaded = 0;
 		for ($lineNo=1; $row = fgetcsv($fp);$lineNo++ ) {
 			if ( $maxRows != null && $loaded > $maxRows ) {
 				$this->Mview->msg("Limit reached.");
@@ -137,7 +137,7 @@ class McsvLoader extends Mcontroller {
 			return("Mcsv$n");
 		if ( $n < 26 )
 			return(chr(ord('A') + $n));
-		$secondN = $n % 26 ;
+		$secondN = $n % 26;
 		$firstN = ($n - $secondN) / 26 - 1;
 		$firstChar = chr(ord('A') + $firstN);
 		$secondChar = chr(ord('A') + $secondN);
@@ -175,9 +175,9 @@ class McsvLoader extends Mcontroller {
 		if ( $y < 1 || $y > 3000 )
 			return(null);
 		if ( $y < 25 )
-			$y += 2000 ;
+			$y += 2000;
 		elseif ( $y < 100 )
-			$y += 1900 ;
+			$y += 1900;
 		return(sprintf("%04d-%02d-%02d", $y, $m, $d));
 	}
 	/*--------------------------------------------------*/

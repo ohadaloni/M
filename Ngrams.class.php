@@ -81,7 +81,7 @@ class Ngrams extends Mcontroller {
 		$cartesianProduct = $this->vectorMultiply($s1Ngrams, $s2Ngrams);
 		if ( ! $cartesianProduct )
 			return(1);
-		$strDistance = 1.0 / $cartesianProduct ;
+		$strDistance = 1.0 / $cartesianProduct;
 		return($strDistance);
 	}
 	/*------------------------------------------------------------*/

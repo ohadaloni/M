@@ -14,14 +14,14 @@ class Mmemcache {
 		$today = date("Y-m-d");
 		$this->logFile = "$topdir/logs/Mmemcache/$today.log";
 		if ( $host ) {
-			$this->host = $host ;
+			$this->host = $host;
 		} else {
 			if ( defined('M_MEMCACHE_HOST') )
-				$this->host = M_MEMCACHE_HOST ;
+				$this->host = M_MEMCACHE_HOST;
 			else
 				$this->host = "localhost";
 		}
-		$this->port = $port ;
+		$this->port = $port;
 
 		if ( class_exists("Memcache") ) {
 				$this->memcache = new Memcache;
@@ -40,7 +40,7 @@ class Mmemcache {
 			$this->memcache->setCompressThreshold(10000, 0.3);
 			$after = microtime(true);
 			$this->isConnected = true;
-			$this->timedLog("pconnectTime", "",  $after - $before);
+			$this->timedLog("pconnectTime", "", $after - $before);
 			/*	error_log(basename(__FILE__).":".__LINE__.": connected");	*/
 			return(true);
 		} catch (Exception $e) {
@@ -91,7 +91,7 @@ class Mmemcache {
 		$value = $this->pack($value);
 		$setOK = $this->memcache->set($versionKey, $value, 0, $ttl);
 		$after = microtime(true);
-		$this->timedLog("set", $key,  $after - $before);
+		$this->timedLog("set", $key, $after - $before);
 		if ( ! $setOK )
 			$this->error("set: $host: set of $key failed");
 		return($setOK);
@@ -188,7 +188,7 @@ class Mmemcache {
 	// read only the entire queue
 	// with bundle info
 	// sampleSize:
-	//   null - entire queue
+	//	null - entire queue
 	//	 -5 - last 5
 	//	 5 - first 5
 	public function msgQ($qname, $sampleSize = null) {
@@ -289,7 +289,7 @@ class Mmemcache {
 	// memcache fails to store short strings ?
 	// but not small arrays
 	// pack all values into arrays
-	//  this did not work for a null value
+	// this did not work for a null value
 	// its important to store the empty results
 	// of sql queries, or else the db will be consulted again.
 	// so adding to pack array to make it have some content

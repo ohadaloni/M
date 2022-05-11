@@ -1,6 +1,6 @@
 {foreach from=$msgs item=msg}
-        {$msg}
+	{$msg}
 {/foreach}
 {if $msgs}
-        <br />
+	<br />
 {/if}

@@ -38,7 +38,7 @@ class MlineGraphs extends Mcontroller {
 		}
 
 		$numLines = count($lines);
-		$step = round($numLines / 10) ; // ~ 10 labels
+		$step = round($numLines / 10); // ~ 10 labels
 		$chart = array(
 			'chart' => array(
 				'renderTo' => $renderTo,

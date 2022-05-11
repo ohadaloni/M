@@ -31,7 +31,7 @@ class Mtime {
 	 * @param string timezone (see date_default_timezone_set())
 	 * @return int
 	 */
-	public static function  nowInTZ($timeZone = null, $colonsNseconds = false) {
+	public static function nowInTZ($timeZone = null, $colonsNseconds = false) {
 		if ( ! $timeZone )
 			$timeZone = "UTC";
 		$tz = date_default_timezone_get();
@@ -84,7 +84,7 @@ class Mtime {
 	 */
 	public static function minutes($t) {
 		$i = self::scan($t);
-		$m = $i % 100 ;
+		$m = $i % 100;
 		$h = ($i - $m)/100;
 		return($h * 60 + $m);
 	}
@@ -125,7 +125,7 @@ class Mtime {
 	 
 	public static function fmt($t) {
 		$i = self::scan($t);
-		$m = $i % 100 ;
+		$m = $i % 100;
 		$h = ($i - $m)/100;
 		return(sprintf("%d:%02d", $h, $m));
 	}

@@ -26,7 +26,7 @@ function msuShowTpl($a) {
 	}
 
 	$tpl = $a['file'];
-	$b = $a ;
+	$b = $a;
 	$b['tplArgs'] = $a;
 	$Mview->showTpl($tpl, $b);
 }

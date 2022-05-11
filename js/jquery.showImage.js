@@ -7,9 +7,9 @@ function mShowImg(screenImg)
 	// like in width=70, to get the real size, get the source again
 
 	var img = new Image();
-	img.src = src ;
+	img.src = src;
 	var height = img.height + 16;
-	var width  = img.width + 16;
+	var width = img.width + 16;
 	/*	alert ('openng with '+width+'*'+height);	*/
 	window.open(src, "mShowImg", "scrollbars=no,menubar=no,location=no,status=no,toolbar=no,width="+width+",height="+height);
 }

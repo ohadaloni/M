@@ -30,7 +30,7 @@ class Mcurl {
 	public function head($url) {
 		$this->init();
 		$this->setOpts(array(
-			CURLOPT_NOBODY =>  true,
+			CURLOPT_NOBODY => true,
 		));
 		$this->go($url);
 		return($this->httpCode);
@@ -74,7 +74,6 @@ class Mcurl {
 		return(true);
 	}
 	/*------------------------------------------------------------*/
-	// Fri Apr  2 11:34:26 IDT 2021
 	// use init() separately if setting opts or headers
 	private function go($url, $input = null, $dontEncode = false) {
 		if ( ! $this->curl && ! $this->init()) {

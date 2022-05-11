@@ -9,9 +9,9 @@
   * The is no bootstrap and dispatcher separate from Mcontroller
   * This is quite diffrent than most PHP MVC frameworks
   * 
-  *  Using M mostly means:
-  *     setting database access as described in Mconfig.php<br />
-  *     'requiring' this file, extending Mcontroller and calling control() from the extended class.<br />
+  *	Using M mostly means:
+  *	 setting database access as described in Mconfig.php<br />
+  *	 'requiring' this file, extending Mcontroller and calling control() from the extended class.<br />
   */
 /*------------------------------------------------------------*/
 require_once("Logger.class.php");

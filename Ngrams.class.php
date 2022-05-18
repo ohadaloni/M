@@ -51,14 +51,18 @@ class Ngrams extends Mcontroller {
 			return($str);
 		$str = trim($str);
 		$str = " $str ";
-		foreach ( $words as $word )
+		foreach ( $words as $word ) {
 			$str = str_replace(" $word ", " ", $str);
+			/*	echo "word=$word, str=$str<br />\n";	*/
+		}
 		$str = trim($str);
-		error_log(basename(__FILE__).":".__LINE__.": $str");
-		return($ret);
+		return($str);
 	}
 	/*------------------------------------------------------------*/
 	public function vector($s, $n = 4) {
+		static $cache = array();
+		if ( @$cache[$s] )
+			return($cache[$s]);
 		$ngrams = array();
 		$s = $this->c14n($s);
 		$s = " ".trim($s)." ";
@@ -70,6 +74,7 @@ class Ngrams extends Mcontroller {
 			$ngrams[$ngram]++;
 		}
 		ksort($ngrams);
+		$cache[$s] = $ngrams;
 		return($ngrams);
 	}
 	/*------------------------------------------------------------*/

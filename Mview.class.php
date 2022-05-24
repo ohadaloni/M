@@ -378,6 +378,12 @@ class Mview extends Smarty {
 			self::pushOutput("<br />\n");
 	}
 	/*------------------------------*/
+	public static function msgLater($msg) {
+		self::tell($msg, array(
+			'rememberForNextPage' => true,
+		));
+	}
+	/*------------------------------*/
 	public static function error($msg) {
 		error_log($msg);
 		self::tell($msg, array(
@@ -496,10 +502,7 @@ class Mview extends Smarty {
 		if ( @setcookie($name, $value, $expires, "/") ) {
 			$_COOKIE[$name] = $value;
 		} else {
-			/*	self::error("Cannot set cookie - output already started");	*/
-			/*	Mutils::trace();	*/
-			/*	self::flush();	*/
-			/*	exit;	*/
+			error_log("Mview::setCookie: Cannot set cookie '$name'");
 		}
 	}
 	/*------------------------------------------------------------*/

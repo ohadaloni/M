@@ -97,22 +97,6 @@ class Mutils {
 	}
 	/*------------------------------------------------------------*/
 	/**
-	 * cut an array to size
-	 *
-	 * @param array
-	 * @param int
-	 * @return array
-	 */
-	public static function array_truncate($a, $n) {
-		if ( ! is_array($a) || count($a) <= $n )
-			return($a);
-		$ret = array();
-		for($i=0;$i<$n;$i++)
-			$ret[] = array_shift($a);
-		return($ret);
-	}
-	/*------------------------------------------------------------*/
-	/**
 	 * like in_array but return the key
 	 */
 	public static function arrayIndex($a, $v) {

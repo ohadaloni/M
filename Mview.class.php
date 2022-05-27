@@ -231,10 +231,9 @@ class Mview extends Smarty {
 	/*------------------------------*/
 	public static function flushOutput() {
 		// msgbuf had better been output by now by app, not usable after this;
-		$Msession = new Msession;
-		$msgBuf = $Msession->get('msgBuf');
+		$msgBuf = Msession::get('msgBuf');
 		if ( $msgBuf )
-			$Msession->set('msgBuf', array()); // sets cookie - must be before next...
+			Msession::set('msgBuf', array()); // sets cookie - must be before next...
 		if ( self::$outputBuffer ) {
 			echo self::$outputBuffer;
 			self::$outputBuffer = "";
@@ -334,8 +333,7 @@ class Mview extends Smarty {
 	}
 	/*------------------------------*/
 	private static function rememberForNextPage($text) {
-		$Msession = new Msession;
-		$sessionMsgBuf = $Msession->get('msgBuf');
+		$sessionMsgBuf = Msession::get('msgBuf');
 		if ( ! $sessionMsgBuf )
 			$sessionMsgBuf = array();
 		$numMessages = count($sessionMsgBuf);
@@ -343,11 +341,11 @@ class Mview extends Smarty {
 			$lastText = $sessionMsgBuf[$numMessages-1];
 			if ( $lastText != '...' ) {
 				$sessionMsgBuf[] = '...';
-				$Msession->set('msgBuf', $sessionMsgBuf);
+				Msession::set('msgBuf', $sessionMsgBuf);
 			}
 		} else {
 			$sessionMsgBuf[] = $text;
-			$Msession->set('msgBuf', $sessionMsgBuf);
+			Msession::set('msgBuf', $sessionMsgBuf);
 		}
 	}
 	/*------------------------------*/

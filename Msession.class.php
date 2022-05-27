@@ -10,7 +10,9 @@ class Msession {
 	private static $Mmemcache;
 	private static $version = "2";
 	/*------------------------------------------------------------*/
-	private static function init() {
+	// Fri May 27 11:21:09 IDT 2022
+	// must be able to independly call this early, say from index.php
+	public static function init() {
 		if ( ! @$_SERVER['SERVER_ADDR'] ) 
 			return(false);
 		$version = self::$version;
@@ -22,10 +24,14 @@ class Msession {
 			self::$sessionId = @$_COOKIE[self::$sessionIdCookieName];
 		if ( ! self::$sessionId ) {
 			self::$sessionId = rand(1, 1000000);
-			self::setMsessionCookie();
+			Mview::setCookie(self::$sessionIdCookieName, self::$sessionId, self::$expires);
 		}
-		if ( ! self::$mcKey )
-			self::$mcKey = self::mcKey(self::$sessionId);
+		if ( ! self::$mcKey ) {
+			$version = self::$version;
+			$sessionId = self::$sessionId;
+			$mcKey = "Msession:V$version-$sessionId";
+			self::$mcKey = $mcKey;
+		}
 		if ( ! self::$session )
 			self::$session = self::$Mmemcache->get(self::$mcKey);
 		if ( ! self::$session )
@@ -56,7 +62,6 @@ class Msession {
 		if ( ! self::init() )
 			return;
 		self::$session[$n] = $v;
-		self::setMsessionCookie();
 		self::$Mmemcache->set(self::$mcKey, self::$session, self::$expires);
 	}
 	/*------------------------------------------------------------*/
@@ -70,15 +75,6 @@ class Msession {
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
-	private static function setMsessionCookie() {
-		Mview::setCookie(self::$sessionIdCookieName, self::$sessionId, self::$expires);
-	}
-	/*------------------------------------------------------------*/
-	private static function mcKey($sessionId) {
-		$version = self::$version;
-		$mcKey = "Msession:V$version-$sessionId";
-		return($mcKey);
-	}
 	/*------------------------------------------------------------*/
 	public function encode($a) {
 		$json = json_encode($a);

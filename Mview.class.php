@@ -72,6 +72,7 @@ class Mview extends Smarty {
 				1 => 'Yes',
 			),
 		));
+		Msession::init();
 	}
 	/*------------------------------------------------------------*/
 	private function registerClass($method, $class) {

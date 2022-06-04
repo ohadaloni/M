@@ -2,7 +2,8 @@ jQuery.fn.imgToolTip = function(size) {
 	if ( ! size )
 		size = 150;
 	return this.each(function() {
-		var title = this.title;
+		var title = this.src;
+		title = title.substring(title.lastIndexOf('/') + 1)
 		var src = this.src;
 		jQuery(this).tooltip({
 			delay: 500,

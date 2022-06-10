@@ -120,10 +120,12 @@ class Mcontroller {
 		if ( class_exists($className1) ) {
 			if ( $thisClassName == $className1 ) {
 				$obj = $this;
-				$this->controller = $thisClassName;
-				$this->action = strtolower($action1);
-				/*	error_log("obj: /$className1/$action1, THIS!");	*/
-				return($obj);
+				if ( is_callable(array($obj, $action1)) ) {			
+					$this->controller = $thisClassName;
+					$this->action = strtolower($action1);
+					/*	error_log("obj: /$className1/$action1, THIS!");	*/
+					return($obj);
+				}
 			}
 			$obj = new $className1;
 			if ( is_callable(array($obj, $action1)) ) {			
@@ -136,11 +138,13 @@ class Mcontroller {
 		$same = $className1 == $className2;
 		if ( ! $same && class_exists($className2) ) {
 			if ( $thisClassName == $className2 ) {
-				$this->controller = $thisClassName;
-				$this->action = strtolower($action2);
 				$obj = $this;
-				/*	error_log("obj: /$className2/$action2, THIS!");	*/
-				return($obj);
+				if ( is_callable(array($obj, $action1)) ) {			
+					$this->controller = $thisClassName;
+					$this->action = strtolower($action2);
+					/*	error_log("obj: /$className2/$action2, THIS!");	*/
+					return($obj);
+				}
 			}
 			$obj = new $className2;
 			if ( is_callable(array($obj, $action2)) ) {			

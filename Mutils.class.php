@@ -551,6 +551,18 @@ class Mutils {
 		return($str);
 	}
 	/*------------------------------------------------------------*/
+	public static function urlWorks($url) {
+		$mc = new Mcontroller;
+		$mkey = "urlWorks-$url";
+		$urlWorks = $mc->Mmemcache->get($mkey);
+        if ( $urlWorks )
+			return($urlWorks == "works");
+		$headers = @get_headers($url);
+		$ok = strstr(@$headers[0], "200");
+		$mc->Mmemcache->set($mkey, $ok ? "works" : "dosnt", 3600);
+		return($ok);
+	}
+	/*------------------------------------------------------------*/
 	public static function memcacheTest() {
 		$mc = new Mcontroller;
 		$randKey = "randKey-".rand(1,100000);

@@ -1,12 +1,12 @@
 function clock() {
-  const today = new Date();
-  Dn = today.getDay();
-  Y = today.getFullYear();
-  m = today.getMonth();
-  d = today.getDate();
-  G = today.getHours();
-  i = today.getMinutes();
-  s = today.getSeconds();
+  const time = new Date();
+  Dn = time.getDay();
+  Y = time.getFullYear();
+  m = time.getMonth();
+  d = time.getDate();
+  G = time.getHours();
+  i = time.getMinutes();
+  s = time.getSeconds();
   days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
   D = days[Dn];
   m++;

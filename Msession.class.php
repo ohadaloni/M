@@ -10,7 +10,6 @@ class Msession {
 	private static $Mmemcache;
 	private static $version = "2";
 	/*------------------------------------------------------------*/
-	// Fri May 27 11:21:09 IDT 2022
 	// must be able to independly call this early, say from index.php
 	public static function init() {
 		if ( ! @$_SERVER['SERVER_ADDR'] ) 

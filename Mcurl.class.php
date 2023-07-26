@@ -10,15 +10,26 @@ class Mcurl {
 	/*------------------------------------------------------------*/
 	private $curl;
 	private $httpCode;
+	private $response;
 	private $responseDecoded;
 	private $headers;
 	private $opts;
 	/*------------------------------------------------------------*/
 	// get - return the response - json decoded
 	// the httpCode can be gotten later, like in curl
-	public function get($url) {
+	public function get($url, $dontDecode = false) {
 		$this->go($url);
-		return($this->responseDecoded);
+		if ( $dontDecode )
+			return($this->response);
+		if ( $this->responseDecoded )
+			return($this->responseDecoded);
+		else
+			return($this->response);
+	}
+	/*------------------------------------------------------------*/
+	public function getImage($url) {
+		$this->go($url, null, null, true);
+		return($this->response);
 	}
 	/*------------------------------------------------------------*/
 	// get - but return the httpCode
@@ -31,6 +42,8 @@ class Mcurl {
 		$this->init();
 		$this->setOpts(array(
 			CURLOPT_NOBODY => true,
+			CURLOPT_CONNECTTIMEOUT => 3,
+			CURLOPT_TIMEOUT => 3,
 		));
 		$this->go($url);
 		return($this->httpCode);
@@ -74,22 +87,33 @@ class Mcurl {
 		return(true);
 	}
 	/*------------------------------------------------------------*/
+	/*------------------------------------------------------------*/
 	// use init() separately if setting opts or headers
-	private function go($url, $input = null, $dontEncode = false) {
+	private function go($url, $input = null, $dontEncode = false, $dontDecode = false) {
 		if ( ! $this->curl && ! $this->init()) {
 			error_log("Mcurl::go: init failed");
-			return(null);
+			return;
 		}
 
-		curl_setopt($this->curl, CURLOPT_URL, $url);
-		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 5);
-		curl_setopt($this->curl, CURLOPT_ENCODING, "utf-8");
-		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, true);
-		curl_setopt($this->curl, CURLOPT_MAXREDIRS, 7);
-		if ( $this->opts ) {
-			foreach ( $this->opts as $key => $value )
+		$opts = array(
+			CURLOPT_URL => $url,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_CONNECTTIMEOUT => 5,
+			CURLOPT_ENCODING => "utf-8",
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_MAXREDIRS => 7,
+			CURLOPT_TIMEOUT => 30,
+		);
+		foreach ( $opts as $key => $value ) {
+			if ( ! isset($this->opts[$key]) ) {
 				curl_setopt($this->curl, $key, $value);
+			}
+		}
+		// overide the above defaults
+		if ( $this->opts ) {
+			foreach ( $this->opts as $key => $value ) {
+				curl_setopt($this->curl, $key, $value);
+			}
 		}
 
 		if ( $input ) {
@@ -105,10 +129,12 @@ class Mcurl {
 			$headers = array_merge($headers, $this->headers);
 		curl_setopt($this->curl, CURLOPT_HTTPHEADER, $headers);
 		$curlResponse = curl_exec($this->curl);
+		$this->response  = $this->responseDecoded = null;
 		if ( $curlResponse ) {
-			$this->responseDecoded = json_decode($curlResponse, true);
-		} else {
-			$this->responseDecoded = null;
+			$this->response = $curlResponse;
+			if ( ! $dontDecode ) {
+				$this->responseDecoded = @json_decode($curlResponse, true);
+			}
 		}
 		$this->httpCode = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 		curl_close($this->curl);

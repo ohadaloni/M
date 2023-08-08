@@ -592,7 +592,7 @@ class Mutils {
 		$upTotalMinutes = ($upTotalSeconds - $upSeconds)/60;
 		$upMinutes = $upTotalMinutes % 60;
 		$upTotalHours = ($upTotalMinutes - $upMinutes)/60;
-		$upHours = $upTotalHours % 60;
+		$upHours = $upTotalHours % 24;
 		$upDays = ( $upTotalHours - $upHours ) / 24;
 		$upDaysS = $upDays == 1 ? "" : "s";
 		$stats['serverStatus'] = $serverStatus;

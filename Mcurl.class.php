@@ -134,11 +134,42 @@ class Mcurl {
 			$this->response = $curlResponse;
 			if ( ! $dontDecode ) {
 				$this->responseDecoded = @json_decode($curlResponse, true);
+				if ( ! $this->responseDecoded )
+					$this->responseDecoded = $this->jsonDecodeRows($curlResponse);
 			}
 		}
 		$this->httpCode = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 		curl_close($this->curl);
 		$this->curl = null;
+	}
+	/*------------------------------------------------------------*/
+	/*------------------------------------------------------------*/
+	// Sat Aug 12 13:45:53 IDT 2023
+	// this will only work if the json is an array of rows.
+	// probably php5 json_decode has a bug and returns null,
+	// so this comepnsates for db table like data
+	private function jsonDecodeRows($json) {
+		if ( ! $json ) {
+			error_log("jsonDecodeRows: no json");
+			return(null);
+		}
+		$json = trim($json);;
+		$json = trim($json, "[]");
+		$json = trim($json, "{}");
+		$rowStrings = explode("},{", $json);
+		$rows = array();
+		foreach ( $rowStrings as $rowString ) {
+			$nameValueStrings = explode(",", $rowString);
+			$row = array();
+			foreach ( $nameValueStrings as $nameValueString ) {
+				$nv = explode(":", $nameValueString, 2);
+				$name = trim($nv[0], '"');
+				$value = trim($nv[1], '"');
+				$row[$name] = $value;
+			}
+			$rows[] = $row;
+		}
+		return($rows);
 	}
 	/*------------------------------------------------------------*/
 }

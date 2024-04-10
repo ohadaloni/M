@@ -245,7 +245,7 @@ class Mmodel {
 	 * @return array associative array of data of the row
 	 */
 	public function getById($tableName, $id, $ttl = null, $idName = "id") {
-		return($this->getRow("select * from $tableName where $idName = $id", $ttl));
+		return($this->getRow("select * from $tableName where $idName = '$id'", $ttl));
 	}
 	/*----------------------------------------*/
 	/**

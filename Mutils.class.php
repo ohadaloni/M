@@ -343,6 +343,7 @@ class Mutils {
 	}
 	/*------------------------------------------------------------*/
 	public static function listDir($path, $ext = null) {
+		$files = array();
 		$dir = opendir($path);
 		if ( ! $dir ) {
 			Mview::error("$path: Can not open");

@@ -416,7 +416,7 @@ class Mutils {
 	// if makeLinks sticks a br in the middle of the link title
 	// try
 	//		{$row.story|makeLinks|nl2br}
-	public static function makeLinks($str) {
+	public static function makeLinks($str, $justAnArrow = null) {
 			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 			$urls = array();
 			$urlsToReplace = array();
@@ -437,7 +437,10 @@ class Mutils {
 					}
 					$numOfUrlsToReplace = count($urlsToReplace);
 					for($i=0; $i<$numOfUrlsToReplace; $i++) {
-							$str = str_replace($urlsToReplace[$i], "<a target=\"_blank\" href=\"".$urlsToReplace[$i]."\">".$urlsToReplace[$i]."</a> ", $str);
+							if ( $justAnArrow )
+								$str = str_replace($urlsToReplace[$i], "<a target=\"_blank\" href=\"".$urlsToReplace[$i]."\">==GoToUrl==</a> ", $str);
+							else
+								$str = str_replace($urlsToReplace[$i], "<a target=\"_blank\" href=\"".$urlsToReplace[$i]."\">".$urlsToReplace[$i]."</a> ", $str);
 					}
 					return $str;
 			} else {
@@ -604,6 +607,34 @@ class Mutils {
 		));
 	}
 	/*------------------------------------------------------------*/
+	public static function embeddings($text) {
+		$mc = new Mcurl();
+		$mc->init();
+		$apiKey = "IJuvz7NNWuxqrQ7CUfyW8A==3ou8sSKRkhJspG8e";
+		$mc->setHeaders(array(
+			"Content-Type: application/json",
+			"X-Api-Key: $apiKey",
+		));
+		$url = "https://api.api-ninja.com/v1/embeddings";
+		$body = array(
+			'text' => $text,
+		);
+		$response = $mc->post($url,  $body);
+		$lastHttpCode = $mc->lastHttpCode();
+		if ( ! $response ) {
+			error_log("embeddings: lastHttpCode=$lastHttpCode, no response");
+			return(null);
+		}
+		if ( $lastHttpCode != 200 ) {
+			$responseJson = json_encode($response);
+			error_log("embeddings: lastHttpCode=$lastHttpCode, response: $responseJson");
+		}
+		$embeddings = @$response['embeddings'];
+		if ( ! $embeddings ) {
+			error_log("embeddings: no embeddings for $text");
+		}
+		return($embeddings);
+	}
 	/*------------------------------------------------------------*/
 	/*------------------------------------------------------------*/
 	// keep this at bottom - vim misinterprets the rest of the file

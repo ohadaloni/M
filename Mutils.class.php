@@ -530,10 +530,12 @@ class Mutils {
 	/*------------------------------------------------------------*/
 	public static function mime($ext) {
 		$mimes = array(
+			'txt' => "text/plain",
 			'png' => "image/png",
 			'jpg' => "image/jpeg",
 			'jpeg' => "image/jpeg",
 			'pdf' => "application/pdf",
+			'doc' => "application/msword",
 		);
 		$ext = strtolower($ext);
 		$mime = @$mimes[$ext];

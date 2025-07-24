@@ -342,6 +342,13 @@ class Mutils {
 			echo "<pre>".implode("\n", $lines)."\n</pre>\n";
 	}
 	/*------------------------------------------------------------*/
+	public static function parentDir($path) {
+		$parts = explode("/", $path);
+		array_pop($parts);
+		$parentDir = implode("/", $parts);
+		return($parentDir);
+	}
+	/*------------------------------------------------------------*/
 	public static function listDir($path, $ext = null) {
 		$files = array();
 		$dir = opendir($path);

@@ -619,19 +619,18 @@ class Mutils {
 	public static function embeddings($text) {
 		$mc = new Mcurl();
 		$mc->init();
-		$apiKey = "IJuvz7NNWuxqrQ7CUfyW8A==3ou8sSKRkhJspG8e";
+		$apiKey = "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";
 		$mc->setHeaders(array(
-			"Content-Type: application/json",
-			"X-Api-Key: $apiKey",
+			"Authorization: Bearer $apiKey",
 		));
-		$url = "https://api.api-ninja.com/v1/embeddings";
+		$url = 'https://api-inference.huggingface.co/models/sentence-transformers/nomic-ai/nomic-embed-text-v1';
 		$body = array(
-			'text' => $text,
+			'inputs' => $text,
 		);
-		$response = $mc->post($url,  $body);
+		$response = $mc->post($url,  $body, true);
 		$lastHttpCode = $mc->lastHttpCode();
-		if ( ! $response ) {
-			error_log("embeddings: lastHttpCode=$lastHttpCode, no response");
+		if ( $lastHttpCode != 200 ) {
+			error_log("embeddings: lastHttpCode=$lastHttpCode, response='$response'");
 			return(null);
 		}
 		if ( $lastHttpCode != 200 ) {

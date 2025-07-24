@@ -53,9 +53,14 @@ class Mcurl {
 		return($this->httpCode);
 	}
 	/*------------------------------------------------------------*/
-	public function post($url, $input, $dontEncode = false) {
-		$this->go($url, $input, $dontEncode);
-		return($this->responseDecoded);
+	public function post($url, $input, $dontDecode = false) {
+		$this->go($url, $input, null, $dontDecode);
+		if ( $dontDecode )
+			return($this->response);
+		if ( $this->responseDecoded )
+			return($this->responseDecoded);
+		else
+			return($this->response);
 	}
 	/*------------------------------------------------------------*/
 	public function postHttpCode($url, $input) {
@@ -133,9 +138,12 @@ class Mcurl {
 		if ( $curlResponse ) {
 			$this->response = $curlResponse;
 			if ( ! $dontDecode ) {
+				error_log("dontDecode = $dontDecode");
 				$this->responseDecoded = @json_decode($curlResponse, true);
-				if ( ! $this->responseDecoded )
+				if ( ! $this->responseDecoded ) {
+					error_log("decoding rows");
 					$this->responseDecoded = $this->jsonDecodeRows($curlResponse);
+				}
 			}
 		}
 		$this->httpCode = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);

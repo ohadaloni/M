@@ -619,25 +619,26 @@ class Mutils {
 	public static function embeddings($text) {
 		$mc = new Mcurl();
 		$mc->init();
-		$apiKey = "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";
+		$apiKey = "jina_9782e77cb8d64652baafd3cb55a812c7ZrdmI8aXNEl2jGQ1OBZUfaDsH0vx";
 		$mc->setHeaders(array(
 			"Authorization: Bearer $apiKey",
 		));
-		$url = 'https://api-inference.huggingface.co/models/sentence-transformers/nomic-ai/nomic-embed-text-v1';
+		$url = 'https://api.jina.ai/v1/embeddings';
 		$body = array(
-			'inputs' => $text,
+			'model' => "jina-embeddings-v3",
+			'task' => "text-matching",
+			'input' => array(
+				$text,
+			),
+
 		);
-		$response = $mc->post($url,  $body, true);
+		$response = $mc->post($url,  $body);
 		$lastHttpCode = $mc->lastHttpCode();
 		if ( $lastHttpCode != 200 ) {
 			error_log("embeddings: lastHttpCode=$lastHttpCode, response='$response'");
 			return(null);
 		}
-		if ( $lastHttpCode != 200 ) {
-			$responseJson = json_encode($response);
-			error_log("embeddings: lastHttpCode=$lastHttpCode, response: $responseJson");
-		}
-		$embeddings = @$response['embeddings'];
+		$embeddings = @$response['data'][0]['embedding'];
 		if ( ! $embeddings ) {
 			error_log("embeddings: no embeddings for $text");
 		}

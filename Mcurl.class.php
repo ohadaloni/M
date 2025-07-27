@@ -138,7 +138,6 @@ class Mcurl {
 		if ( $curlResponse ) {
 			$this->response = $curlResponse;
 			if ( ! $dontDecode ) {
-				error_log("dontDecode = $dontDecode");
 				$this->responseDecoded = @json_decode($curlResponse, true);
 				if ( ! $this->responseDecoded ) {
 					error_log("decoding rows");

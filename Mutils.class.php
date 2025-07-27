@@ -617,6 +617,8 @@ class Mutils {
 	}
 	/*------------------------------------------------------------*/
 	public static function embeddings($text) {
+		$shortText = substr($text, 0, 30);
+		error_log("embeddings: getting for '$shortText...'");
 		$mc = new Mcurl();
 		$mc->init();
 		$apiKey = "jina_9782e77cb8d64652baafd3cb55a812c7ZrdmI8aXNEl2jGQ1OBZUfaDsH0vx";
@@ -645,6 +647,22 @@ class Mutils {
 		return($embeddings);
 	}
 	/*------------------------------------------------------------*/
+	public static function distanceSquared($v1, $v2) {
+		$cnt1 = count($v1);
+		$cnt2 = count($v2);
+		if ($cnt1 != $cnt2 ) {
+			error_log("distanceSquared: Invalid Arguments: Vectors must be of the same length: $cnt1 != $cnt2");
+			return(1000000.0);
+		}
+
+		$distanceSquared = 0.0;
+		for ($i = 0; $i < $cnt1 ; $i++) {
+			$diff = $v1[$i] - $v2[$i];
+			$squared = $diff*$diff;
+			$distanceSquared += $squared;
+		}
+		return($distanceSquared);
+	}
 	/*------------------------------------------------------------*/
 	// keep this at bottom - vim misinterprets the rest of the file
 	private static $xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";

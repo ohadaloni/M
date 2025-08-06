@@ -90,7 +90,7 @@ class Ngrams extends Mcontroller {
 	public static function vectorDistance($v1, $v2) {
 		$cartesianProduct = self::vectorMultiply($v1, $v2);
 		if ( ! $cartesianProduct )
-			return(1);
+			return(1.0);
 		$vectorDistance = 1.0 / $cartesianProduct;
 		return($vectorDistance);
 	}

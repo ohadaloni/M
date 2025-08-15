@@ -617,11 +617,14 @@ class Mutils {
 	}
 	/*------------------------------------------------------------*/
 	public static function embeddings($text) {
+		if ( ! defined('TAS_DIR') )
+			define('TAS_DIR', "/var/www/vhosts/tas.theora.com");
+		require_once(TAS_DIR."/conf/jinaApiKey.php");
 		$shortText = substr($text, 0, 30);
 		error_log("embeddings: getting for '$shortText...'");
 		$mc = new Mcurl();
 		$mc->init();
-		$apiKey = "jina_9782e77cb8d64652baafd3cb55a812c7ZrdmI8aXNEl2jGQ1OBZUfaDsH0vx";
+		$apiKey = JINA_API_KEY;
 		$mc->setHeaders(array(
 			"Authorization: Bearer $apiKey",
 		));

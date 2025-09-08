@@ -1,0 +1,95 @@
+.heading {
+	font-weight: bold;
+	font-size: small;
+}
+.whiteBg {
+	background-color: #ffffff;
+}
+
+.textRight {
+	text-align: right;
+}
+
+form {
+	display:inline;
+}
+
+form input {
+	background-color: inherit ;
+}
+
+.textLeft {
+	text-align: left;
+}
+
+.right {
+	margin-left:auto;
+	margin-right:0px;
+}
+
+.textCenter {
+	text-align:center;
+}
+
+.vcenter {
+	margin-top:auto;
+	margin-bottom:auto;
+}
+
+.center {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.handCursor {
+	cursor: pointer;
+}
+
+.header {
+	background-color:#eee; 
+	text-align:center;
+	color:blue;
+	font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+	font-weight: 600;
+}
+
+.footer {
+	background-color:#eee; 
+	text-align:center;
+	color:blue;
+	font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+	font-weight: 600;
+}
+
+.zebra0 {
+	background-color:#e0e0e0; 
+}
+
+.zebra1 {
+	background-color:#88bbff; 
+}
+
+.zebra2 {
+	background-color:#bbddff; 
+}
+
+.hilite {
+	background-color:#ffcc00; 
+}
+
+.keepHilited {
+	background-color:#ffaa00; 
+}
+
+.currentRow {
+	background-color:#ffff00; 
+}
+
+.selectClass {
+	background-color: #ccccff;
+}
+
+#ui-datepicker-div { font-size: 12px; }
+.tabLabel {
+	font-weight: bold;
+}

@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Mdate</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Mdate</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mdate - date utilities</p>
+<p class="description"><p>integer dates are in the form 20110929</p></p>
+		<p class="notes">
+			Located in <a class="field" href="_Mdate.class.php.html">/Mdate.class.php</a> (line <span class="field">16</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+												<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#add" title="details" class="method-name">add</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#addDays" title="details" class="method-name">addDays</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#addMonths" title="details" class="method-name">addMonths</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$months</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#addWeeks" title="details" class="method-name">addWeeks</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$weeks</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#addYears" title="details" class="method-name">addYears</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$years</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#cal" title="details" class="method-name">cal</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$year</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$month</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#compose" title="details" class="method-name">compose</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$year</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$month</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$day</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#dash" title="details" class="method-name">dash</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#dateList" title="details" class="method-name">dateList</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$starting</span>, <span class="var-type">int|string</span>&nbsp;<span class="var-name">$ending</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#diff" title="details" class="method-name">diff</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$d1</span>, <span class="var-type">int|string</span>&nbsp;<span class="var-name">$d2</span>)
+									</div>
+																								<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#fromUnixTime" title="details" class="method-name">fromUnixTime</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$unixTime</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">boolean</span>
+										<a href="#isLeap" title="details" class="method-name">isLeap</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$year</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#monthLength" title="details" class="method-name">monthLength</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$m</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$y</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#monthList" title="details" class="method-name">monthList</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#monthLlist" title="details" class="method-name">monthLlist</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#monthLname" title="details" class="method-name">monthLname</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$m</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#monthStr" title="details" class="method-name">monthStr</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$m</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#phpDate" title="details" class="method-name">phpDate</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#scan" title="details" class="method-name">scan</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#separate" title="details" class="method-name">separate</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#subtract" title="details" class="method-name">subtract</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#subtractDays" title="details" class="method-name">subtractDays</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#subtractMonths" title="details" class="method-name">subtractMonths</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$months</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#subtractWeeks" title="details" class="method-name">subtractWeeks</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$weeks</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#subtractYears" title="details" class="method-name">subtractYears</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$years</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#today" title="details" class="method-name">today</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#todayInTZ" title="details" class="method-name">todayInTZ</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$timeZone</span> = <span class="var-default">&quot;Asia/Jerusalem&quot;</span>])
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#undash" title="details" class="method-name">undash</a>
+											(<span class="var-type">string|int</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#unixTime" title="details" class="method-name">unixTime</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">int</span>
+										<a href="#wday" title="details" class="method-name">wday</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#weekDayList" title="details" class="method-name">weekDayList</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">array</span>
+										<a href="#weekDayLlist" title="details" class="method-name">weekDayLlist</a>
+										()
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#weekDayLname" title="details" class="method-name">weekDayLname</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$wday</span>)
+									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">string</span>
+										<a href="#weekDayStr" title="details" class="method-name">weekDayStr</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$wday</span>)
+									</div>
+								
+																																																																																												<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#fmt" title="details" class="method-name">fmt</a>
+											(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$withWeekDay</span> = <span class="var-default">false</span>])
+									</div>
+																																																																																																																																																																																																								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodadd" id="add"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method add</span> (line <span class="line-number">61</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">an alias to addDays</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			add
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$days</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddDays" id="addDays"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method addDays</span> (line <span class="line-number">51</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">add 1 or more days to a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			addDays
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$days</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddMonths" id="addMonths"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method addMonths</span> (line <span class="line-number">171</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">add 1 or more months to a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			addMonths
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$months</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$months</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddWeeks" id="addWeeks"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method addWeeks</span> (line <span class="line-number">90</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">add 1 or more weeks to a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			addWeeks
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$weeks</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$weeks</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddYears" id="addYears"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method addYears</span> (line <span class="line-number">112</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">add 1 or more years to a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			addYears
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$years</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$years</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcal" id="cal"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method cal</span> (line <span class="line-number">540</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">create a monthly calender for the given month</p>
+<p class="description"><p>return a 2 dimensional array of weeks, matching an ordinary visual layout:<br />  the returned array has 4-6 entries.  (4 if its a non-leap February starting on a Sunday).<br />  In each week keys 0-6 (Sunday-Saturday) have the day of month for the week.<br />  Empty entries have a null value, so each week is an array with exactly 7 entries.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			cal
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$year</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$month</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$year</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$month</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcompose" id="compose"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method compose</span> (line <span class="line-number">26</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">compose a date from its three components</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			compose
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$year</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$month</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$day</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$year</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$month</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$day</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddash" id="dash"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method dash</span> (line <span class="line-number">199</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">format a date separated by dashes for the database</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			dash
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddateList" id="dateList"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method dateList</span> (line <span class="line-number">574</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">list dates between two dates</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			dateList
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$starting</span>, <span class="var-type">int|string</span>&nbsp;<span class="var-name">$ending</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$starting</span><span class="var-description">: = $returned[0]</span>			</li>
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$ending</span><span class="var-description">: the last entry in the returned array</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddiff" id="diff"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method diff</span> (line <span class="line-number">235</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">number of days beween two dates</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			diff
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$d1</span>, <span class="var-type">int|string</span>&nbsp;<span class="var-name">$d2</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$d1</span><span class="var-description">: the later date (if the return value is to be positive)</span>			</li>
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$d2</span><span class="var-description">: the earlier date</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfromUnixTime" id="fromUnixTime"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method fromUnixTime</span> (line <span class="line-number">223</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">convert unixTime to date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			fromUnixTime
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$unixTime</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$unixTime</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisLeap" id="isLeap"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method isLeap</span> (line <span class="line-number">343</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			isLeap
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$year</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$year</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmonthLength" id="monthLength"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method monthLength</span> (line <span class="line-number">354</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">how many days are in a month</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			monthLength
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$m</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$y</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$m</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$y</span><span class="var-description">: if not given then monthLength(2) always returns 28.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmonthList" id="monthList"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method monthList</span> (line <span class="line-number">366</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">List of short month names</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of 12 strings @returned[9] == &quot;Sep&quot;</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			monthList
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmonthLlist" id="monthLlist"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method monthLlist</span> (line <span class="line-number">399</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">List of long month names</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of 12 strings @returned[9] == &quot;September&quot;</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			monthLlist
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmonthLname" id="monthLname"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method monthLname</span> (line <span class="line-number">422</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Long month name - monthLname(9) == &quot;September&quot;</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			monthLname
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmonthStr" id="monthStr"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method monthStr</span> (line <span class="line-number">389</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Short month name - monthStr(9) == &quot;Sep&quot;</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			monthStr
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodphpDate" id="phpDate"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method phpDate</span> (line <span class="line-number">489</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">the php date as returned from getdate()</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			phpDate
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span><span class="var-description">: as in 20090929 or &quot;2009-09-29&quot;</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodscan" id="scan"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method scan</span> (line <span class="line-number">282</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">try to figure out what date is denoted by $str</p>
+<p class="description"><p>in addition to strtotime(): <ol><li>a unix timestamp is accepted</li><li>19831107 and 20111107 are accepted</li><li>&quot;t&quot; is today's date</li><li>7 means the 7'th of the current month</li><li>7/11 and &quot;7 11&quot; means November 7'th of this year</li><li>&quot;7 11 2011&quot; is 20111107</li><li>&quot;7 11 1983&quot; is 19831107</li><li>&quot;7 11 11&quot; is 20111107</li><li>&quot;7 11 83&quot; is 19831107</li></ol></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the implied date or null</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			scan
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: some description of a date</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodseparate" id="separate"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method separate</span> (line <span class="line-number">36</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">separate a date to its components</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> array with 3 components in this order: year, month, day</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			separate
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span><span class="var-description">: the date</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsubtract" id="subtract"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method subtract</span> (line <span class="line-number">79</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">alias to subtractDays</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			subtract
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$days</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsubtractDays" id="subtractDays"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method subtractDays</span> (line <span class="line-number">72</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">subtract 1 or more days from a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			subtractDays
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$days</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$days</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsubtractMonths" id="subtractMonths"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method subtractMonths</span> (line <span class="line-number">158</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">subtract 1 or more months from a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			subtractMonths
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$months</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$months</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsubtractWeeks" id="subtractWeeks"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method subtractWeeks</span> (line <span class="line-number">101</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">subtract 1 or more weeks from a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			subtractWeeks
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$weeks</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$weeks</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsubtractYears" id="subtractYears"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method subtractYears</span> (line <span class="line-number">125</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">subtract 1 or more years from a date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			subtractYears
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$years</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$years</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtoday" id="today"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method today</span> (line <span class="line-number">509</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">today's date</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			today
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodtodayInTZ" id="todayInTZ"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method todayInTZ</span> (line <span class="line-number">519</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">today's date in a given timezone</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			todayInTZ
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$timeZone</span> = <span class="var-default">&quot;Asia/Jerusalem&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$timeZone</span><span class="var-description">: time zone (see date_default_timezone_set())</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodundash" id="undash"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method undash</span> (line <span class="line-number">187</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">remove any dashes from a database formatted date  '2009-09-29' -&gt; 20090929  20090929 -&gt; 20090929</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			undash
+		</span>
+					(<span class="var-type">string|int</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string|int</span>
+				<span class="var-name">$str</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodunixTime" id="unixTime"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method unixTime</span> (line <span class="line-number">212</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">the unixTime of a date (seconds since the unix epoc 1/1/1970)</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			unixTime
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwday" id="wday"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method wday</span> (line <span class="line-number">499</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">the week day of a date</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> 0 if date is on a Sunday, 6 if Saturday</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">int</span>
+		<span class="method-name">
+			wday
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodweekDayList" id="weekDayList"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method weekDayList</span> (line <span class="line-number">432</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">List of short week day names</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of 7 strings @returned[0] == &quot;Sun&quot;</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			weekDayList
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodweekDayLlist" id="weekDayLlist"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method weekDayLlist</span> (line <span class="line-number">460</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">List of long week day names</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of 7 strings @returned[0] == &quot;Sunday&quot;</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">array</span>
+		<span class="method-name">
+			weekDayLlist
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodweekDayLname" id="weekDayLname"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method weekDayLname</span> (line <span class="line-number">478</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Long week day name - weekDayLname(0) == &quot;Sunday&quot;</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			weekDayLname
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$wday</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$wday</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodweekDayStr" id="weekDayStr"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method weekDayStr</span> (line <span class="line-number">450</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Short week day name - weekDayStr(0) == &quot;Sun&quot;</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">string</span>
+		<span class="method-name">
+			weekDayStr
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$wday</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$wday</span>			</li>
+				</ul>
+		
+			
+	</div>
+
+<a name="methodfmt" id="fmt"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">fmt</span> (line <span class="line-number">254</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">format a date</p>
+<p class="description"><p>keep compatibility with the jquery date_input plugin scanning and formatting standard  unless formatting with the weekday.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			fmt
+		</span>
+					(<span class="var-type">int|string</span>&nbsp;<span class="var-name">$date</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$withWeekDay</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int|string</span>
+				<span class="var-name">$date</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$withWeekDay</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 03 Dec 2011 03:05:42 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Mcontroller</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Mcontroller</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|											<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mcontroller has several control functions:</p>
+<p class="description"><p><ol><li>Allow control to flow only if appropriate permission conditions are met.<br /></li><li>Branch URLs of the form className=...&amp;action=... to the corresponding class method.<br /></li><li>Serve as a superclass to be extended with seamless inheritance from Mmoel and Mview.<br /></li></ol></p></p>
+		<p class="notes">
+			Located in <a class="field" href="_Mcontroller.class.php.html">/Mcontroller.class.php</a> (line <span class="field">25</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+								|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../M/McsvLoader.html">McsvLoader</a></td>
+					<td>
+											McsvLoader is a facility to load a CSV file into a mysql table.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../M/Mquery.html">Mquery</a></td>
+					<td>
+											Mquery is a general purpose facility to query the database  and display and export information with ease.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../M/Mtable.html">Mtable</a></td>
+					<td>
+											A production quality, feature rich, database table scaffold, browser, editor, and superclass.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																<div class="var-title">
+					<span class="var-type">Mmodel</span>
+					<a href="#$Mmodel" title="details" class="var-name">$Mmodel</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">Mview</span>
+					<a href="#$Mview" title="details" class="var-name">$Mview</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">Mcontroller</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type">Mmodel</span>&nbsp;<span class="var-name">$Mm</span> = <span class="var-default">null</span>], [<span class="var-type">Mview</span>&nbsp;<span class="var-name">$Mv</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#after" title="details" class="method-name">after</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#before" title="details" class="method-name">before</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#control" title="details" class="method-name">control</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$args</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#defaultAction" title="details" class="method-name">defaultAction</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#exportStreamToExcel" title="details" class="method-name">exportStreamToExcel</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#exportToExcel" title="details" class="method-name">exportToExcel</a>
+											([<span class="var-type">array|string</span>&nbsp;<span class="var-name">$rows</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#isConstructed" title="details" class="method-name">isConstructed</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#onceAfter" title="details" class="method-name">onceAfter</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#onceBefore" title="details" class="method-name">onceBefore</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#pathParts" title="details" class="method-name">pathParts</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#permit" title="details" class="method-name">permit</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$className</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#redirect" title="details" class="method-name">redirect</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$args</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#showArray" title="details" class="method-name">showArray</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$a</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#showRows" title="details" class="method-name">showRows</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$rows</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$showCount</span> = <span class="var-default">true</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$exportFileName</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#showRowsFromSql" title="details" class="method-name">showRowsFromSql</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$showCount</span> = <span class="var-default">true</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$exportFileName</span> = <span class="var-default">null</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$Mmodel" id="$Mmodel"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">Mmodel</span>
+			<span class="var-name">$Mmodel</span>
+						(line <span class="line-number">30</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">var:</span> access the Mmodel class from this instance</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$Mview" id="$Mview"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">Mview</span>
+			<span class="var-name">$Mview</span>
+						(line <span class="line-number">34</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">var:</span> access the Mview class from this instance</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">44</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mcontroller is typically extended with no argument  or created with no arguments.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">Mcontroller</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type">Mmodel</span>&nbsp;<span class="var-name">$Mm</span> = <span class="var-default">null</span>], [<span class="var-type">Mview</span>&nbsp;<span class="var-name">$Mv</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">Mmodel</span>
+				<span class="var-name">$Mm</span><span class="var-description">: force use of this instance</span>			</li>
+					<li>
+				<span class="var-type">Mview</span>
+				<span class="var-name">$Mv</span><span class="var-description">: force use of this instance</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../M/Mtable.html#method__construct">Mtable::__construct()</a>
+								: construct an instance of a table browser and super class
+							</li>
+				</ul>
+	</div>
+<a name="methodafter" id="after"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">after</span> (line <span class="line-number">227</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			after
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodbefore" id="before"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">before</span> (line <span class="line-number">226</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			before
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodcontrol" id="control"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">control</span> (line <span class="line-number">117</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">control() decides which method of which class is executed.</p>
+<p class="description"><p>It is typically called from index.php  after a control class is extended from Mcontroller:<br />  $mcc = new MyControlClass;<br />  $mcc-&gt;control();<br /></p><p>className denotes the class name and can be presented: <ol><li>in the URL as className=...<br /></li><li>as the first part of path info<br /></li><li>as a hidden field in a form.<br /></li></ol> the method is denoted by the word 'action' and can be presented:<br /> <ol><li>in the URL as action=...<br /></li><li>as the second part of path info<br /></li><li>as a hidden field in a form.<br /></li></ol>  The class Abc will be automatically loaded from Abc.class.php  if it is not already loaded and there is such a file.</p><p>if called from within a controller, dispatiching is redirected and args are (re)placed in $_REQUEST<br />  e.g.<br />    $this-&gt;control(&quot;Authors&quot;, &quot;listBooks&quot;, array('authorId' =&gt; 2,))<br />  will execute as if from a url ?className=Authors&amp;action=listBooks&amp;authorId=2<br />  this re-dispatches the action directly (without a web redirect)<br /><br />  so<br />    $this-&gt;control(&quot;Authors&quot;, &quot;listBooks&quot;, array('authorId' =&gt; 2,))<br />    $this-&gt;control(&quot;Authors&quot;, &quot;listBooks&quot;, array('authorId' =&gt; 3,))<br />  might have the effect of rendering the results of both actions consecutively on the same page<br /></p><p>use redirect($className = null, $action = null, $args = null)<br />  to replace the current action with a new one like traditional frameworks<br /></p><p>control calls permit() before it allows execution to take place. see below.<br /></p><p>if the extended object has a before() method it is called first...likewise after().<br />  onceBefore() and onceAfter() are called only once per run.<br /></p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			control
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$args</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$className</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$action</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$args</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddefaultAction" id="defaultAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">defaultAction</span> (line <span class="line-number">255</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">when a URL specifies a className without a specific action  the method defaultAction() is called.</p>
+<p class="description"><p>in systems where it is desired to create such calling sequences,  defaultAction() is overridden by the extending class.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			defaultAction
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../M/Mtable.html#methoddefaultAction">Mtable::defaultAction()</a>
+								: the default action is called when no action is specified and  after an operation that was not overridden completes
+							</li>
+				</ul>
+	</div>
+<a name="methodexportStreamToExcel" id="exportStreamToExcel"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">exportStreamToExcel</span> (line <span class="line-number">268</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">export data to excel - streaming - for larger data sets</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			exportStreamToExcel
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fileName</span><span class="var-description">: the filename that the browser will offer to 'save as'</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodexportToExcel" id="exportToExcel"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">exportToExcel</span> (line <span class="line-number">300</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">export data to excel - non-streaming</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			exportToExcel
+		</span>
+					([<span class="var-type">array|string</span>&nbsp;<span class="var-name">$rows</span> = <span class="var-default">null</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array|string</span>
+				<span class="var-name">$rows</span><span class="var-description">: as from Mmodel-&gt;getAssoc, or sql query</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fileName</span><span class="var-description">: optional 'save as' file name</span>			</li>
+				</ul>
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../M/Mquery.html#methodexportToExcel">Mquery::exportToExcel()</a>
+								: export the results to excel
+							</li>
+				</ul>
+	</div>
+<a name="methodisConstructed" id="isConstructed"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">isConstructed</span> (line <span class="line-number">66</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			isConstructed
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodonceAfter" id="onceAfter"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">onceAfter</span> (line <span class="line-number">229</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			onceAfter
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodonceBefore" id="onceBefore"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">onceBefore</span> (line <span class="line-number">228</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			onceBefore
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodpathParts" id="pathParts"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">pathParts</span> (line <span class="line-number">417</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			pathParts
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodpermit" id="permit"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">permit</span> (line <span class="line-number">243</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">decide whether to allow the execution of a method by the user</p>
+<p class="description"><p>permit() is by default suitable for public access.  It returns true thus allowing everything.<br />  In secure and controlled systems, permit() is overridden by the extending class  to check login credentials</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			permit
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$className</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$method</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$className</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$method</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodredirect" id="redirect"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">redirect</span> (line <span class="line-number">74</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">use redirect($className = null, $action = null, $args = null)</p>
+<p class="description"><p>to replace the current action with a new one like traditional frameworks</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			redirect
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$className</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$action</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$args</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$className</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$action</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$args</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodshowArray" id="showArray"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">showArray</span> (line <span class="line-number">410</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">show an array on screen - for developing and debugging</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			showArray
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$a</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$a</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodshowRows" id="showRows"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">showRows</span> (line <span class="line-number">386</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">show rows on screen</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			showRows
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$rows</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$showCount</span> = <span class="var-default">true</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$exportFileName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$rows</span><span class="var-description">: <p>the rows to be shown</p><p>each an associative array with indexes to be used for heading titles  if rows is a string, it is an sql to fetch the rows and a streaming interface is used  optional arguments tell wether to show the number of rows  and set the dfefault file name for exporting</p></span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$showCount</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$exportFileName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodshowRowsFromSql" id="showRowsFromSql"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">showRowsFromSql</span> (line <span class="line-number">338</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">show rows on screen</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			showRowsFromSql
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$showCount</span> = <span class="var-default">true</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$exportFileName</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$showCount</span><span class="var-description">: show number of rows on screen</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$exportFileName</span><span class="var-description">: the filename that the browser will offer to 'save as'</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 03 Dec 2011 03:05:41 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

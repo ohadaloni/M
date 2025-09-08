@@ -1,0 +1,34 @@
+M is a zero bootstrap php/MySQL MVC (Model View Controller) framework for rapid WEB development with php and MySQL.
+Mcontroller routes and dispatches urls, and enables access to Mmodel, Mview and other facilities.
+Mmodel is a collection of facilities to communicate with the MySQL database.
+Mview is an extension of the Smarty class http://www.smarty.net/
+
+
+M.jar for Android is a resource-less approach to frameworking Android applications.
+It is mostly a translation of PHP M to the java Android environment.
+In tandem with PHP M, it is easy to construct independent cloud based applications.
+
+http://theora.com/Mdemo/
+
+The M demo is packaged as part of the download for easy installation and quick start.
+
+class Authors extends Mtable {
+	/*------------------------------------------------------------*/
+	public function __construct() {
+		parent::__construct("authors", "last, first");
+	}
+	/*------------------------------------------------------------*/
+	public function listAuthors() {
+		$this->Mview->showTpl("authorsList.tpl", array(
+			"authors" => $this->Mmodel->getAssoc("select * from authors order by last,first"),
+		));
+	}
+	/*------------------------------------------------------------*/
+	public function listBooks() {
+		$authorId = $_REQUEST['authorId'];
+		$this->Mview->showTpl("bookList.tpl", array(
+			"books" => $this->Mmodel->getAssoc("select * from books where authorId = $authorId order by title"),
+		));
+	}
+	/*------------------------------------------------------------*/
+}

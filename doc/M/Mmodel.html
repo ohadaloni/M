@@ -1,0 +1,1586 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Mmodel</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Mmodel</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mmodel - mysql convenience utilities</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Ohad Aloni</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Mmodel.class.php.html">/Mmodel.class.php</a> (line <span class="field">22</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">Mmodel</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$user</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$passwd</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$dbName</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$host</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#autoComplete" title="details" class="method-name">autoComplete</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#autoIncrement" title="details" class="method-name">autoIncrement</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#columns" title="details" class="method-name">columns</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#databases" title="details" class="method-name">databases</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#dataType" title="details" class="method-name">dataType</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$fieldName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#datetimeNow" title="details" class="method-name">datetimeNow</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#datetimeNowInTZ" title="details" class="method-name">datetimeNowInTZ</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$tz</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#dbDelete" title="details" class="method-name">dbDelete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#dbInsert" title="details" class="method-name">dbInsert</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#dbLog" title="details" class="method-name">dbLog</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tname</span>, <span class="var-type">operation</span>&nbsp;<span class="var-name">$op</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$tid</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$querySql</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#dbUpdate" title="details" class="method-name">dbUpdate</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#dumpTable" title="details" class="method-name">dumpTable</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#field" title="details" class="method-name">field</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$fieldName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#fields" title="details" class="method-name">fields</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#get1Assoc" title="details" class="method-name">get1Assoc</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getAssoc" title="details" class="method-name">getAssoc</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getById" title="details" class="method-name">getById</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#getInt" title="details" class="method-name">getInt</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getRow" title="details" class="method-name">getRow</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getRows" title="details" class="method-name">getRows</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getString" title="details" class="method-name">getString</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getStrings" title="details" class="method-name">getStrings</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#insertId" title="details" class="method-name">insertId</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#isColumn" title="details" class="method-name">isColumn</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$column</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#isConnected" title="details" class="method-name">isConnected</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#isTable" title="details" class="method-name">isTable</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$t</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">resource</span>
+										<a href="#query" title="details" class="method-name">query</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#rowNum" title="details" class="method-name">rowNum</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$t</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#sampleSql" title="details" class="method-name">sampleSql</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$table</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#saveFieldInfo" title="details" class="method-name">saveFieldInfo</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#selectDB" title="details" class="method-name">selectDB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$db</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#selectHost" title="details" class="method-name">selectHost</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$dbHost</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$dbUser</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$dbPasswd</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$dbName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#sql" title="details" class="method-name">sql</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#str" title="details" class="method-name">str</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#tableDump" title="details" class="method-name">tableDump</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$orderBy</span> = <span class="var-default">&quot;id&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#tables" title="details" class="method-name">tables</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$db</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#useDB" title="details" class="method-name">useDB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$db</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#_dbDelete" title="details" class="method-name">_dbDelete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#_dbInsert" title="details" class="method-name">_dbInsert</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$rememberLastSql</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#_dbUpdate" title="details" class="method-name">_dbUpdate</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#_sql" title="details" class="method-name">_sql</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$rememberLastSql</span> = <span class="var-default">true</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">36</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Mmodel</span>
+		<span class="method-name">
+			__construct
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$user</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$passwd</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$dbName</span> = <span class="var-default">null</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$host</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$user</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$passwd</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$dbName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$host</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodautoComplete" id="autoComplete"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">autoComplete</span> (line <span class="line-number">790</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">provide data for jquery autocomplete</p>
+<p class="description"><p>the request url is of the form id=$tname-$fname&amp;q=...  e.g. 	$(&quot;.autocomplete&quot;, context).autocomplete(&quot;?className=Mmodel&amp;action=autocomplete&amp;id=&quot; + $this.id);</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			autoComplete
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodautoIncrement" id="autoIncrement"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">autoIncrement</span> (line <span class="line-number">359</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">name of the auto_increment column in table</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> name of auto_increment column</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			autoIncrement
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the name of the table</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcolumns" id="columns"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">columns</span> (line <span class="line-number">446</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">list fields of a table</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> list of field names</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			columns
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the name of the table</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddatabases" id="databases"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">databases</span> (line <span class="line-number">512</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">list of databases</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			databases
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methoddataType" id="dataType"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">dataType</span> (line <span class="line-number">769</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">the data type of a column in a table</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the data type</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			dataType
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$fieldName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the table name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fieldName</span><span class="var-description">: the column name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddatetimeNow" id="datetimeNow"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">datetimeNow</span> (line <span class="line-number">904</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">a database ready representation of now()</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			datetimeNow
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methoddatetimeNowInTZ" id="datetimeNowInTZ"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">datetimeNowInTZ</span> (line <span class="line-number">917</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">a database ready representation of now() in a given timezone</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			datetimeNowInTZ
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$tz</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tz</span><span class="var-description">: timezone  (see date_default_timezone_set())</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddbDelete" id="dbDelete"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">dbDelete</span> (line <span class="line-number">705</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">delete a row</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if all is well, (including no-change), false on error</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			dbDelete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: table name</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: value of id key identifying the row to be updated</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$idName</span><span class="var-description">: the name of the id field if it is not 'id'</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddbInsert" id="dbInsert"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">dbInsert</span> (line <span class="line-number">599</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">insert data to database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> auto-increment id of the new row</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			dbInsert
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: table to insert the data to</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$data</span><span class="var-description">: associative array with data. Fields not matching columns of the table are silently ignored.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddbLog" id="dbLog"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">dbLog</span> (line <span class="line-number">885</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">log database activity in a table called queryLog</p>
+<p class="description"><p>Normally only used as 'private',  dbInsert(), dbUpdate(), dbDelete() and sql() attempt  to log activities when successful changes occur,  while _dbInsert(), _dbUpdate(), _dbDelete() and _sql() do not.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			dbLog
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tname</span>, <span class="var-type">operation</span>&nbsp;<span class="var-name">$op</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$tid</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$querySql</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tname</span><span class="var-description">: table name</span>			</li>
+					<li>
+				<span class="var-type">operation</span>
+				<span class="var-name">$op</span><span class="var-description">: performed</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$tid</span><span class="var-description">: id of the affected row</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$querySql</span><span class="var-description">: the sql statement performing the operation</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddbUpdate" id="dbUpdate"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">dbUpdate</span> (line <span class="line-number">672</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">update a row of data</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> true if all is well, (including no-change), false on error</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			dbUpdate
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: table name</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: value of id key identifying the row to be updated</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$data</span><span class="var-description">: associative array with data. Fields not matching columns of the table are silently ignored.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$idName</span><span class="var-description">: the name of the id field if it is not 'id'</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddumpTable" id="dumpTable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">dumpTable</span> (line <span class="line-number">739</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">stream an SQL dump of the table to the standard output</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			dumpTable
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the table name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfield" id="field"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">field</span> (line <span class="line-number">430</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">schema of one field</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			field
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$fieldName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$tableName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$fieldName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfields" id="fields"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">fields</span> (line <span class="line-number">399</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">schema information for a table:</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> two dimensional array. For each column in the table: name, type, isNull, isPrimary, default, isAutoInc</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			fields
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the name of the table</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodget1Assoc" id="get1Assoc"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get1Assoc</span> (line <span class="line-number">273</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get a single row from the database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> associative array from mysql_fetch_assoc()</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			get1Assoc
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetAssoc" id="getAssoc"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAssoc</span> (line <span class="line-number">241</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get rows from the database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> array of associative arrays from mysql_fetch_assoc()</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getAssoc
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetById" id="getById"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getById</span> (line <span class="line-number">292</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get a row from a table by its id</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> associative array of data of the row</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getById
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the table from which the data is fetched</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: the id value</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$idName</span><span class="var-description">: the name of the id field if it is not 'id'</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetInt" id="getInt"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getInt</span> (line <span class="line-number">342</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get an int item from the database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the returned number</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			getInt
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetRow" id="getRow"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRow</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get a single row from the database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> associative array from mysql_fetch_assoc()</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getRow
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetRows" id="getRows"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRows</span> (line <span class="line-number">231</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get rows from the database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> array of associative arrays from mysql_fetch_assoc()</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getRows
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetString" id="getString"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getString</span> (line <span class="line-number">324</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get an item (single row, single column) from the database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the item data</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getString
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetStrings" id="getStrings"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStrings</span> (line <span class="line-number">303</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">get a column of data from the database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an array with the data</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getStrings
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodinsertId" id="insertId"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">insertId</span> (line <span class="line-number">129</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">id of last insert - same as mysql_insert_id()</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			insertId
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisColumn" id="isColumn"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">isColumn</span> (line <span class="line-number">472</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">does field exist in a table</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			isColumn
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$column</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the name of the table</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$column</span><span class="var-description">: the name of the field</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisConnected" id="isConnected"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isConnected</span> (line <span class="line-number">74</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			isConnected
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisTable" id="isTable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">isTable</span> (line <span class="line-number">534</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">does table exist</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			isTable
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$t</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$t</span><span class="var-description">: the table name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodquery" id="query"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">query</span> (line <span class="line-number">160</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">query() is almost synonim to mysql_query().<br />  It is used for streaming when possibly large data sets are expected.</p>
+<p class="description"><p>For queries expecting a single row, item or a relativelly small result set,<br />  use get1Assoc(), getAssoc(), getString(), getStrings() or getInt()<br />  for a complete &quot;round trip&quot; and single-line-coding convenience</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> as returned from mysql_query()</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">resource</span>
+		<span class="method-name">
+			query
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the sql query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrowNum" id="rowNum"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">rowNum</span> (line <span class="line-number">485</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">number of rows in a table</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the number of rows in the table</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			rowNum
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$t</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$t</span><span class="var-description">: the name of the table</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsampleSql" id="sampleSql"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">sampleSql</span> (line <span class="line-number">929</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">sql for a sample of rows from table</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			sampleSql
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$table</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$table</span><span class="var-description">: name of table</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsaveFieldInfo" id="saveFieldInfo"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">saveFieldInfo</span> (line <span class="line-number">828</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">update a single item in the database from parameters in $_REQUEST</p>
+<p class="description"><p>saveFieldInfo() is used directly from the jQuery jeditable plugin  as a complete server-side ajax updater/responder</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			saveFieldInfo
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodselectDB" id="selectDB"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">selectDB</span> (line <span class="line-number">106</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">use database</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			selectDB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$db</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$db</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodselectHost" id="selectHost"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">selectHost</span> (line <span class="line-number">78</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			selectHost
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$dbHost</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$dbUser</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$dbPasswd</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$dbName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$dbHost</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$dbUser</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$dbPasswd</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$dbName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsql" id="sql"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">sql</span> (line <span class="line-number">211</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">execute a query, expecting no particular resulting data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> number of rows affected by the query</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			sql
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodstr" id="str"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">str</span> (line <span class="line-number">138</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">make a string usable in quotes of sql statement</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			str
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtableDump" id="tableDump"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">tableDump</span> (line <span class="line-number">719</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">return sql representing the data in the table ( use dumpTable() to stream large tables )</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> sql statement(s) to (re-)insert data to the table</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			tableDump
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$orderBy</span> = <span class="var-default">&quot;id&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: the table name</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$orderBy</span><span class="var-description">: single field to sort by or null to avoid sorting</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodtables" id="tables"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">tables</span> (line <span class="line-number">495</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">list of tables in database</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> list of tables</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			tables
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$db</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$db</span><span class="var-description">: the database name (optional - if not the default database)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoduseDB" id="useDB"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">useDB</span> (line <span class="line-number">120</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">use database</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			useDB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$db</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$db</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_dbDelete" id="_dbDelete"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_dbDelete</span> (line <span class="line-number">687</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">delete a row (without logging - see dbLog())</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> 1 on success, 0 if nothing was deleted, -1 if an error occured</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			_dbDelete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: table name</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: value of id key identifying the row to be updated</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$idName</span><span class="var-description">: the name of the id field if it is not 'id'</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_dbInsert" id="_dbInsert"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">_dbInsert</span> (line <span class="line-number">576</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">dbInsert() without logging (see dbLog())</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> auto-increment id of the new row</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			_dbInsert
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$rememberLastSql</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: table to insert the data to</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$data</span><span class="var-description">: associative array with data. Fields not matching columns of the table are silently ignored.</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$rememberLastSql</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_dbUpdate" id="_dbUpdate"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">_dbUpdate</span> (line <span class="line-number">631</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">update a row of data - raw interface - see also dbUpdate() &amp; dbLog()</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> -1 on error, 0 if the query had no effect, 1 if an actual change occured (see mysql_affected_rows())</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			_dbUpdate
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$tableName</span>, <span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">array</span>&nbsp;<span class="var-name">$data</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$idName</span> = <span class="var-default">&quot;id&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tableName</span><span class="var-description">: table name</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: value of id key identifying the row to be updated</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$data</span><span class="var-description">: associative array with data. Fields not matching columns of the table are silently ignored.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$idName</span><span class="var-description">: the name of the id field if it is not 'id'</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method_sql" id="_sql"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">_sql</span> (line <span class="line-number">193</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">execute a query, expecting no particular resulting data.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> number of rows affected by the query</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			_sql
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sql</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$rememberLastSql</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sql</span><span class="var-description">: the query</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$rememberLastSql</span><span class="var-description">: used internally (see dbLog())</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 03 Dec 2011 03:05:43 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

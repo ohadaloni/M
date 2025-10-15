@@ -372,6 +372,11 @@ class Mview extends Smarty {
 		));
 	}
 	/*------------------------------*/
+	public static function hr($howMany = 1) {
+		for($i=0;$i<$howMany;$i++)
+			self::pushOutput('<hr style="height:3px; color:blue;" />'."\n");
+	}
+	/*------------------------------*/
 	public static function br($howMany = 1) {
 		for($i=0;$i<$howMany;$i++)
 			self::pushOutput("<br />\n");

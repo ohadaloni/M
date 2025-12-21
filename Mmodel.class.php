@@ -584,6 +584,11 @@ class Mmodel {
 		foreach ( $data as $fname => $value ) {
 			if ( $fname == $idName || ! in_array($fname, $cols) || $this->equiv($origData[$fname], $value) )
 				continue;
+			if ( $value === null ) {
+				$value = null;
+				$pairs[] = "$fname = null";
+				continue;
+			}
 			$dataType = $this->dataType($tableName, $fname);
 			if ( $dataType == 'timestamp' )
 				continue;

@@ -435,6 +435,13 @@ class Mdate {
 		return(isset($monthLlist[(int)$m]) ? $monthLlist[(int)$m] : $m);
 	}
 	/*----------------------------------------*/
+	public static function dayOfWeek($date) {
+		$date = self::dash($date);
+		$time = strtotime($date);
+		$dayOfWeek = date("l", $time);
+		return($dayOfWeek);
+	}
+	/*----------------------------------------*/
 	/**
 	  * List of short week day names
 	  *
@@ -450,6 +457,18 @@ class Mdate {
 			5 => "Fri",
 			6 => "Sat",
 		));
+	}
+	/*----------*/
+	public static function weekDayNumber($str) {
+		$weekDayList = self::weekDayList();
+		$numbers = array_flip($weekDayList);
+		$number = @$numbers[$str];
+		if ( $number )
+			return($number);
+		$weekDayLlist = self::weekDayLlist();
+		$numbers = array_flip($weekDayLlist);
+		$number = @$numbers[$str];
+		return($number);
 	}
 	/*----------*/
 	/**

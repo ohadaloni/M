@@ -457,7 +457,7 @@ class Mmodel {
 
 		if ( isset($cache[$db]) )
 			return($cache[$db]);
-		$cache[$db] = $this->getStrings("show tables from $db");
+		$cache[$db] = $this->getStrings("show tables from $db", 24*3600);
 		return($cache[$db]);
 	}
 	/*----------------------------------------*/
@@ -518,6 +518,7 @@ class Mmodel {
 		if ( $affected != 1 )
 			return(null);
 		$this->lastInsertId = mysqli_insert_id($this->dbHandle);
+		$this->fsck($tableName);
 		return($this->lastInsertId);
 	}
 	/*------------------------------*/
@@ -558,6 +559,7 @@ class Mmodel {
 		$bulkValues = "( ".implode(" ), ( ", $valuesLists)." )";
 		$sql = "insert $tableName ( $names ) values $bulkValues";
 		$affected = $this->sql($sql);
+		$this->fsck($tableName);
 		return($affected);
 	}
 	/*------------------------------------------------------------*/
@@ -615,6 +617,7 @@ class Mmodel {
 		$pairList = implode(", ", $pairs);
 		$sql = "update $tableName set $pairList where $idName = $id";
 		$affected = $this->_sql($sql);
+		$this->fsck($tableName);
 		return($affected);
 	}
 	/*--------------------*/
@@ -648,6 +651,7 @@ class Mmodel {
 		}
 		$sql = "delete from $tableName where $idName = $id";
 		$affected = $this->_sql($sql);
+		$this->fsck($tableName);
 		return($affected);
 	}
 	/*----------------------------------------*/
@@ -685,6 +689,45 @@ class Mmodel {
 		if ( isset($cache[$tableName][$fieldName]) )
 			return($cache[$tableName][$fieldName]);
 		return(null);
+	}
+	/*------------------------------------------------------------*/
+	private function fsck($tableName) {
+		$db = $this->dbName;
+		if ( $tableName == 'fsck' ) {
+			error_log("fsck: $db:$tableName: table is fsck itself");
+			return; // !!!
+		}
+		if ( ! $this->isTable("fsck") ) {
+			error_log("fsck: $db:$tableName: no fsck table");
+			return;
+		}
+		$sql = "select * from fsck where tableName = '$tableName'";
+		$fsckRow = $this->getRow($sql);
+		$today =  date("Y-m-d");
+		if ( $fsckRow ) {
+			$lastUpdated = $fsckRow['lastUpdated'];
+			$diff = Mdate::diff($today, $lastUpdated);
+			if ( $diff < 7 ) {
+				error_log("fsck: $db:$tableName: updateed recently");
+				return;
+			}
+		}
+		$sql = "select count(*) from $tableName";
+		$rows = $this->getInt($sql);
+		if ( $fsckRow ) {
+			error_log("fsck: $db:$tableName: updating");
+			$this->dbUpdate("fsck", $fsckRow['id'], array(
+				'lastUpdated' => $today,
+				'rows' => $rows,
+			));
+		} else {
+			error_log("fsck: $db:$tableName: new row");
+			$this->dbInsert("fsck", array(
+				'tableName' => $tableName,
+				'lastUpdated' => $today,
+				'rows' => $rows,
+			));
+		}
 	}
 	/*------------------------------------------------------------*/
 	/**

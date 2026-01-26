@@ -1,0 +1,6 @@
+create table fsck (
+	tableName varchar(60),
+	lastUpdated date,
+	rows int,
+	unique key ( tableName )
+);

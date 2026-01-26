@@ -517,7 +517,8 @@ class Mmodel {
 		$affected = $this->_sql($sql, $rememberLastSql);
 		if ( $affected != 1 )
 			return(null);
-		$this->lastInsertId = mysqli_insert_id($this->dbHandle);
+		if ( $tableName != "fsck" )
+			$this->lastInsertId = mysqli_insert_id($this->dbHandle);
 		$this->fsck($tableName);
 		return($this->lastInsertId);
 	}

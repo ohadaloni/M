@@ -1,6 +1,7 @@
 CREATE TABLE fsck (
 id int(11) NOT NULL AUTO_INCREMENT,
 tableName varchar(60) DEFAULT NULL,
+lastRead date DEFAULT NULL,
 lastUpdated date DEFAULT NULL,
 rows int(11) DEFAULT NULL,
 PRIMARY KEY (id),

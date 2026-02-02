@@ -1,6 +1,9 @@
-create table fsck (
-	tableName varchar(60),
-	lastUpdated date,
-	rows int,
-	unique key ( tableName )
-);
+CREATE TABLE fsck (
+id int(11) NOT NULL AUTO_INCREMENT,
+tableName varchar(60) DEFAULT NULL,
+lastUpdated date DEFAULT NULL,
+rows int(11) DEFAULT NULL,
+PRIMARY KEY (id),
+UNIQUE KEY tableName (tableName)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+

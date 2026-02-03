@@ -228,11 +228,12 @@ class Mmodel {
 			} else {
 				$tableName = substr($tableNameStartsAt, 0, $tableNameLength);
 			}
-			if ( $tableName == "fsck" ) {
-				/*	error_log("getRows:(fsck): table is fsck: $sql");	*/
-				
-			} elseif ( ! $tableName ) {
+			if ( ! $tableName ) {
 				error_log("getRows:(fsck): $tableName is null: $sql");
+			} elseif ( $tableName == "fsck" ) {
+				/*	error_log("getRows:(fsck): table is fsck: $sql");	*/
+			} elseif ( strstr($tableName, ".") ) {
+				error_log("getRows:(fsck): $tableName is foreign: $sql");
 			} else {
 				/*	error_log("getRows:(fsck): $tableName: $sql");	*/
 				$this->fsck($tableName, true);
@@ -728,6 +729,10 @@ class Mmodel {
 			/*	error_log("fsck: $db:$tableName: no fsck table");	*/
 			return;
 		}
+		if ( ! $this->isTable($tableName) ) {
+			error_log("fsck: $db:$tableName: no table $tableName");
+			return;
+		}
 		// Tue Feb  3 01:21:55 IST 2026
 		/*	error_log("fsck: $db:$tableName read='$read'");	*/
 		/*	return;	*/
@@ -798,13 +803,7 @@ class Mmodel {
 		if ( ! $this->isTable('queryLog') )
 			return;
 		$excludeTables = array(
-			'authLog',
 			'errorLog',
-			'online',
-			'tlog',
-			'timeWatch',
-			'usageStats',
-			'loads',
 		);
 		if ( in_array($tname, $excludeTables) )
 			return;

@@ -208,15 +208,37 @@ class Mmodel {
 		if ( $ttl !== null ) {
 			$set = $this->Mmemcache->set($memcacheKey, $ret, $ttl);
 			if ( ! $set )
-				error_log("Failed to Mmemcache->set($memcacheKey, ..., $ttl)");
+				error_log("getRows: Failed to Mmemcache->set($memcacheKey, ..., $ttl)");
 			static $visited = false;
 			if ( ! $visited ) {
 				$visited = true;
 				$get = $this->Mmemcache->get($memcacheKey);
 				if ( $get === false ) {
-					error_log("Failed to get after Mmemcache->set($memcacheKey, ..., $ttl)");
+					error_log("getRows: Failed to get after Mmemcache->set($memcacheKey, ..., $ttl)");
 				}
 			}
+		}
+		$fromStartAt = strstr($sql, "from");
+		if ( $fromStartAt ) {
+			$tableNameStartsAt = substr($fromStartAt, 5);
+			$tableNameStartsAt = trim($tableNameStartsAt);
+			$tableNameLength = strpos($tableNameStartsAt, ' ');
+			if ( $tableNameLength === false ) {
+				$tableName = $tableNameStartsAt;
+			} else {
+				$tableName = substr($tableNameStartsAt, 0, $tableNameLength);
+			}
+			if ( $tableName == "fsck" ) {
+				/*	error_log("getRows:(fsck): table is fsck: $sql");	*/
+				
+			} elseif ( ! $tableName ) {
+				error_log("getRows:(fsck): $tableName is null: $sql");
+			} else {
+				/*	error_log("getRows:(fsck): $tableName: $sql");	*/
+				$this->fsck($tableName, true);
+			}
+		} else {
+			error_log("getRows:(fsck): no 'from' in: $sql");
 		}
 		return($ret);
 	}
@@ -519,7 +541,6 @@ class Mmodel {
 			return(null);
 		if ( $tableName != "fsck" )
 			$this->lastInsertId = mysqli_insert_id($this->dbHandle);
-		$this->fsck($tableName);
 		return($this->lastInsertId);
 	}
 	/*------------------------------*/
@@ -534,6 +555,7 @@ class Mmodel {
 		if ( ($id = $this->_dbInsert($tableName, $data, true, $withId)) == null )
 			return(null);
 		$this->dbLog($tableName, 'insert', $id);
+		$this->fsck($tableName);
 		return($id);
 	}
 	/*------------------------------------------------------------*/
@@ -618,7 +640,6 @@ class Mmodel {
 		$pairList = implode(", ", $pairs);
 		$sql = "update $tableName set $pairList where $idName = $id";
 		$affected = $this->_sql($sql);
-		$this->fsck($tableName);
 		return($affected);
 	}
 	/*--------------------*/
@@ -635,6 +656,7 @@ class Mmodel {
 		$affected = $this->_dbUpdate($tableName, $id, $data, $idName);
 		if ( $affected > 0 )
 			$this->dbLog($tableName, 'update', $id);
+		$this->fsck($tableName);
 		return($affected);
 	}
 	/*----------------------------------------*/
@@ -652,7 +674,6 @@ class Mmodel {
 		}
 		$sql = "delete from $tableName where $idName = $id";
 		$affected = $this->_sql($sql);
-		$this->fsck($tableName);
 		return($affected);
 	}
 	/*----------------------------------------*/
@@ -668,6 +689,7 @@ class Mmodel {
 		$affected = $this->_dbDelete($tableName, $id, $idName);
 		if ( $affected > 0 )
 			$this->dbLog($tableName, 'delete', $id);
+		$this->fsck($tableName);
 		return($affected >= 0);
 	}
 	/*------------------------------------------------------------*/
@@ -692,42 +714,70 @@ class Mmodel {
 		return(null);
 	}
 	/*------------------------------------------------------------*/
-	private function fsck($tableName) {
+	private function fsck($tableName, $read = false) {
 		$db = $this->dbName;
+		if ( ! $tableName ) {
+			error_log("fsck: $db: tableName is null");
+			return;
+		}
 		if ( $tableName == 'fsck' ) {
-			error_log("fsck: $db:$tableName: table is fsck itself");
+			/*	error_log("fsck: $db:$tableName: table is fsck itself");	*/
 			return; // !!!
 		}
 		if ( ! $this->isTable("fsck") ) {
-			error_log("fsck: $db:$tableName: no fsck table");
+			/*	error_log("fsck: $db:$tableName: no fsck table");	*/
 			return;
 		}
+		// Tue Feb  3 01:21:55 IST 2026
+		/*	error_log("fsck: $db:$tableName read='$read'");	*/
+		/*	return;	*/
 		$sql = "select * from fsck where tableName = '$tableName'";
 		$fsckRow = $this->getRow($sql);
 		$today =  date("Y-m-d");
 		if ( $fsckRow ) {
-			$lastUpdated = $fsckRow['lastUpdated'];
-			$diff = Mdate::diff($today, $lastUpdated);
-			if ( $diff < 7 ) {
-				error_log("fsck: $db:$tableName: updateed recently");
-				return;
+			if ( $read ) {
+				$lastRead = $fsckRow['lastRead'];
+				if ( $lastRead ) {
+					$diff = Mdate::diff($today, $lastRead);
+					if ( $diff < 30 ) {
+						/*	error_log("fsck: $db:$tableName: read recently");	*/
+						return;
+					}
+				}
+			} else {
+				$lastUpdated = $fsckRow['lastUpdated'];
+				if ( $lastUpdated ) {
+					$diff = Mdate::diff($today, $lastUpdated);
+					if ( $diff < 30 ) {
+						/*	error_log("fsck: $db:$tableName: updateed recently");	*/
+						return;
+					}
+				}
 			}
 		}
-		$sql = "select count(*) from $tableName";
-		$rows = $this->getInt($sql);
+		if ( $fsckRow ) {
+			$newRow = array();
+		} else {
+			$newRow = array(
+				'tableName' => $tableName,
+			);
+		}
+		if ( $read ) {
+			$newRow['lastRead'] = $today;
+			error_log("fsck: $db:$tableName: read");
+		} else {
+			$newRow['lastUpdated'] = $today;
+			$sql = "select count(*) from $tableName";
+			$rows = $this->getInt($sql);
+			$newRow['rows'] = $rows;
+			error_log("fsck: $db:$tableName: updated");
+		}
 		if ( $fsckRow ) {
 			error_log("fsck: $db:$tableName: updating");
-			$this->dbUpdate("fsck", $fsckRow['id'], array(
-				'lastUpdated' => $today,
-				'rows' => $rows,
-			));
+			$this->_dbUpdate("fsck", $fsckRow['id'], $newRow);
 		} else {
 			error_log("fsck: $db:$tableName: new row");
-			$this->dbInsert("fsck", array(
-				'tableName' => $tableName,
-				'lastUpdated' => $today,
-				'rows' => $rows,
-			));
+			$this->_dbInsert("fsck", $newRow);
 		}
 	}
 	/*------------------------------------------------------------*/

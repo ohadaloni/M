@@ -135,6 +135,7 @@ class Mmodel {
 	/*------------------------------------------------------------*/
 	public function query($sql) {
 		$res = null;
+		$this->lastSql = $sql;
 		try {
 			$res = @mysqli_query($this->dbHandle, $sql);
 		} catch (Exception $e) {
@@ -715,26 +716,24 @@ class Mmodel {
 	}
 	/*------------------------------------------------------------*/
 	private function fsck($tableName, $read = false) {
+		$lastSql = $this->lastSql;
 		$db = $this->dbName;
 		if ( ! $tableName ) {
-			error_log("fsck: $db: tableName is null");
+			error_log("fsck: $db: read=$read: tableName is null ($lastSql)");
 			return;
 		}
 		if ( $tableName == 'fsck' ) {
-			/*	error_log("fsck: $db:$tableName: table is fsck itself");	*/
+			/*	error_log("fsck: $db:$tableName: read=$read: table is fsck itself ($lastSql)");	*/
 			return; // !!!
 		}
 		if ( ! $this->isTable("fsck") ) {
-			/*	error_log("fsck: $db:$tableName: no fsck table");	*/
+			error_log("fsck: $db:$tableName: read=$read: no fsck table ($lastSql)");
 			return;
 		}
 		if ( ! $this->isTable($tableName) ) {
-			error_log("fsck: $db:$tableName: no table $tableName");
+			error_log("fsck: $db:$tableName: read=$read: no table $tableName ($lastSql)");
 			return;
 		}
-		// Tue Feb  3 01:21:55 IST 2026
-		/*	error_log("fsck: $db:$tableName read='$read'");	*/
-		/*	return;	*/
 		$sql = "select * from fsck where tableName = '$tableName'";
 		$fsckRow = $this->getRow($sql);
 		$today =  date("Y-m-d");
@@ -744,7 +743,7 @@ class Mmodel {
 				if ( $lastRead ) {
 					$diff = Mdate::diff($today, $lastRead);
 					if ( $diff < 30 ) {
-						/*	error_log("fsck: $db:$tableName: read recently");	*/
+						/*	error_log("fsck: $db:$tableName: read=$read: read recently");	*/
 						return;
 					}
 				}
@@ -753,7 +752,7 @@ class Mmodel {
 				if ( $lastUpdated ) {
 					$diff = Mdate::diff($today, $lastUpdated);
 					if ( $diff < 30 ) {
-						/*	error_log("fsck: $db:$tableName: updateed recently");	*/
+						/*	error_log("fsck: $db:$tableName: read=$read: updated recently");	*/
 						return;
 					}
 				}
@@ -768,19 +767,19 @@ class Mmodel {
 		}
 		if ( $read ) {
 			$newRow['lastRead'] = $today;
-			error_log("fsck: $db:$tableName: read");
+			error_log("fsck: $db:$tableName: read=$read: read");
 		} else {
 			$newRow['lastUpdated'] = $today;
 			$sql = "select count(*) from $tableName";
 			$rows = $this->getInt($sql);
 			$newRow['rows'] = $rows;
-			error_log("fsck: $db:$tableName: updated");
+			error_log("fsck: $db:$tableName: read=$read: updated ($lastSql)");
 		}
 		if ( $fsckRow ) {
-			error_log("fsck: $db:$tableName: updating");
+			error_log("fsck: $db:$tableName: read=$read: updating ($lastSql)");
 			$this->_dbUpdate("fsck", $fsckRow['id'], $newRow);
 		} else {
-			error_log("fsck: $db:$tableName: new row");
+			error_log("fsck: $db:$tableName: read=$read: new row ($lastSql)");
 			$this->_dbInsert("fsck", $newRow);
 		}
 	}

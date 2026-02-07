@@ -162,13 +162,12 @@ class Mmodel {
 		return($res);
 	}
 	/*------------------------------------------------------------*/
-	public function _sql($sql, $rememberLastSql = true) {
+	public function _sql($sql) {
 		$res = $this->query($sql);
 		if ( ! $res ) {
 			return(null);
 		}
-		if ( $rememberLastSql )
-			$this->lastSql = $sql;
+		$this->lastSql = $sql;
 		$affected = @mysqli_affected_rows($this->dbHandle);
 		@mysqli_free_result($res);
 		return($affected);
@@ -529,7 +528,7 @@ class Mmodel {
 	  * @return int auto-increment id of the new row
 	  */
 	 
-	public function _dbInsert($tableName, $data, $rememberLastSql = true, $withId = false) {
+	public function _dbInsert($tableName, $data, $withId = false) {
 		if ( ! $this->isConnected ) {
 			return(null);
 		}
@@ -537,7 +536,7 @@ class Mmodel {
 		if ( ($sql = $this->dbInsertSql($tableName, $data, $withId)) == null )
 			return(null);
 
-		$affected = $this->_sql($sql, $rememberLastSql);
+		$affected = $this->_sql($sql);
 		if ( $affected != 1 )
 			return(null);
 		if ( $tableName != "fsck" )

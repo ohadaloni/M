@@ -553,7 +553,7 @@ class Mmodel {
 	  * @return int auto-increment id of the new row
 	  */
 	public function dbInsert($tableName, $data, $withId = false) {
-		if ( ($id = $this->_dbInsert($tableName, $data, true, $withId)) == null )
+		if ( ($id = $this->_dbInsert($tableName, $data, $withId)) == null )
 			return(null);
 		$this->dbLog($tableName, 'insert', $id);
 		$this->fsck($tableName);
@@ -819,7 +819,7 @@ class Mmodel {
 				'loginName' => Mlogin::get('MloginName'),
 				'stamp' => date("Y-m-d H:i:s"),
 			);
-		$this->_dbInsert('queryLog', $row, false);
+		$this->_dbInsert('queryLog', $row);
 	}
 	/*------------------------------------------------------------*/
 	/**

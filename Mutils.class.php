@@ -369,6 +369,7 @@ class Mutils {
 				$files[] = $file;
 		}
 		closedir($dir);
+		sort($files);
 		return($files);
 	}
 	/*------------------------------------------------------------*/

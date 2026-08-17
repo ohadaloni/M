@@ -93,8 +93,8 @@ class Mcontroller {
 		$obj->before();
 		$action = $this->action;
 		$obj->$action();
-		$obj->Mview->runningTime($this->startTime);
 		$obj->after();
+		$obj->Mview->runningTime($this->startTime);
 		return(true);
 	}
 	/*------------------------------------------------------------*/

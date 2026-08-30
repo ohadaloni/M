@@ -958,7 +958,7 @@ class Mmodel {
 			if ( strncmp($dataType, "int(", 4) == 0 || $dataType == "double" )
 				$value = str_replace(",", "", $value);
 			$str = $value;
-			if ( ! $str )
+			if ( $str != '0' && ! $str )
 				continue;
 			$row[$fname] = $str;
 		}
